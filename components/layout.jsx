@@ -1,10 +1,10 @@
 import Head from 'next/head'
-import Image from 'next/image'
+// import Image from 'next/image'
 import styles from './layout.module.css'
 import utilStyles from '../styles/utils.module.css'
 import Link from 'next/link'
 
-const name = 'My Pofolio'
+const name = 'My Portfolio'
 export const siteTitle = 'A personal website for nguyen van nam using Next.js'
 
 export default function Layout({ children, home }) {
@@ -30,7 +30,7 @@ export default function Layout({ children, home }) {
             <header className={styles.header}>
                 {home ? (
                     <>
-                        <Image
+                        <img
                             priority
                             src={profileImage}
                             className={utilStyles.borderCircle}
@@ -44,7 +44,7 @@ export default function Layout({ children, home }) {
                     <>
                         <Link href="/">
                             <a>
-                                <Image
+                                <img
                                     priority
                                     src={profileImage}
                                     className={utilStyles.borderCircle}
