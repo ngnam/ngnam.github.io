@@ -2,7 +2,7 @@ import Head from 'next/head'
 // import Image from 'next/image'
 import styles from './layout.module.css'
 import utilStyles from '../styles/utils.module.css'
-import Link from 'next/link'
+import Link from "./navlink";
 
 const name = 'My Portfolio'
 export const siteTitle = 'A personal website for nguyen van nam using Next.js'
@@ -62,9 +62,9 @@ export default function Layout({ children, home }) {
                     </>
                 )}
                 <ul className={styles.menu}>
-                    <li><Link href="/blog/hello">Hello</Link></li>
-                    <li><Link href="/blog/">Blog</Link></li>
-                    <li><Link href="/authors/me">Profile</Link></li>
+                    <li><Link href="/blog/hello" activeClassName={styles.menu_li_active}><a>Hello</a></Link></li>
+                    <li><Link href="/blog" activeClassName={styles.menu_li_active}><a>Blog</a></Link></li>
+                    <li><Link href="/authors/me" activeClassName={styles.menu_li_active}><a>Profile</a></Link></li>
                 </ul>
             </header>
             <main className={styles.main}>{children}</main>
