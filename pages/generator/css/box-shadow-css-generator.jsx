@@ -23,10 +23,11 @@ export default function BoxShadowCssGenerator() {
     const [copyValue, setCopyValue] = useState(null);
 
     useEffect(() => {
+        setCssGeneerate(`${formValues['hsl']}px ${formValues['vsl']}px ${formValues['blurradius']}px ${formValues['spreadradius']}px ${formValues['sdcrgbaCol'] || 'rgba(0,0,0,0.7)'}${formValues['inset'] ? ' inset' : ''}`);
         const test = `box-shadow: ${cssGeneerate}; \n-webkit-box-shadow: ${cssGeneerate};\n-moz-box-shadow: ${cssGeneerate};\n-o-box-shadow: ${cssGeneerate};`
         textArea.current.value = test;
         setCopyValue(test);
-    }, [cssGeneerate])
+    }, [cssGeneerate, formValues])
 
     const inputs = [
         {
@@ -124,9 +125,6 @@ export default function BoxShadowCssGenerator() {
         else {
             setValues({ ...formValues, [e.target.name]: e.target.value });
         }
-        setTimeout(() => {
-            setCssGeneerate(`${formValues['hsl']}px ${formValues['vsl']}px ${formValues['blurradius']}px ${formValues['spreadradius']}px ${formValues['sdcrgbaCol'] || 'rgba(0,0,0,0.7)'}${formValues['inset'] ? ' inset' : ''}`);
-        }, 200)
     };
     return (
         <>
@@ -136,6 +134,7 @@ export default function BoxShadowCssGenerator() {
             </Head>
 
             <section className="container">
+                <p>A Product of Nguyen Van Nam</p>
                 <div className="item-container">
                     <form>
                         <h1>Box Shadow Options</h1>
@@ -160,8 +159,8 @@ export default function BoxShadowCssGenerator() {
                 <div className="item-container box">
                     <div className="item-preview" style={{
                         boxShadow: cssGeneerate,
-                    }}
-                    >
+                    }}>
+                        css generator
                     </div>
                     <div className="item-code">
                         <textarea placeholder="css generator" rows="5" cols="20" ref={textArea}>
@@ -174,10 +173,6 @@ export default function BoxShadowCssGenerator() {
                     </div>
                 </div>
             </section>
-
-            <footer>
-                <p>A Product of Nguyen Van Nam</p>
-            </footer>
 
             <style jsx>{`
                 .container {
@@ -195,19 +190,7 @@ export default function BoxShadowCssGenerator() {
                     flex: 1;
                     border: .5px dotted #ccc;
                     background: #fff;
-                }
-
-                @media (max-width: 600px) {
-                    .container {
-                        flex-direction: column;
-                    }
-                }
-
-                @media only screen and (min-device-width: 320px) and (max-device-width: 480px) and (-webkit-min-device-pixel-ratio: 2) {
-                    .container {
-                        flex-direction: column;
-                    }
-                }
+                }                
 
                 .box {
                     display: flex;
@@ -220,8 +203,14 @@ export default function BoxShadowCssGenerator() {
                     flex: 1;
                     background: rgb(21, 140, 186);
                     width: 500px;
+                    height: 250px;
                     max-height: 250px;
                     margin-top: 50px;
+                    padding: 1em;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    color: #fff;
                 }
 
                 .box .item-code {
@@ -233,7 +222,7 @@ export default function BoxShadowCssGenerator() {
                     font-family: monospace;
                     height: 200px;
                     width: 100%;
-                    margin: 50px 0;
+                    margin: 50px 0;                  
                 }
 
                 .item-code textarea {
@@ -248,6 +237,30 @@ export default function BoxShadowCssGenerator() {
                 footer {
                     max-width: 100rem;
                     margin: 1rem;
+                }
+
+                @media (max-width: 600px) {
+                    .container {
+                        flex-direction: column;
+                    }
+                    .box .item-preview {
+                        width: 50vh!important;
+                        height: 150px!important;
+                        max-height: 150px!important;
+                        margin-top: 25px!important;
+                    }
+                }
+
+                @media only screen and (min-device-width: 320px) and (max-device-width: 480px) and (-webkit-min-device-pixel-ratio: 2) {
+                    .container {
+                        flex-direction: column;
+                    }
+                    .box .item-preview {
+                        width: 50vh!important;
+                        height: 150px!important;
+                        max-height: 150px!important;
+                        margin-top: 25px!important;
+                    }
                 }
                
             `}</style>
