@@ -67,6 +67,8 @@ export default function Layout({ children, home }) {
                         <li><Link href="/blog/hello" activeClassName={styles.menu_li_active}><a>Hello</a></Link></li>
                         <li><Link href="/blog" activeClassName={styles.menu_li_active}><a>Blog</a></Link></li>
                         <li><Link href="/authors/me" activeClassName={styles.menu_li_active}><a>Profile</a></Link></li>
+                        <li><Link href="/generator/css" activeClassName={styles.menu_li_active}><a>CSS generator Tools</a></Link></li>
+                        
                     </ul>
                 </header>
                 <main className={styles.main}>{children}</main>
