@@ -22,7 +22,9 @@ export default function Css() {
                         </Link>
                     </div>
                     <div className="item_category">
-                        <a>Text Shadow</a>
+                        <Link href="/generator/css/text-shadow-css-generator">
+                            <a>Text Shadow</a>
+                        </Link>
                     </div>
                     <div className="item_category">
                         <a>Gradient</a>

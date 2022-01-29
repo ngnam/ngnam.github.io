@@ -4,27 +4,25 @@ import { useRef, useState } from 'react';
 import { useEffect } from 'react';
 import { CopyToClipboard } from 'react-copy-to-clipboard/lib/Component';
 
-export default function BoxShadowCssGenerator() {
+export default function TextShadowCssGenerator() {
 
     const textArea = useRef(null);
 
     const [formValues, setValues] = useState({
-        hsl: 10,
-        vsl: 10,
-        blurradius: 5,
-        spreadradius: 0,
+        hsl: 4,
+        vsl: 4,
+        blurradius: 2,
         sdc: '#000000',
-        sdcrgbaCol: '',
-        sdo: 0.75,
-        inset: false,
+        sdcrgbaCol: 'rgba(0,0,0,0.64)',
+        sdo: 0.6
     });
 
-    const [cssGeneerate, setCssGeneerate] = useState('10px 10px 5px 3px rgba(0,0,0,0.75)');
+    const [cssGeneerate, setCssGeneerate] = useState('4px 4px 2px rgba(0,0,0,0.64)');
     const [copyValue, setCopyValue] = useState(null);
 
     useEffect(() => {
-        setCssGeneerate(`${formValues['hsl']}px ${formValues['vsl']}px ${formValues['blurradius']}px ${formValues['spreadradius']}px ${formValues['sdcrgbaCol'] || 'rgba(0,0,0,0.7)'}${formValues['inset'] ? ' inset' : ''}`);
-        const test = `box-shadow: ${cssGeneerate}; \n-webkit-box-shadow: ${cssGeneerate};\n-moz-box-shadow: ${cssGeneerate};\n-o-box-shadow: ${cssGeneerate};`
+        setCssGeneerate(`${formValues['hsl']}px ${formValues['vsl']}px ${formValues['blurradius']}px ${formValues['sdcrgbaCol'] || 'rgba(0,0,0,0.64)'}`);
+        const test = `text-shadow: ${formValues['hsl']}px ${formValues['vsl']}px ${formValues['blurradius']}px ${formValues['sdcrgbaCol'] || 'rgba(0,0,0,0.64)'};`;
         textArea.current.value = test;
         setCopyValue(test);
     }, [cssGeneerate, formValues])
@@ -56,48 +54,32 @@ export default function BoxShadowCssGenerator() {
             name: "blurradius",
             type: "range",
             min: 0,
-            max: 400,
+            max: 50,
             step: 1,
             label: "Blur Radius",
             unit: 'px'
         },
         {
             id: 4,
-            name: "spreadradius",
-            type: "range",
-            min: -200,
-            max: 200,
-            step: 1,
-            label: "Spread Radius",
-            unit: 'px'
-        },
-        {
-            id: 5,
             name: "sdc",
             type: "color",
             placeholder: "Shadow Color",
             label: "Shadow Color",
         },
         {
-            id: 6,
+            id: 5,
             name: "sdcrgbaCol",
-            type: "colorPreview",
+            type: "Shadow Color RGBA",
         },
         {
-            id: 7,
+            id: 6,
             name: "sdo",
             type: "range",
-            min: 0,
-            max: 1,
+            min: 0.01,
+            max: 0.99,
             step: 0.01,
             label: "Shadow Color Opacity",
         },
-        {
-            id: 8,
-            name: "inset",
-            type: "checkbox",
-            label: "Inset"
-        }
         
     ];
 
@@ -105,21 +87,15 @@ export default function BoxShadowCssGenerator() {
     };
 
     const onChange = (e) => {
-        if (e.target.type === "checkbox") {
-            console.log(e.target.checked)
-            setValues({ ...formValues, [e.target.name]: !formValues[e.target.name] });
-        } 
-        else if (e.target.type === "color") {
+        if (e.target.type === "color") {
             var opacity = formValues['sdo'];
             var color = e.target.value;
             var rgbaCol = 'rgba(' + parseInt(color.slice(-6, -4), 16) + ',' + parseInt(color.slice(-4, -2), 16) + ',' + parseInt(color.slice(-2), 16) + ',' + opacity + ')';
-            // console.log(rgbaCol)
             setValues({ ...formValues, [e.target.name]: color, sdcrgbaCol: rgbaCol });
         } else if (e.target.name === 'sdo') {
             var color = formValues['sdc'];
             var opacity = e.target.value;
             var rgbaCol = 'rgba(' + parseInt(color.slice(-6, -4), 16) + ',' + parseInt(color.slice(-4, -2), 16) + ',' + parseInt(color.slice(-2), 16) + ',' + opacity + ')';
-            // console.log(rgbaCol)
             setValues({ ...formValues, [e.target.name]: opacity, sdcrgbaCol: rgbaCol });
         }
         else {
@@ -129,15 +105,15 @@ export default function BoxShadowCssGenerator() {
     return (
         <>
             <Head>
-                <title>Box Shadow</title>
-                <meta name="description" content="Box Shadow CSS Generator tool - a product by nguyen van nam 0928351036" />
+                <title>Text Shadow</title>
+                <meta name="description" content="Text Shadow CSS Generator tool - a product by nguyen van nam 0928351036" />
             </Head>
 
             <section className="container">
                 <p>A Product of Nguyen Van Nam</p>
                 <div className="item-container">
                     <form>
-                        <h1>Box Shadow Options</h1>
+                        <h1>Text Shadow Options</h1>
                         {inputs.map((input) => (
                             input.type === 'checkbox' ?
                             <FormInput
@@ -158,9 +134,9 @@ export default function BoxShadowCssGenerator() {
                 </div>
                 <div className="item-container box">
                     <div className="item-preview" style={{
-                        boxShadow: cssGeneerate,
+                       textShadow: cssGeneerate
                     }}>
-                        css generator
+                        This text is the preview text.
                     </div>
                     <div className="item-code">
                         <textarea placeholder="css generator" rows="5" cols="20" ref={textArea}>
@@ -201,16 +177,20 @@ export default function BoxShadowCssGenerator() {
 
                 .box .item-preview {
                     flex: 1;
-                    background: rgb(21, 140, 186);
-                    width: 500px;
-                    height: 250px;
-                    max-height: 250px;
-                    margin-top: 50px;
-                    padding: 1em;
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                    color: #fff;
+                    font-family: Helvetica, Arial, sans-serif;
+                    font-size: 2em;
+                    font-weight: 600;
+                    text-align: center;
+                    color: red;
+                    background: #ffffff;
+                    border: 3px solid #ccc;
+                    border-radius: 10px;
+                    box-shadow: 2px 2px 2px #ccc;
+                    width: 100%;
+                    max-height: 100px;
+                    line-height: 100px;
+                    margin: 50px auto;
+                    overflow: visible;
                 }
 
                 .box .item-code {
