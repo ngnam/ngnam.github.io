@@ -30,7 +30,9 @@ export default function Css() {
                         <a>Gradient</a>
                     </div>
                     <div className="item_category">
-                        <a>CSS Cursor</a>
+                        <Link href="/generator/css/css-cursor-demonstrator-and-generator">
+                            <a>CSS Cursor</a>
+                        </Link>
                     </div>
                     <div className="item_category">
                         <a>CSS Border</a>
