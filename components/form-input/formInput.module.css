@@ -3,7 +3,8 @@
     flex-direction: column;
 }
 
-.formInput input{
+.formInput input,
+.formInput select {
     padding: 15px;
     margin: 10px 0px;
     border-radius: 5px;

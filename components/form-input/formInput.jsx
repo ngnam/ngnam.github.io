@@ -10,7 +10,7 @@ const FormInput = (props) => {
     };
 
     return (
-        <div className={styles.formInput}>
+        !inputProps.hidden && <div className={styles.formInput}>
             <label htmlFor={inputProps.name}>{label}</label>
             {(() => {
                 switch (inputProps.type) {
@@ -25,6 +25,17 @@ const FormInput = (props) => {
                                 <div className={styles.currentValue}>{
                                     inputProps.checked ? "On" : "Off"
                                 }</div>
+                            </div>
+                        )
+                    case 'select':
+                        return (
+                            <div className={styles.formInputpn}>
+                                <select onChange={onChange} {...inputProps}>
+                                    <option>--choose--</option>
+                                    {inputProps.options.map((option, index) => (
+                                        <option key={index} value={option.value}>{option.label}</option>
+                                    ))}
+                                </select>
                             </div>
                         )
                     default:

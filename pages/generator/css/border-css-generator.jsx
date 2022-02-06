@@ -10,22 +10,30 @@ export default function BorderCssGenerator() {
     const textArea = useRef(null);
 
     const [formValues, setValues] = useState({
-        hsl: 10,
-        vsl: 10,
-        blurradius: 5,
-        spreadradius: 0,
-        sdc: '#000000',
-        sdcrgbaCol: '',
-        sdo: 0.75,
-        inset: false,
+        borderwidth: 66,
+        targetinvidualborder: false,
+        borderstyle: 'outset',
+        bordercolor: '#ff6550',
+        background: '#ffffff',
+        genbackground: false
     });
 
-    const [cssGeneerate, setCssGeneerate] = useState('10px 10px 5px 3px rgba(0,0,0,0.75)');
+    const defautbg = 'rgb(21 140 186)';
+
+    const [cssGeneerate, setCssGeneerate] = useState('66px solid #ff6550');
+    const [cssBackgroundColor, setCssBackgroundColor] = useState(defautbg);
     const [copyValue, setCopyValue] = useState(null);
 
-    useEffect(() => {
-        setCssGeneerate(`${formValues['hsl']}px ${formValues['vsl']}px ${formValues['blurradius']}px ${formValues['spreadradius']}px ${formValues['sdcrgbaCol'] || 'rgba(0,0,0,0.7)'}${formValues['inset'] ? ' inset' : ''}`);
-        const test = `box-shadow: ${cssGeneerate}; \n-webkit-box-shadow: ${cssGeneerate};\n-moz-box-shadow: ${cssGeneerate};\n-o-box-shadow: ${cssGeneerate};`
+    useEffect(() => {        
+        setCssGeneerate(`${formValues['borderwidth']}px ${formValues['borderstyle']} ${formValues['bordercolor']}`);
+        let test = `border: ${cssGeneerate};`
+        if (formValues['genbackground']) {
+            setCssBackgroundColor(formValues['background']);
+            test += `\nbackground: ${formValues['background']};`
+        } else {
+            test = `border: ${cssGeneerate};`
+            setCssBackgroundColor(defautbg);
+        }
         textArea.current.value = test;
         setCopyValue(test);
     }, [cssGeneerate, formValues])
@@ -40,66 +48,51 @@ export default function BorderCssGenerator() {
             step: 1,
             label: "Border Width (all borders)",
             required: false,
-            unit: 'px'
+            unit: 'px',
+            hidden: false,
         },
         {
             id: 2,
-            name: "vsl",
-            type: "range",
-            min: -200,
-            max: 200,
-            step: 1,
-            label: "Vertical Shadow Length",
-            unit: 'px'
+            name: "targetinvidualborder",
+            type: "checkbox",
+            label: "Target invidual border",
         },
         {
             id: 3,
-            name: "blurradius",
-            type: "range",
-            min: 0,
-            max: 400,
-            step: 1,
-            label: "Blur Radius",
-            unit: 'px'
+            name: "borderstyle",
+            label: "Border Style",
+            type: "select",
+            options: [
+                { label: 'Dotted', value: 'dotted' },
+                { label: 'Dashed', value: 'dashed' },
+                { label: 'Solid', value: 'solid' },
+                { label: 'Double', value: 'double' },
+                { label: 'Groove', value: 'groove' },
+                { label: 'ridge', value: 'ridge' },
+                { label: 'Inset', value: 'inset' },
+                { label: 'Outset', value: 'outset' },
+                { label: 'None', value: 'none' },
+                { label: 'Hidden', value: 'hidden' },
+            ]
         },
         {
             id: 4,
-            name: "spreadradius",
-            type: "range",
-            min: -200,
-            max: 200,
-            step: 1,
-            label: "Spread Radius",
-            unit: 'px'
+            name: "bordercolor",
+            type: "color",
+            label: "Border Color",
         },
         {
             id: 5,
-            name: "sdc",
+            name: "background",
             type: "color",
-            placeholder: "Shadow Color",
-            label: "Shadow Color",
+            label: "Background Color",
         },
         {
             id: 6,
-            name: "sdcrgbaCol",
-            type: "colorPreview",
-        },
-        {
-            id: 7,
-            name: "sdo",
-            type: "range",
-            min: 0,
-            max: 1,
-            step: 0.01,
-            label: "Shadow Color Opacity",
-        },
-        {
-            id: 8,
-            name: "inset",
+            name: "genbackground",
             type: "checkbox",
-            label: "Inset"
-        }
-        
+            label: "Include background color in generating code:",
+        },
     ];
 
     const handleCopy = (e) => {
@@ -108,20 +101,17 @@ export default function BorderCssGenerator() {
     const onChange = (e) => {
         if (e.target.type === "checkbox") {
             console.log(e.target.checked)
+            if (e.target.name === "genbackground") {
+                if (e.target.checked) {
+                    setCssBackgroundColor(formValues['background']);
+                } else {
+                    setCssBackgroundColor(defautbg);
+                }
+            }
             setValues({ ...formValues, [e.target.name]: !formValues[e.target.name] });
-        } 
-        else if (e.target.type === "color") {
-            var opacity = formValues['sdo'];
-            var color = e.target.value;
-            var rgbaCol = 'rgba(' + parseInt(color.slice(-6, -4), 16) + ',' + parseInt(color.slice(-4, -2), 16) + ',' + parseInt(color.slice(-2), 16) + ',' + opacity + ')';
-            // console.log(rgbaCol)
-            setValues({ ...formValues, [e.target.name]: color, sdcrgbaCol: rgbaCol });
-        } else if (e.target.name === 'sdo') {
-            var color = formValues['sdc'];
-            var opacity = e.target.value;
-            var rgbaCol = 'rgba(' + parseInt(color.slice(-6, -4), 16) + ',' + parseInt(color.slice(-4, -2), 16) + ',' + parseInt(color.slice(-2), 16) + ',' + opacity + ')';
-            // console.log(rgbaCol)
-            setValues({ ...formValues, [e.target.name]: opacity, sdcrgbaCol: rgbaCol });
+        }
+        else if (e.target.type === "select") {
+            console.log(e.target.value)
         }
         else {
             setValues({ ...formValues, [e.target.name]: e.target.value });
@@ -141,33 +131,34 @@ export default function BorderCssGenerator() {
                     </span>
                 </div>
             </header>
-            <section className="container">                
+            <section className="container">
                 <div className="item-container">
                     <form>
-                        <h1>Box Shadow Options</h1>
+                        <h1>Border CSS Generator</h1>
                         {inputs.map((input) => (
                             input.type === 'checkbox' ?
-                            <FormInput
-                                key={input.id}
-                                {...input}
-                                checked={formValues[input.name]}
-                                onChange={onChange}
-                            /> 
-                            : 
-                            <FormInput
-                                key={input.id}
-                                {...input}
-                                value={formValues[input.name]}
-                                onChange={onChange}
-                            /> 
+                                <FormInput
+                                    key={input.id}
+                                    {...input}
+                                    checked={formValues[input.name]}
+                                    onChange={onChange}
+                                />
+                                :
+                                <FormInput
+                                    key={input.id}
+                                    {...input}
+                                    value={formValues[input.name]}
+                                    onChange={onChange}
+                                />
                         ))}
                     </form>
                 </div>
                 <div className="item-container box">
                     <div className="item-preview" style={{
-                        boxShadow: cssGeneerate,
+                        border: cssGeneerate,
+                        backgroundColor: cssBackgroundColor
                     }}>
-                        css generator
+                        Border CSS generator
                     </div>
                     <div className="item-code">
                         <textarea placeholder="css generator" rows="5" cols="20" ref={textArea}>
@@ -217,7 +208,7 @@ export default function BorderCssGenerator() {
                     display: flex;
                     justify-content: center;
                     align-items: center;
-                    color: #fff;
+                    color: #333;
                 }
 
                 .box .item-code {
