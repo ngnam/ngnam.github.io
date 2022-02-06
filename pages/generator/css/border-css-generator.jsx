@@ -33,12 +33,12 @@ export default function BorderCssGenerator() {
     const inputs = [
         {
             id: 1,
-            name: "hsl",
+            name: "borderwidth",
             type: "range",
-            min: -200,
+            min: 0,
             max: 200,
             step: 1,
-            label: "Horizontal Shadow Length",
+            label: "Border Width (all borders)",
             required: false,
             unit: 'px'
         },
