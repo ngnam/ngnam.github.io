@@ -15,6 +15,10 @@
 
 .formInput input[type="color"] {
     flex: .3;
+    max-width: 50px;
+    color: #fff;
+    background: #777777;
+    cursor: pointer;
 }
 
 .formInput label{

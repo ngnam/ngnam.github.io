@@ -27,18 +27,20 @@ export default function Css() {
                         </Link>
                     </div>
                     <div className="item_category">
-                        <a>Gradient</a>
-                    </div>
-                    <div className="item_category">
                         <Link href="/generator/css/css-cursor-demonstrator-and-generator">
                             <a>CSS Cursor</a>
                         </Link>
                     </div>
                     <div className="item_category">
-                        <a>CSS Border</a>
+                        <Link href="/generator/css/border-css-generator">
+                            <a>Border</a>
+                        </Link>
                     </div>
                     <div className="item_category">
                         <a>CSS Border radius</a>
+                    </div>
+                    <div className="item_category">
+                        <a>Gradient</a>
                     </div>
                     <div className="item_category">
                         <a>Transform</a>

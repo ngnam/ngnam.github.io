@@ -5,7 +5,7 @@ import { useEffect } from 'react';
 import { CopyToClipboard } from 'react-copy-to-clipboard/lib/Component';
 import { useRouter } from 'next/router'
 
-export default function BoxShadowCssGenerator() {
+export default function BorderCssGenerator() {
     const router = useRouter()
     const textArea = useRef(null);
 
@@ -130,8 +130,8 @@ export default function BoxShadowCssGenerator() {
     return (
         <>
             <Head>
-                <title>Box Shadow</title>
-                <meta name="description" content="Box Shadow CSS Generator tool - a product by nguyen van nam 0928351036" />
+                <title>Border CSS Generator</title>
+                <meta name="description" content="Border CSS Generator CSS Generator tool - a product by nguyen van nam 0928351036" />
             </Head>
             <header>
                 <div className="container">
@@ -141,7 +141,7 @@ export default function BoxShadowCssGenerator() {
                     </span>
                 </div>
             </header>
-            <section className="container">
+            <section className="container">                
                 <div className="item-container">
                     <form>
                         <h1>Box Shadow Options</h1>
@@ -241,6 +241,11 @@ export default function BoxShadowCssGenerator() {
                     resize: none;
                 }
 
+                footer {
+                    max-width: 100rem;
+                    margin: 1rem;
+                }
+
                 header > .container {
                     height: auto;
                     min-height: auto;
@@ -255,11 +260,6 @@ export default function BoxShadowCssGenerator() {
 
                 .link-back {
                     cursor: pointer;
-                }
-                
-                footer {
-                    max-width: 100rem;
-                    margin: 1rem;
                 }
 
                 @media (max-width: 600px) {
@@ -283,7 +283,8 @@ export default function BoxShadowCssGenerator() {
                         height: 150px!important;
                         max-height: 150px!important;
                         margin-top: 25px!important;
-                    }
+                    }import { Link } from 'next/link';
+
                 }
                
             `}</style>

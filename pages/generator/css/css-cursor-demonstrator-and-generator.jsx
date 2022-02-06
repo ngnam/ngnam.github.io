@@ -1,11 +1,11 @@
 import Head from 'next/head'
-import FormInput from '../../../components/form-input/formInput'
 import { useRef, useState } from 'react';
 import { useEffect } from 'react';
 import { CopyToClipboard } from 'react-copy-to-clipboard/lib/Component';
+import { useRouter } from 'next/router'
 
 export default function CssCursorCssGenerator() {
-
+    const router = useRouter()
     const textArea = useRef(null);
 
     const [cursorOption, setCursorOption] = useState('alias');
@@ -51,9 +51,15 @@ export default function CssCursorCssGenerator() {
                 <title>CSS Cursor Demonstrator and Generator</title>
                 <meta name="description" content="CSS Cursor Demonstrator and Generator< - a product by nguyen van nam 0928351036" />
             </Head>
-
+            <header>
+                <div className="container">
+                    <h1>A Product of Nguyen Van Nam</h1>
+                    <span className="link-back" onClick={() => router.back()}>
+                        <a><span>&#8592;</span> Back</a>
+                    </span>
+                </div>
+            </header>
             <section className="container">
-                <p>A Product of Nguyen Van Nam</p>
                 <div className="item-container">
                     <h1>Cursor Options <small className="text-helper">(clicking or Hovering every option)</small></h1>
                     <div className="list-options">
@@ -149,6 +155,22 @@ export default function CssCursorCssGenerator() {
                     font-size: 1em;
                     font-family: monospace;
                     resize: none;
+                }
+
+                header > .container {
+                    height: auto;
+                    min-height: auto;
+                    align-items: center;
+                    margin-bottom: 0;
+                    padding: 0 1rem;
+                }
+
+                header > .container h1, header > .container .link-back {
+                    font-size: 1rem;
+                }
+
+                .link-back {
+                    cursor: pointer;
                 }
 
                 footer {
