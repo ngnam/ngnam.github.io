@@ -10,7 +10,7 @@ export default function BorderCssGenerator() {
     const textArea = useRef(null);
 
     const [formValues, setValues] = useState({
-        borderwidth: 66,
+        borderwidth: 18,
         targetinvidualborder: false,
         borderstyle: 'outset',
         bordercolor: '#ff6550',
@@ -20,7 +20,7 @@ export default function BorderCssGenerator() {
 
     const defautbg = 'rgb(21 140 186)';
 
-    const [cssGeneerate, setCssGeneerate] = useState('66px solid #ff6550');
+    const [cssGeneerate, setCssGeneerate] = useState('18px solid #ff6550');
     const [cssBackgroundColor, setCssBackgroundColor] = useState(defautbg);
     const [copyValue, setCopyValue] = useState(null);
 
