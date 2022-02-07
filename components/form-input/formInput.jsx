@@ -31,7 +31,7 @@ const FormInput = (props) => {
                         return (
                             <div className={styles.formInputpn}>
                                 <select onChange={onChange} {...inputProps}>
-                                    <option>--choose--</option>
+                                    <option value="">--choose--</option>
                                     {inputProps.options.map((option, index) => (
                                         <option key={index} value={option.value}>{option.label}</option>
                                     ))}

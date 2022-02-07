@@ -54,6 +54,7 @@ export default function CssCursorCssGenerator() {
             <header>
                 <div className="container">
                     <h1>A Product of Nguyen Van Nam</h1>
+                    <h3>CSS Cursor Demonstrator and Generator</h3>
                     <span className="link-back" onClick={() => router.back()}>
                         <a><span>&#8592;</span> Back</a>
                     </span>
@@ -167,10 +168,12 @@ export default function CssCursorCssGenerator() {
 
                 header > .container h1, header > .container .link-back {
                     font-size: 1rem;
+                    min-width: 20%;
                 }
 
                 .link-back {
                     cursor: pointer;
+                    text-align: right;
                 }
 
                 footer {

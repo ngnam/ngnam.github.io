@@ -1,7 +1,9 @@
 import Head from 'next/head'
 import Link from 'next/link'
+import { useRouter } from 'next/router';
 
 export default function Css() {
+    const router = useRouter()
     return (
         <>
             <Head>
@@ -11,6 +13,9 @@ export default function Css() {
             <header className="header">
                 <div className="container">
                     <h1 className="title">CSS Generator Tool</h1>
+                    <span className="link-back" onClick={() => router.back()}>
+                        <a><span>&#8592;</span> Back</a>
+                    </span>
                 </div>
             </header>
 
@@ -97,6 +102,10 @@ export default function Css() {
                     justify-content: center;
                     padding: 0.5rem;
                     color: #fff;
+                }
+                .link-back {
+                    margin-left: 20vw;
+                    cursor: pointer;
                 }
             `}</style>
         </>

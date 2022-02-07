@@ -1,6 +1,6 @@
 import Head from 'next/head'
 import FormInput from '../../../components/form-input/formInput'
-import { useRef, useState } from 'react';
+import { useRef, useState, useMemo } from 'react';
 import { useEffect } from 'react';
 import { CopyToClipboard } from 'react-copy-to-clipboard/lib/Component';
 import { useRouter } from 'next/router'
@@ -10,8 +10,8 @@ export default function BorderCssGenerator() {
     const textArea = useRef(null);
 
     const [formValues, setValues] = useState({
-        borderwidth: 18,
         targetinvidualborder: false,
+        borderwidth: 18,
         borderstyle: 'outset',
         bordercolor: '#ff6550',
         background: '#ffffff',
@@ -38,7 +38,7 @@ export default function BorderCssGenerator() {
         setCopyValue(test);
     }, [cssGeneerate, formValues])
 
-    const inputs = [
+    const [inputs, setInputs] = useState([
         {
             id: 1,
             name: "borderwidth",
@@ -93,7 +93,7 @@ export default function BorderCssGenerator() {
             type: "checkbox",
             label: "Include background color in generating code:",
         },
-    ];
+    ]);
 
     const handleCopy = (e) => {
     };
@@ -107,6 +107,13 @@ export default function BorderCssGenerator() {
                 } else {
                     setCssBackgroundColor(defautbg);
                 }
+            }
+            if (e.target.name === 'targetinvidualborder') {
+                setInputs(state => {
+                    const input = state.filter(x => x.id === 1);
+                    input[0].hidden = e.target.checked;
+                    return [...state];
+                });
             }
             setValues({ ...formValues, [e.target.name]: !formValues[e.target.name] });
         }
@@ -126,6 +133,7 @@ export default function BorderCssGenerator() {
             <header>
                 <div className="container">
                     <h1>A Product of Nguyen Van Nam</h1>
+                    <h3>Border CSS Generator</h3>
                     <span className="link-back" onClick={() => router.back()}>
                         <a><span>&#8592;</span> Back</a>
                     </span>
@@ -134,7 +142,7 @@ export default function BorderCssGenerator() {
             <section className="container">
                 <div className="item-container">
                     <form>
-                        <h1>Border CSS Generator</h1>
+                        <h1>Border Options</h1>
                         {inputs.map((input) => (
                             input.type === 'checkbox' ?
                                 <FormInput
@@ -247,10 +255,12 @@ export default function BorderCssGenerator() {
 
                 header > .container h1, header > .container .link-back {
                     font-size: 1rem;
+                    min-width: 20%;
                 }
 
                 .link-back {
                     cursor: pointer;
+                    text-align: right;
                 }
 
                 @media (max-width: 600px) {
