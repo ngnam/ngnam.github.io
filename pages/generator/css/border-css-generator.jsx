@@ -117,13 +117,12 @@ export default function BorderCssGenerator() {
             }
             setValues({ ...formValues, [e.target.name]: !formValues[e.target.name] });
         }
-        else if (e.target.type === "select") {
-            console.log(e.target.value)
-        }
         else {
             setValues({ ...formValues, [e.target.name]: e.target.value });
         }
     };
+
+    // render components
     return (
         <>
             <Head>
