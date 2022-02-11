@@ -11,9 +11,29 @@ export default function BorderCssGenerator() {
 
     const [formValues, setValues] = useState({
         targetinvidualborder: false,
-        borderwidth: 18,
-        borderstyle: 'outset',
+        borderwidth: 10,
+        borderstyle: 'solid',
         bordercolor: '#ff6550',
+        bordertop: {
+            width: 10,
+            style: 'solid',
+            color: '#ff6550',
+        },
+        borderright: {
+            width: 0,
+            style: 'solid',
+            color: '#ff6550',
+        },
+        borderbottom: {
+            width: 10,
+            style: 'solid',
+            color: '#ff6550',
+        },
+        borderleft: {
+            width: 0,
+            style: 'solid',
+            color: '#ff6550',
+        },
         background: '#ffffff',
         genbackground: false
     });
@@ -24,8 +44,12 @@ export default function BorderCssGenerator() {
     const [cssBackgroundColor, setCssBackgroundColor] = useState(defautbg);
     const [copyValue, setCopyValue] = useState(null);
 
-    useEffect(() => {        
-        setCssGeneerate(`${formValues['borderwidth']}px ${formValues['borderstyle']} ${formValues['bordercolor']}`);
+    useEffect(() => {
+        if (!formValues.targetinvidualborder) {
+            setCssGeneerate(`${formValues['borderwidth']}px ${formValues['borderstyle']} ${formValues['bordercolor']}`);
+        } else {
+            setCssGeneerate(`none`);
+        }
         let test = `border: ${cssGeneerate};`
         if (formValues['genbackground']) {
             setCssBackgroundColor(formValues['background']);
@@ -37,6 +61,19 @@ export default function BorderCssGenerator() {
         textArea.current.value = test;
         setCopyValue(test);
     }, [cssGeneerate, formValues])
+
+    const optionStyles = [
+        { label: 'Dotted', value: 'dotted' },
+        { label: 'Dashed', value: 'dashed' },
+        { label: 'Solid', value: 'solid' },
+        { label: 'Double', value: 'double' },
+        { label: 'Groove', value: 'groove' },
+        { label: 'ridge', value: 'ridge' },
+        { label: 'Inset', value: 'inset' },
+        { label: 'Outset', value: 'outset' },
+        { label: 'None', value: 'none' },
+        { label: 'Hidden', value: 'hidden' },
+    ]
 
     const [inputs, setInputs] = useState([
         {
@@ -62,18 +99,7 @@ export default function BorderCssGenerator() {
             name: "borderstyle",
             label: "Border Style",
             type: "select",
-            options: [
-                { label: 'Dotted', value: 'dotted' },
-                { label: 'Dashed', value: 'dashed' },
-                { label: 'Solid', value: 'solid' },
-                { label: 'Double', value: 'double' },
-                { label: 'Groove', value: 'groove' },
-                { label: 'ridge', value: 'ridge' },
-                { label: 'Inset', value: 'inset' },
-                { label: 'Outset', value: 'outset' },
-                { label: 'None', value: 'none' },
-                { label: 'Hidden', value: 'hidden' },
-            ]
+            options: optionStyles
         },
         {
             id: 4,
@@ -83,12 +109,111 @@ export default function BorderCssGenerator() {
         },
         {
             id: 5,
+            name: "bordertop",
+            type: "custom",
+            col: 3,
+            label: "Border Top",
+            hidden: false,
+            fields: {
+                width: {
+                    type: "range",
+                    min: 0,
+                    max: 200,
+                    step: 1,
+                    unit: 'px',
+                },
+                style: {
+                    type: "select",
+                    options: optionStyles
+                },
+                color: {
+                    type: "color",
+                }
+            }
+        },
+        {
+            id: 6,
+            name: "borderright",
+            label: "Border Right",
+            required: false,
+            hidden: false,
+            type: "custom",
+            col: 3,
+            fields: {
+                width: {
+                    type: "range",
+                    min: 0,
+                    max: 200,
+                    step: 1,
+                    unit: 'px',
+                },
+                style: {
+                    type: "select",
+                    options: optionStyles
+                },
+                color: {
+                    type: "color",
+                }
+            }
+        },
+        {
+            id: 7,
+            name: "borderbottom",
+            label: "Border Bottom",
+            required: false,
+            hidden: false,
+            type: "custom",
+            col: 3,
+            fields: {
+                width: {
+                    type: "range",
+                    min: 0,
+                    max: 200,
+                    step: 1,
+                    unit: 'px',
+                },
+                style: {
+                    type: "select",
+                    options: optionStyles
+                },
+                color: {
+                    type: "color",
+                }
+            }
+        },
+        {
+            id: 8,
+            name: "borderleft",
+            label: "Border Left",
+            required: false,
+            hidden: false,
+            type: "custom",
+            col: 3,
+            fields: {
+                width: {
+                    type: "range",
+                    min: 0,
+                    max: 200,
+                    step: 1,
+                    unit: 'px',
+                },
+                style: {
+                    type: "select",
+                    options: optionStyles
+                },
+                color: {
+                    type: "color",
+                }
+            }
+        },
+        {
+            id: 9,
             name: "background",
             type: "color",
             label: "Background Color",
         },
         {
-            id: 6,
+            id: 10,
             name: "genbackground",
             type: "checkbox",
             label: "Include background color in generating code:",
@@ -110,8 +235,12 @@ export default function BorderCssGenerator() {
             }
             if (e.target.name === 'targetinvidualborder') {
                 setInputs(state => {
-                    const input = state.filter(x => x.id === 1);
-                    input[0].hidden = e.target.checked;
+                    const borderwidth = state.filter(x => x.id === 1);
+                    borderwidth[0].hidden = e.target.checked;
+                    const borderstyle = state.filter(x => x.id === 3);
+                    borderstyle[0].hidden = e.target.checked;
+                    const bordercolor = state.filter(x => x.id === 4);
+                    bordercolor[0].hidden = e.target.checked;
                     return [...state];
                 });
             }

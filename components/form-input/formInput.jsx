@@ -40,18 +40,20 @@ const FormInput = (props) => {
                         )
                     default:
                         return (
-                            <div className={styles.formInputpn}>
-                                <input
-                                    {...inputProps}
-                                    onChange={onChange}
-                                    onBlur={handleFocus}
-                                    onFocus={() =>
-                                        inputProps.name === "confirmPassword" && setFocused(true)
-                                    }
-                                    focused={focused.toString()}
-                                />
-                                <div className={styles.currentValue}>{`${inputProps.value}`} {inputProps.unit ? inputProps.unit : ''}</div>
-                            </div>
+                            (
+                                <div className={styles.formInputpn}>
+                                    <input
+                                        {...inputProps}
+                                        onChange={onChange}
+                                        onBlur={handleFocus}
+                                        onFocus={() =>
+                                            inputProps.name === "confirmPassword" && setFocused(true)
+                                        }
+                                        focused={focused.toString()}
+                                    />
+                                    <div className={styles.currentValue}>{`${inputProps.value}`} {inputProps.unit ? inputProps.unit : ''}</div>
+                                </div>
+                            )
                         )
                 }
             })()}
