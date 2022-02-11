@@ -113,7 +113,7 @@ export default function BorderCssGenerator() {
             type: "custom",
             col: 3,
             label: "Border Top",
-            hidden: false,
+            hidden: true,
             fields: {
                 width: {
                     type: "range",
@@ -136,7 +136,7 @@ export default function BorderCssGenerator() {
             name: "borderright",
             label: "Border Right",
             required: false,
-            hidden: false,
+            hidden: true,
             type: "custom",
             col: 3,
             fields: {
@@ -161,7 +161,7 @@ export default function BorderCssGenerator() {
             name: "borderbottom",
             label: "Border Bottom",
             required: false,
-            hidden: false,
+            hidden: true,
             type: "custom",
             col: 3,
             fields: {
@@ -186,7 +186,7 @@ export default function BorderCssGenerator() {
             name: "borderleft",
             label: "Border Left",
             required: false,
-            hidden: false,
+            hidden: true,
             type: "custom",
             col: 3,
             fields: {
@@ -241,6 +241,15 @@ export default function BorderCssGenerator() {
                     borderstyle[0].hidden = e.target.checked;
                     const bordercolor = state.filter(x => x.id === 4);
                     bordercolor[0].hidden = e.target.checked;
+                    const bordertop = state.filter(x => x.id === 5);
+                    bordertop[0].hidden = !e.target.checked;
+                    const borderright = state.filter(x => x.id === 6);
+                    borderright[0].hidden = !e.target.checked;
+                    const borderbottom = state.filter(x => x.id === 7);
+                    borderbottom[0].hidden = !e.target.checked;
+                    const borderleft = state.filter(x => x.id === 8);
+                    borderleft[0].hidden = !e.target.checked;
+
                     return [...state];
                 });
             }
