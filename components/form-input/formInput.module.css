@@ -50,7 +50,7 @@
     align-items: center;
 }
 
-.formInputpn.flex-wrap {
+.flexWrap {
     flex-wrap: wrap;
 }
 
@@ -63,12 +63,12 @@
     text-overflow: ellipsis;
 }
 
-.col-3 {
+.inputCol {
     flex: 1;
     width: calc(100% / 3);
     margin-right: 1rem;
 }
 
-.col-3:last-child {
+.inputCol:last-child {
     margin-right: 0;
 }

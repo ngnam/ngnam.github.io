@@ -14,26 +14,18 @@ export default function BorderCssGenerator() {
         borderwidth: 10,
         borderstyle: 'solid',
         bordercolor: '#ff6550',
-        bordertop: {
-            width: 10,
-            style: 'solid',
-            color: '#ff6550',
-        },
-        borderright: {
-            width: 0,
-            style: 'solid',
-            color: '#ff6550',
-        },
-        borderbottom: {
-            width: 10,
-            style: 'solid',
-            color: '#ff6550',
-        },
-        borderleft: {
-            width: 0,
-            style: 'solid',
-            color: '#ff6550',
-        },
+        bordertopwidth: 10,
+        bordertopstyle: 'solid',
+        bordertopcolor: '#ff6550',
+        borderrightwidth: 0,
+        borderrightstyle: 'solid',
+        borderrightcolor: '#ff6550',
+        borderbottomwidth: 10,
+        borderbottomstyle: 'solid',
+        borderbottomcolor: '#ff6550',
+        borderleftwidth: 0,
+        borderleftstyle: 'solid',
+        borderleftcolor: '#ff6550',
         background: '#ffffff',
         genbackground: false
     });
@@ -114,22 +106,24 @@ export default function BorderCssGenerator() {
             col: 3,
             label: "Border Top",
             hidden: true,
-            fields: {
-                width: {
-                    type: "range",
-                    min: 0,
-                    max: 200,
-                    step: 1,
-                    unit: 'px',
+            fields: [
+                {
+                    id: 51,
+                    name: 'bordertopwidth',
+                    type: "number",
                 },
-                style: {
+                {
+                    id: 52,
+                    name: 'bordertopstyle',
                     type: "select",
                     options: optionStyles
                 },
-                color: {
+                {
+                    id: 53,
+                    name: 'bordertopcolor',
                     type: "color",
                 }
-            }
+            ]
         },
         {
             id: 6,
@@ -139,22 +133,24 @@ export default function BorderCssGenerator() {
             hidden: true,
             type: "custom",
             col: 3,
-            fields: {
-                width: {
-                    type: "range",
-                    min: 0,
-                    max: 200,
-                    step: 1,
-                    unit: 'px',
+            fields: [
+                {
+                    id: 61,
+                    name: 'borderrightwidth',
+                    type: "number",
                 },
-                style: {
+                {
+                    id: 62,
+                    name: 'borderrightstyle',
                     type: "select",
                     options: optionStyles
                 },
-                color: {
+                {
+                    id: 63,
+                    name: 'borderrightcolor',
                     type: "color",
                 }
-            }
+            ]
         },
         {
             id: 7,
@@ -164,47 +160,50 @@ export default function BorderCssGenerator() {
             hidden: true,
             type: "custom",
             col: 3,
-            fields: {
-                width: {
-                    type: "range",
-                    min: 0,
-                    max: 200,
-                    step: 1,
-                    unit: 'px',
+            fields: [
+                {
+                    id: 71,
+                    name: 'borderbottomwidth',
+                    type: "number",
                 },
-                style: {
+                {
+                    id: 72,
+                    name: 'borderbottomstyle',
                     type: "select",
                     options: optionStyles
                 },
-                color: {
+                {
+                    id: 73,
+                    name: 'borderbottomcolor',
                     type: "color",
                 }
-            }
+            ]
         },
         {
             id: 8,
             name: "borderleft",
             label: "Border Left",
-            required: false,
             hidden: true,
             type: "custom",
             col: 3,
-            fields: {
-                width: {
-                    type: "range",
-                    min: 0,
-                    max: 200,
-                    step: 1,
-                    unit: 'px',
+            fields: [
+                {
+                    id: 81,
+                    name: 'borderleftwidth',
+                    type: "number",
                 },
-                style: {
+                {
+                    id: 82,
+                    name: 'borderleftstyle',
                     type: "select",
                     options: optionStyles
                 },
-                color: {
+                {
+                    id: 83,
+                    name: 'borderleftcolor',
                     type: "color",
                 }
-            }
+            ]
         },
         {
             id: 9,
@@ -224,6 +223,7 @@ export default function BorderCssGenerator() {
     };
 
     const onChange = (e) => {
+        console.log(formValues);
         if (e.target.type === "checkbox") {
             console.log(e.target.checked)
             if (e.target.name === "genbackground") {
@@ -281,20 +281,36 @@ export default function BorderCssGenerator() {
                     <form>
                         <h1>Border Options</h1>
                         {inputs.map((input) => (
-                            input.type === 'checkbox' ?
-                                <FormInput
-                                    key={input.id}
-                                    {...input}
-                                    checked={formValues[input.name]}
-                                    onChange={onChange}
-                                />
-                                :
-                                <FormInput
-                                    key={input.id}
-                                    {...input}
-                                    value={formValues[input.name]}
-                                    onChange={onChange}
-                                />
+                            (() => {
+                                switch (input.type) {
+                                    case "checkbox":
+                                        return (
+                                            <FormInput
+                                                key={input.id}
+                                                {...input}
+                                                checked={formValues[input.name]}
+                                                onChange={onChange}
+                                            />
+                                        )
+                                    case 'custom':
+                                        return (
+                                            <FormInput
+                                                key={input.id}
+                                                {...input}
+                                                value={formValues[input.name]}
+                                                onChange={onChange}
+                                            />
+                                        )
+                                    default:
+                                        return (
+                                        <FormInput
+                                            key={input.id}
+                                            {...input}
+                                            value={formValues[input.name]}
+                                            onChange={onChange}
+                                        />)
+                                }
+                            })()
                         ))}
                     </form>
                 </div>

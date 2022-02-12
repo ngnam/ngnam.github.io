@@ -1,5 +1,6 @@
 import { useState } from "react";
 import styles from './formInput.module.css'; // Import css modules stylesheet as styles
+import cn from 'classnames'
 
 const FormInput = (props) => {
     const [focused, setFocused] = useState(false);
@@ -38,6 +39,16 @@ const FormInput = (props) => {
                                 </select>
                             </div>
                         )
+                    // case 'custom':
+                    //     return (
+                    //         <div className={
+                    //             cn({[styles.formInputpn]: true, [styles.flexWrap]: true})
+                    //         }>
+                    //             {inputProps.fields.map((field) => (
+                    //                 <FormInput key={field.id} {...field} onChange={onChange} />
+                    //             ))}
+                    //         </div>
+                    //     )
                     default:
                         return (
                             (
