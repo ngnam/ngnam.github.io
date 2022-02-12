@@ -12,7 +12,7 @@ const FormInput = (props) => {
 
     return (
         !inputProps.hidden && <div className={styles.formInput}>
-            <label htmlFor={inputProps.name}>{label}</label>
+            <label htmlFor={inputProps.name}>{label || ''}</label>
             {(() => {
                 switch (inputProps.type) {
                     case 'checkbox':
@@ -20,11 +20,11 @@ const FormInput = (props) => {
                             <div className={styles.formInputpn}>
                                 <input
                                     {...inputProps}
-                                    checked={inputProps.checked}
+                                    checked={inputProps.value}
                                     onChange={onChange}
                                 />
                                 <div className={styles.currentValue}>{
-                                    inputProps.checked ? "On" : "Off"
+                                    inputProps.value ? "On" : "Off"
                                 }</div>
                             </div>
                         )
@@ -39,16 +39,6 @@ const FormInput = (props) => {
                                 </select>
                             </div>
                         )
-                    // case 'custom':
-                    //     return (
-                    //         <div className={
-                    //             cn({[styles.formInputpn]: true, [styles.flexWrap]: true})
-                    //         }>
-                    //             {inputProps.fields.map((field) => (
-                    //                 <FormInput key={field.id} {...field} onChange={onChange} />
-                    //             ))}
-                    //         </div>
-                    //     )
                     default:
                         return (
                             (

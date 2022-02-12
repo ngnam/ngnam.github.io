@@ -1,0 +1,32 @@
+.formGroupInput {
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.formGroupInputContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.formGroupInputContainer > div {
+  flex: 1;
+  margin-right: 1rem;
+  max-width: 100%;
+  width: 100%;
+}
+
+.label {
+  font-size: 12px;
+  color: gray;
+  flex: 1;
+}
+
+@media only screen and (min-device-width: 320px) and (max-device-width: 480px) and (-webkit-min-device-pixel-ratio: 2) {
+  .formGroupInputContainer {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

@@ -16,6 +16,7 @@
 
 .formInput input[type="color"] {
     flex: .3;
+    min-width: 50px;
     max-width: 50px;
     color: #fff;
     cursor: pointer;

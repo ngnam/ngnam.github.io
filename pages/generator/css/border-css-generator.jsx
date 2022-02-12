@@ -1,5 +1,6 @@
 import Head from 'next/head'
 import FormInput from '../../../components/form-input/formInput'
+import FormGroupInput from '../../../components/form-input/formGroupInput'
 import { useRef, useState, useMemo } from 'react';
 import { useEffect } from 'react';
 import { CopyToClipboard } from 'react-copy-to-clipboard/lib/Component';
@@ -32,27 +33,43 @@ export default function BorderCssGenerator() {
 
     const defautbg = 'rgb(21 140 186)';
 
-    const [cssGeneerate, setCssGeneerate] = useState('18px solid #ff6550');
+    const [cssGeneerate, setCssGeneerate] = useState({
+        borderAll: '10px solid #ff6550',
+    });
     const [cssBackgroundColor, setCssBackgroundColor] = useState(defautbg);
     const [copyValue, setCopyValue] = useState(null);
 
     useEffect(() => {
-        if (!formValues.targetinvidualborder) {
-            setCssGeneerate(`${formValues['borderwidth']}px ${formValues['borderstyle']} ${formValues['bordercolor']}`);
-        } else {
-            setCssGeneerate(`none`);
-        }
-        let test = `border: ${cssGeneerate};`
+        setCssGeneerate((prevState) => (
+            {
+                ...prevState,
+                borderAll: `${formValues.borderwidth}px ${formValues.borderstyle} ${formValues.bordercolor}`,
+                borderTop: `${formValues.bordertopwidth}px ${formValues.bordertopstyle} ${formValues.bordertopcolor}`,
+                borderRight: `${formValues.borderrightwidth}px ${formValues.borderrightstyle} ${formValues.borderrightcolor}`,
+                borderBottom: `${formValues.borderbottomwidth}px ${formValues.borderbottomstyle} ${formValues.borderbottomcolor}`,
+                borderLeft: `${formValues.borderleftwidth}px ${formValues.borderleftstyle} ${formValues.borderleftcolor}`,
+            }));
+
+        const copyText = `${!formValues.targetinvidualborder ? `border: ${cssGeneerate.borderAll};\n` :
+            `border-top: ${cssGeneerate.borderTop};\n` +
+            `border-right: ${cssGeneerate.borderRight};\n` +
+            `border-bottom: ${cssGeneerate.borderBottom};\n` +
+            `border-left: ${cssGeneerate.borderLeft};\n`}`
+
+        let test = copyText;
+
         if (formValues['genbackground']) {
             setCssBackgroundColor(formValues['background']);
-            test += `\nbackground: ${formValues['background']};`
+            test += `background: ${formValues['background']};`
         } else {
-            test = `border: ${cssGeneerate};`
+            test = copyText;
             setCssBackgroundColor(defautbg);
         }
+
         textArea.current.value = test;
         setCopyValue(test);
-    }, [cssGeneerate, formValues])
+
+    }, [formValues]);
 
     const optionStyles = [
         { label: 'Dotted', value: 'dotted' },
@@ -101,118 +118,116 @@ export default function BorderCssGenerator() {
         },
         {
             id: 5,
-            name: "bordertop",
-            type: "custom",
+            name: "bordertopwidth",
+            group: "Border Top",
+            type: "number",
             col: 3,
-            label: "Border Top",
             hidden: true,
-            fields: [
-                {
-                    id: 51,
-                    name: 'bordertopwidth',
-                    type: "number",
-                },
-                {
-                    id: 52,
-                    name: 'bordertopstyle',
-                    type: "select",
-                    options: optionStyles
-                },
-                {
-                    id: 53,
-                    name: 'bordertopcolor',
-                    type: "color",
-                }
-            ]
+            unit: 'px',
         },
         {
             id: 6,
-            name: "borderright",
-            label: "Border Right",
-            required: false,
-            hidden: true,
-            type: "custom",
+            name: "bordertopstyle",
+            group: "Border Top",
+            type: "select",
+            options: optionStyles,
             col: 3,
-            fields: [
-                {
-                    id: 61,
-                    name: 'borderrightwidth',
-                    type: "number",
-                },
-                {
-                    id: 62,
-                    name: 'borderrightstyle',
-                    type: "select",
-                    options: optionStyles
-                },
-                {
-                    id: 63,
-                    name: 'borderrightcolor',
-                    type: "color",
-                }
-            ]
+            hidden: true,
         },
         {
             id: 7,
-            name: "borderbottom",
-            label: "Border Bottom",
-            required: false,
-            hidden: true,
-            type: "custom",
+            name: "bordertopcolor",
+            group: "Border Top",
+            type: "color",
             col: 3,
-            fields: [
-                {
-                    id: 71,
-                    name: 'borderbottomwidth',
-                    type: "number",
-                },
-                {
-                    id: 72,
-                    name: 'borderbottomstyle',
-                    type: "select",
-                    options: optionStyles
-                },
-                {
-                    id: 73,
-                    name: 'borderbottomcolor',
-                    type: "color",
-                }
-            ]
+            hidden: true,
         },
         {
             id: 8,
-            name: "borderleft",
-            label: "Border Left",
-            hidden: true,
-            type: "custom",
+            name: "borderrightwidth",
+            group: "Border Right",
+            type: "number",
             col: 3,
-            fields: [
-                {
-                    id: 81,
-                    name: 'borderleftwidth',
-                    type: "number",
-                },
-                {
-                    id: 82,
-                    name: 'borderleftstyle',
-                    type: "select",
-                    options: optionStyles
-                },
-                {
-                    id: 83,
-                    name: 'borderleftcolor',
-                    type: "color",
-                }
-            ]
+            hidden: true,
+            unit: 'px',
         },
         {
             id: 9,
+            name: "borderrightstyle",
+            group: "Border Right",
+            type: "select",
+            options: optionStyles,
+            col: 3,
+            hidden: true,
+        },
+        {
+            id: 10,
+            name: "borderrightcolor",
+            group: "Border Right",
+            type: "color",
+            col: 3,
+            hidden: true,
+        },
+        {
+            id: 11,
+            name: "borderbottomwidth",
+            group: "Border Bottom",
+            type: "number",
+            col: 3,
+            hidden: true,
+            unit: 'px',
+        },
+        {
+            id: 12,
+            name: "borderbottomstyle",
+            group: "Border Bottom",
+            type: "select",
+            options: optionStyles,
+            col: 3,
+            hidden: true,
+        },
+        {
+            id: 13,
+            name: "borderbottomcolor",
+            group: "Border Bottom",
+            type: "color",
+            col: 3,
+            hidden: true,
+        },
+        {
+            id: 14,
+            name: "borderleftwidth",
+            group: "Border Left",
+            type: "number",
+            col: 3,
+            hidden: true,
+            unit: 'px',
+        },
+        {
+            id: 15,
+            name: "borderleftstyle",
+            group: "Border Left",
+            type: "select",
+            options: optionStyles,
+            col: 3,
+            hidden: true,
+        },
+        {
+            id: 16,
+            name: "borderleftcolor",
+            group: "Border Left",
+            type: "color",
+            col: 3,
+            hidden: true,
+        },
+        {
+            id: 17,
             name: "background",
             type: "color",
             label: "Background Color",
         },
         {
-            id: 10,
+            id: 18,
             name: "genbackground",
             type: "checkbox",
             label: "Include background color in generating code:",
@@ -223,7 +238,6 @@ export default function BorderCssGenerator() {
     };
 
     const onChange = (e) => {
-        console.log(formValues);
         if (e.target.type === "checkbox") {
             console.log(e.target.checked)
             if (e.target.name === "genbackground") {
@@ -235,20 +249,45 @@ export default function BorderCssGenerator() {
             }
             if (e.target.name === 'targetinvidualborder') {
                 setInputs(state => {
+                    // all
                     const borderwidth = state.filter(x => x.id === 1);
                     borderwidth[0].hidden = e.target.checked;
                     const borderstyle = state.filter(x => x.id === 3);
                     borderstyle[0].hidden = e.target.checked;
                     const bordercolor = state.filter(x => x.id === 4);
                     bordercolor[0].hidden = e.target.checked;
-                    const bordertop = state.filter(x => x.id === 5);
-                    bordertop[0].hidden = !e.target.checked;
-                    const borderright = state.filter(x => x.id === 6);
-                    borderright[0].hidden = !e.target.checked;
-                    const borderbottom = state.filter(x => x.id === 7);
-                    borderbottom[0].hidden = !e.target.checked;
-                    const borderleft = state.filter(x => x.id === 8);
-                    borderleft[0].hidden = !e.target.checked;
+
+                    // top
+                    const bordertopwidth = state.filter(x => x.id === 5);
+                    bordertopwidth[0].hidden = !e.target.checked;
+                    const bordertopstyle = state.filter(x => x.id === 6);
+                    bordertopstyle[0].hidden = !e.target.checked;
+                    const bordertopcolor = state.filter(x => x.id === 7);
+                    bordertopcolor[0].hidden = !e.target.checked;
+
+                    // right
+                    const borderrightwidth = state.filter(x => x.id === 8);
+                    borderrightwidth[0].hidden = !e.target.checked;
+                    const borderrightstyle = state.filter(x => x.id === 9);
+                    borderrightstyle[0].hidden = !e.target.checked;
+                    const borderrightcolor = state.filter(x => x.id === 10);
+                    borderrightcolor[0].hidden = !e.target.checked;
+
+                    // bottom
+                    const borderbottomwidth = state.filter(x => x.id === 11);
+                    borderbottomwidth[0].hidden = !e.target.checked;
+                    const borderbottomstyle = state.filter(x => x.id === 12);
+                    borderbottomstyle[0].hidden = !e.target.checked;
+                    const borderbottomcolor = state.filter(x => x.id === 13);
+                    borderbottomcolor[0].hidden = !e.target.checked;
+
+                    // left
+                    const borderleftwidth = state.filter(x => x.id === 14);
+                    borderleftwidth[0].hidden = !e.target.checked;
+                    const borderleftstyle = state.filter(x => x.id === 15);
+                    borderleftstyle[0].hidden = !e.target.checked;
+                    const borderleftcolor = state.filter(x => x.id === 16);
+                    borderleftcolor[0].hidden = !e.target.checked;
 
                     return [...state];
                 });
@@ -280,43 +319,93 @@ export default function BorderCssGenerator() {
                 <div className="item-container">
                     <form>
                         <h1>Border Options</h1>
-                        {inputs.map((input) => (
-                            (() => {
-                                switch (input.type) {
-                                    case "checkbox":
-                                        return (
-                                            <FormInput
-                                                key={input.id}
-                                                {...input}
-                                                checked={formValues[input.name]}
-                                                onChange={onChange}
-                                            />
-                                        )
-                                    case 'custom':
-                                        return (
+                        <FormGroupInput label="Border Top" isShow={formValues.targetinvidualborder}>
+                            <>                                
+                                {
+                                    inputs
+                                        .filter(x => x.group === "Border Top")
+                                        .map((input) => (
                                             <FormInput
                                                 key={input.id}
                                                 {...input}
                                                 value={formValues[input.name]}
                                                 onChange={onChange}
                                             />
-                                        )
-                                    default:
-                                        return (
-                                        <FormInput
-                                            key={input.id}
-                                            {...input}
-                                            value={formValues[input.name]}
-                                            onChange={onChange}
-                                        />)
+                                        ))
                                 }
-                            })()
-                        ))}
+                            </>
+                        </FormGroupInput>
+
+                        <FormGroupInput label="Border Right" isShow={formValues.targetinvidualborder}>
+                            <>                                
+                                {
+                                    inputs
+                                        .filter(x => x.group === "Border Right")
+                                        .map((input) => (
+                                            <FormInput
+                                                key={input.id}
+                                                {...input}
+                                                value={formValues[input.name]}
+                                                onChange={onChange}
+                                            />
+                                        ))
+                                }
+                            </>
+                        </FormGroupInput>
+
+                        <FormGroupInput label="Border Bottom" isShow={formValues.targetinvidualborder}>
+                            <>                                
+                                {
+                                    inputs
+                                        .filter(x => x.group === "Border Bottom")
+                                        .map((input) => (
+                                            <FormInput
+                                                key={input.id}
+                                                {...input}
+                                                value={formValues[input.name]}
+                                                onChange={onChange}
+                                            />
+                                        ))
+                                }
+                            </>
+                        </FormGroupInput>
+
+                        <FormGroupInput label="Border Left" isShow={formValues.targetinvidualborder}>
+                            <>                                
+                                {
+                                    inputs
+                                        .filter(x => x.group === "Border Left")
+                                        .map((input) => (
+                                            <FormInput
+                                                key={input.id}
+                                                {...input}
+                                                value={formValues[input.name]}
+                                                onChange={onChange}
+                                            />
+                                        ))
+                                }
+                            </>
+                        </FormGroupInput>
+
+                        {inputs
+                            .filter(x => !x.group)
+                            .map((input) => (
+                                <FormInput
+                                    key={input.id}
+                                    {...input}
+                                    value={formValues[input.name]}
+                                    onChange={onChange}
+                                />
+                            ))}
                     </form>
                 </div>
                 <div className="item-container box">
                     <div className="item-preview" style={{
-                        border: cssGeneerate,
+                        border: cssGeneerate.borderAll,
+                        borderTop: cssGeneerate.borderTop,
+                        borderRight: cssGeneerate.borderRight,
+                        borderBottom: cssGeneerate.borderBottom,
+                        borderLeft: cssGeneerate.borderLeft,
                         backgroundColor: cssBackgroundColor
                     }}>
                         Border CSS generator
