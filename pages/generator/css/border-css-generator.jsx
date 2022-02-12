@@ -402,10 +402,10 @@ export default function BorderCssGenerator() {
                 <div className="item-container box">
                     <div className="item-preview" style={{
                         border: cssGeneerate.borderAll,
-                        borderTop: cssGeneerate.borderTop,
-                        borderRight: cssGeneerate.borderRight,
-                        borderBottom: cssGeneerate.borderBottom,
-                        borderLeft: cssGeneerate.borderLeft,
+                        borderTop: parseInt(formValues.bordertopwidth) > 0 ? cssGeneerate.borderTop : undefined,
+                        borderRight: parseInt(formValues.borderrightwidth) > 0 ? cssGeneerate.borderRight : undefined,
+                        borderBottom: parseInt(formValues.borderbottomwidth) > 0 ? cssGeneerate.borderBottom : undefined,
+                        borderLeft: parseInt(formValues.borderleftwidth) > 0 ? cssGeneerate.borderLeft : undefined,
                         backgroundColor: cssBackgroundColor
                     }}>
                         Border CSS generator
