@@ -44,7 +44,9 @@ export default function Me() {
           max-width: 50%;
           text-align: center;
           min-height: 350px;
-          background: #fff;
+          transition: all 0.5s ease-in-out;
+        }
+        .list-item li {
           display: flex;
           align-item: center;
           flex-direction: column;
@@ -53,7 +55,6 @@ export default function Me() {
           background-repeat: no-repeat;
           background-size: 70% 80%;
           background-color: #fff;
-          transition: all 0.5s ease-in-out;
         }
         .list-item li:hover { 
           background-size: 100% 100%;
