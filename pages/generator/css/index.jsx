@@ -38,11 +38,13 @@ export default function Css() {
                     </div>
                     <div className="item_category">
                         <Link href="/generator/css/border-css-generator">
-                            <a>Border</a>
+                            <a>Border CSS Generator</a>
                         </Link>
                     </div>
                     <div className="item_category">
-                        <a>CSS Border radius</a>
+                        <Link href="/generator/css/border-radius-css-generator">
+                            <a>Border Radius</a>
+                        </Link>
                     </div>
                     <div className="item_category">
                         <a>Gradient</a>
