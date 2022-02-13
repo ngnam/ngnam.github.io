@@ -137,7 +137,7 @@ export default function BorderRadiusCssGenerator() {
             name: "borderstyle",
             label: "Border Style",
             type: "select",
-            options: optionStyles
+            options: JSON.parse(JSON.stringify(optionStyles)),
         },
         {
             id: 8,
