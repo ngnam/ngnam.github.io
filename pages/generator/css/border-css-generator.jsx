@@ -40,15 +40,13 @@ export default function BorderCssGenerator() {
     const [copyValue, setCopyValue] = useState(null);
 
     useEffect(() => {
-        setCssGeneerate((prevState) => (
-            {
-                ...prevState,
-                borderAll: `${formValues.borderwidth}px ${formValues.borderstyle} ${formValues.bordercolor}`,
-                borderTop: `${formValues.bordertopwidth}px ${formValues.bordertopstyle} ${formValues.bordertopcolor}`,
-                borderRight: `${formValues.borderrightwidth}px ${formValues.borderrightstyle} ${formValues.borderrightcolor}`,
-                borderBottom: `${formValues.borderbottomwidth}px ${formValues.borderbottomstyle} ${formValues.borderbottomcolor}`,
-                borderLeft: `${formValues.borderleftwidth}px ${formValues.borderleftstyle} ${formValues.borderleftcolor}`,
-            }));
+        setCssGeneerate({
+            borderAll: `${formValues.borderwidth}px ${formValues.borderstyle} ${formValues.bordercolor}`,
+            borderTop: `${formValues.bordertopwidth}px ${formValues.bordertopstyle} ${formValues.bordertopcolor}`,
+            borderRight: `${formValues.borderrightwidth}px ${formValues.borderrightstyle} ${formValues.borderrightcolor}`,
+            borderBottom: `${formValues.borderbottomwidth}px ${formValues.borderbottomstyle} ${formValues.borderbottomcolor}`,
+            borderLeft: `${formValues.borderleftwidth}px ${formValues.borderleftstyle} ${formValues.borderleftcolor}`,
+        });
 
         const copyText = `${!formValues.targetinvidualborder ? `border: ${cssGeneerate.borderAll};\n` :
             `border-top: ${cssGeneerate.borderTop};\n` +
@@ -399,17 +397,26 @@ export default function BorderCssGenerator() {
                             ))}
                     </form>
                 </div>
+                
                 <div className="item-container box">
-                    <div className="item-preview" style={{
-                        border: cssGeneerate.borderAll,
-                        borderTop: parseInt(formValues.bordertopwidth) > 0 ? cssGeneerate.borderTop : undefined,
-                        borderRight: parseInt(formValues.borderrightwidth) > 0 ? cssGeneerate.borderRight : undefined,
-                        borderBottom: parseInt(formValues.borderbottomwidth) > 0 ? cssGeneerate.borderBottom : undefined,
-                        borderLeft: parseInt(formValues.borderleftwidth) > 0 ? cssGeneerate.borderLeft : undefined,
-                        backgroundColor: cssBackgroundColor
-                    }}>
-                        Border CSS generator
-                    </div>
+                    {formValues.targetinvidualborder ?
+                        <div className="item-preview" style={{
+                            borderWidth: `${formValues.bordertopwidth}px ${formValues.borderrightwidth}px ${formValues.borderbottomwidth}px ${formValues.borderleftwidth}px`,
+                            borderStyle: `${formValues.bordertopstyle} ${formValues.borderrightstyle} ${formValues.borderbottomstyle} ${formValues.borderleftstyle}`,
+                            borderColor: `${formValues.bordertopcolor} ${formValues.borderrightcolor} ${formValues.borderbottomcolor} ${formValues.borderleftcolor}`,
+                            backgroundColor: cssBackgroundColor
+                        }}>
+                            Border CSS generator
+                        </div>
+                        :
+                        <div className="item-preview" style={{
+                            border: `${formValues.borderwidth}px ${formValues.borderstyle} ${formValues.bordercolor}`,
+                            backgroundColor: cssBackgroundColor
+                        }}>
+                            Border CSS generator
+                        </div>
+                    }
+                    
                     <div className="item-code">
                         <textarea placeholder="css generator" rows="5" cols="20" ref={textArea}>
                         </textarea>

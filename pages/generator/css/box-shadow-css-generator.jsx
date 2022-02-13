@@ -28,7 +28,7 @@ export default function BoxShadowCssGenerator() {
         const test = `box-shadow: ${cssGeneerate}; \n-webkit-box-shadow: ${cssGeneerate};\n-moz-box-shadow: ${cssGeneerate};\n-o-box-shadow: ${cssGeneerate};`
         textArea.current.value = test;
         setCopyValue(test);
-    }, [cssGeneerate, formValues])
+    }, [formValues])
 
     const inputs = [
         {
@@ -147,20 +147,12 @@ export default function BoxShadowCssGenerator() {
                     <form>
                         <h1>Box Shadow Options</h1>
                         {inputs.map((input) => (
-                            input.type === 'checkbox' ?
-                            <FormInput
-                                key={input.id}
-                                {...input}
-                                checked={formValues[input.name]}
-                                onChange={onChange}
-                            /> 
-                            : 
                             <FormInput
                                 key={input.id}
                                 {...input}
                                 value={formValues[input.name]}
                                 onChange={onChange}
-                            /> 
+                            />
                         ))}
                     </form>
                 </div>

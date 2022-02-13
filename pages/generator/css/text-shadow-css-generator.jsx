@@ -26,7 +26,7 @@ export default function TextShadowCssGenerator() {
         const test = `text-shadow: ${formValues['hsl']}px ${formValues['vsl']}px ${formValues['blurradius']}px ${formValues['sdcrgbaCol'] || 'rgba(0,0,0,0.64)'};`;
         textArea.current.value = test;
         setCopyValue(test);
-    }, [cssGeneerate, formValues])
+    }, [formValues])
 
     const inputs = [
         {
@@ -123,14 +123,6 @@ export default function TextShadowCssGenerator() {
                     <form>
                         <h1>Text Shadow Options</h1>
                         {inputs.map((input) => (
-                            input.type === 'checkbox' ?
-                            <FormInput
-                                key={input.id}
-                                {...input}
-                                checked={formValues[input.name]}
-                                onChange={onChange}
-                            /> 
-                            : 
                             <FormInput
                                 key={input.id}
                                 {...input}
