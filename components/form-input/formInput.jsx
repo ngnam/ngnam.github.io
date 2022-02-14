@@ -53,22 +53,32 @@ const FormInput = (props) => {
                                 </select>
                             </div>
                         )
+                    case 'range':
+                        return (
+                            <div className={styles.formInputpn}>
+                                <input
+                                    {...inputProps}
+                                    onChange={onChange}
+                                    onBlur={handleFocus}
+                                    className={`input-range-custom${inputProps.className ? ' '+inputProps.className : ''}`}
+                                />
+                                <div className={styles.currentValue}>{`${inputProps.value}`}{inputProps.unit ? inputProps.unit : ''}</div>
+                            </div>
+                        )
                     default:
                         return (
-                            (
-                                <div className={styles.formInputpn}>
-                                    <input
-                                        {...inputProps}
-                                        onChange={onChange}
-                                        onBlur={handleFocus}
-                                        onFocus={() =>
-                                            inputProps.name === "confirmPassword" && setFocused(true)
-                                        }
-                                        focused={focused.toString()}
-                                    />
-                                    <div className={styles.currentValue}>{`${inputProps.value}`}{inputProps.unit ? inputProps.unit : ''}</div>
-                                </div>
-                            )
+                            <div className={styles.formInputpn}>
+                                <input
+                                    {...inputProps}
+                                    onChange={onChange}
+                                    onBlur={handleFocus}
+                                    onFocus={() =>
+                                        inputProps.name === "confirmPassword" && setFocused(true)
+                                    }
+                                    focused={focused.toString()}
+                                />
+                                <div className={styles.currentValue}>{`${inputProps.value}`}{inputProps.unit ? inputProps.unit : ''}</div>
+                            </div>
                         )
                 }
             })()}
