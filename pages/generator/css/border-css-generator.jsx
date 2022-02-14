@@ -540,7 +540,7 @@ export default function BorderCssGenerator() {
                         height: 150px!important;
                         max-height: 150px!important;
                         margin-top: 25px!important;
-                    }import { Link } from 'next/link';
+                    }import HtmlSymbol from './../../utils/html-symbol';
 
                 }
                

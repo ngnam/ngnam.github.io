@@ -52,7 +52,7 @@ const FormInput = (props) => {
                                         }
                                         focused={focused.toString()}
                                     />
-                                    <div className={styles.currentValue}>{`${inputProps.value}`} {inputProps.unit ? inputProps.unit : ''}</div>
+                                    <div className={styles.currentValue}>{`${inputProps.value}`}{inputProps.unit ? inputProps.unit : ''}</div>
                                 </div>
                             )
                         )
