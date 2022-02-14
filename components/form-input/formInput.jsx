@@ -1,13 +1,28 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import styles from './formInput.module.css'; // Import css modules stylesheet as styles
 
 const FormInput = (props) => {
     const [focused, setFocused] = useState(false);
     const { label, errorMessage, onChange, id, ...inputProps } = props;
+    const inputRef = useRef();
 
     const handleFocus = (e) => {
         setFocused(true);
     };
+
+    const handlePlus = (e) => {
+        e.preventDefault();
+        if (isNaN(inputRef.current.value)) { inputRef.current.value = 0 }
+        inputRef.current.value = parseInt(inputRef.current.value) + 1
+        inputRef.current.focus()
+    }
+
+    const handleMinus = (e) => {
+        e.preventDefault();
+        if (isNaN(inputRef.current.value)) { inputRef.current.value = 0; }
+        inputRef.current.value = parseInt(inputRef.current.value) - 1
+        inputRef.current.focus()
+    }
 
     return (
         !inputProps.hidden && <div className={styles.formInput}>
@@ -58,10 +73,29 @@ const FormInput = (props) => {
                             <div className={styles.formInputpn}>
                                 <input
                                     {...inputProps}
-                                    onChange={onChange}
+                                    onChange={onChange}                                   
                                     onBlur={handleFocus}
                                     className={`input-range-custom${inputProps.className ? ' '+inputProps.className : ''}`}
                                 />
+                                <div className={styles.currentValue}>{`${inputProps.value}`}{inputProps.unit ? inputProps.unit : ''}</div>
+                            </div>
+                        )
+                    case 'number':
+                        return (
+                            <div className={styles.formInputpn}>
+                                <div className={styles.formInputGrouppn}>
+                                    <input ref={inputRef}
+                                        {...inputProps}
+                                        type="text"
+                                        pattern='[0-9]'
+                                        onChange={onChange}
+                                        onFocus={onChange}
+                                    />
+                                    <div className={styles.formInputAddon}>
+                                        <span onClick={handlePlus} className={styles.formButtonPlus}>+</span>
+                                        <span onClick={handleMinus}>-</span>
+                                    </div>
+                                </div>
                                 <div className={styles.currentValue}>{`${inputProps.value}`}{inputProps.unit ? inputProps.unit : ''}</div>
                             </div>
                         )
@@ -88,3 +122,5 @@ const FormInput = (props) => {
 };
 
 export default FormInput;
+
+
