@@ -82,11 +82,11 @@ export default function CssCursorCssGenerator() {
                     <div className="item-code">
                         <textarea placeholder="css generator" rows="5" cols="20" ref={textArea}>
                         </textarea>
-                    </div>
-                    <div className="item-action">
-                        <CopyToClipboard text={copyValue} onCopy={handleCopy}>
-                            <button>Copy</button>
-                        </CopyToClipboard>
+                        <div className="item-action">
+                            <CopyToClipboard text={copyValue} onCopy={handleCopy}>
+                                <button>Copy</button>
+                            </CopyToClipboard>
+                        </div>
                     </div>
                 </div>
             </section>
@@ -146,7 +146,22 @@ export default function CssCursorCssGenerator() {
                     font-family: monospace;
                     height: 200px;
                     width: 100%;
-                    margin: 50px 0;                  
+                    margin: 50px 0;      
+                    position: relative;            
+                }
+
+                .item-code .item-action {
+                    position: absolute;
+                    top: 8px;
+                    right: 8px;
+                    justify-content: center;
+                    align-items: center;
+                    transition: all .3s ease-in-out;
+                    display: none;
+                }
+
+                .item-code:hover .item-action {
+                    display: flex;
                 }
 
                 .item-code textarea {
