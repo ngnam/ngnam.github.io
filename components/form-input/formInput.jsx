@@ -24,7 +24,21 @@ const FormInput = (props) => {
                                         checked={inputProps.value}
                                         onChange={onChange}
                                     />
-                                    <span className="checkmark"></span>
+                                    <span className="checkmark input-checkbox-custom"></span>
+                                </label>
+                            </div>
+                        )
+                    case 'radio':
+                        return (
+                            <div className={styles.formInputpn}>
+                                <label className="input_checkbox_container">
+                                    {inputProps.value ? "On" : "Off"}
+                                    <input
+                                        {...inputProps}
+                                        checked={inputProps.value}
+                                        onChange={onChange}
+                                    />
+                                    <span className="checkmark input-radio-custom"></span>
                                 </label>
                             </div>
                         )
