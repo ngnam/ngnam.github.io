@@ -86,8 +86,6 @@ const FormInput = (props) => {
                                 <div className={styles.formInputGrouppn}>
                                     <input ref={inputRef}
                                         {...inputProps}
-                                        type="text"
-                                        pattern='[0-9]'
                                         onChange={onChange}
                                         onFocus={onChange}
                                     />
