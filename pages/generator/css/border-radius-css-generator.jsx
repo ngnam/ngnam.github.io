@@ -20,7 +20,7 @@ export default function BorderRadiusCssGenerator() {
         borderstyle: 'solid',
         bordercolor: '#ff6550',
         background: '#ffffff',
-        genbackground: false
+        genbackground: true
     });
 
     const defautbg = 'rgb(21 140 186)';

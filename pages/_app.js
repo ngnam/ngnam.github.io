@@ -1,5 +1,6 @@
 import Script from 'next/script'
 import '../styles/global.css'
+import '../styles/input_checkbox_custom.css'
 
 export default function App({ Component, pageProps }) {
   return (

@@ -1,6 +1,5 @@
 import { useState } from "react";
 import styles from './formInput.module.css'; // Import css modules stylesheet as styles
-import cn from 'classnames'
 
 const FormInput = (props) => {
     const [focused, setFocused] = useState(false);
@@ -18,14 +17,15 @@ const FormInput = (props) => {
                     case 'checkbox':
                         return (
                             <div className={styles.formInputpn}>
-                                <input
-                                    {...inputProps}
-                                    checked={inputProps.value}
-                                    onChange={onChange}
-                                />
-                                <div className={styles.currentValue}>{
-                                    inputProps.value ? "On" : "Off"
-                                }</div>
+                                <label className="input_checkbox_container">
+                                    {inputProps.value ? "On" : "Off"}
+                                    <input
+                                        {...inputProps}
+                                        checked={inputProps.value}
+                                        onChange={onChange}
+                                    />
+                                    <span className="checkmark"></span>
+                                </label>
                             </div>
                         )
                     case 'select':
@@ -58,7 +58,7 @@ const FormInput = (props) => {
                         )
                 }
             })()}
-            <span>{errorMessage}</span>
+            <span className={styles.formInput__error}>{errorMessage}</span>
         </div>
     );
 };
