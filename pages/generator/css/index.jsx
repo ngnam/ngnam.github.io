@@ -47,19 +47,19 @@ export default function Css() {
                         </Link>
                     </div>
                     <div className="item_category">
-                        <a>Gradient</a>
+                        <a>Gradient</a> <small style={{backgroundColor: 'yellow'}}>I'm working</small>
                     </div>
                     <div className="item_category">
-                        <a>Transform</a>
+                        <a>Transform</a> <small style={{backgroundColor: 'yellow'}}>I'm working</small>
                     </div>
                     <div className="item_category">
-                        <a>RGBA & HEX</a>
+                        <a>RGBA & HEX</a> <small style={{backgroundColor: 'yellow'}}>I'm working</small>
                     </div>
                     <div className="item_category">
-                        <a>Filter</a>
+                        <a>Filter</a> <small style={{backgroundColor: 'yellow'}}>I'm working</small>
                     </div>
                     <div className="item_category">
-                        <a>GRID</a>
+                        <a>GRID</a> <small style={{backgroundColor: 'yellow'}}>I'm working</small>
                     </div>
                 </div>
             </section>

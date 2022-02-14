@@ -9,7 +9,7 @@ export const siteTitle = 'A personal website for nguyen van nam using Next.js'
 
 export default function Layout({ children, home }) {
     
-    const profileImage = '/images/11207864.jfif';
+    const profileImage = '/images/me2022.png';
     return (
         <>
             <div className={styles.container}>

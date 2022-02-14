@@ -55,7 +55,11 @@ export default function BorderRadiusCssGenerator() {
         textArea.current.value = test;
         setCopyValue(test);
 
-    }, [formValues]);
+    }, [formValues, 
+        cssGeneerate.borderAll, 
+        cssGeneerate.borderRadius, 
+        cssBackgroundColor
+    ]);
 
     const optionStyles = [
         { label: 'Dotted', value: 'dotted' },

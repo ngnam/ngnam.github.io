@@ -28,7 +28,7 @@ export default function BoxShadowCssGenerator() {
         const test = `box-shadow: ${cssGeneerate}; \n-webkit-box-shadow: ${cssGeneerate};\n-moz-box-shadow: ${cssGeneerate};\n-o-box-shadow: ${cssGeneerate};`
         textArea.current.value = test;
         setCopyValue(test);
-    }, [formValues])
+    }, [formValues, cssGeneerate])
 
     const inputs = [
         {

@@ -26,7 +26,7 @@ export default function TextShadowCssGenerator() {
         const test = `text-shadow: ${formValues['hsl']}px ${formValues['vsl']}px ${formValues['blurradius']}px ${formValues['sdcrgbaCol'] || 'rgba(0,0,0,0.64)'};`;
         textArea.current.value = test;
         setCopyValue(test);
-    }, [formValues])
+    }, [formValues, cssGeneerate])
 
     const inputs = [
         {

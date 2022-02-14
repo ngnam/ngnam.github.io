@@ -67,7 +67,14 @@ export default function BorderCssGenerator() {
         textArea.current.value = test;
         setCopyValue(test);
 
-    }, [formValues]);
+    }, [formValues, 
+        cssGeneerate.borderAll, 
+        cssGeneerate.borderTop, 
+        cssGeneerate.borderRight, 
+        cssGeneerate.borderBottom, 
+        cssGeneerate.borderLeft,
+        cssBackgroundColor
+    ]);
 
     const optionStyles = [
         { label: 'Dotted', value: 'dotted' },
