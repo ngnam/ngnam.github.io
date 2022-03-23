@@ -9,13 +9,18 @@ export default function Blog() {
         <title>Blog</title>
         <meta name="description" content="Blog page" />
       </Head>
-      <article className={utilStyles.headingMd}>
-        <h1 className="title">
-         Blog
+      <article>
+        <h1 className={utilStyles.headingMd}>
+         Blog title
         </h1>
-        <p>
+        <p className={utilStyles.headingMdDescription}>
           (This is a sample blog.)
         </p>
+
+        <div className={utilStyles.headingMdContent}>
+          <p>Hello world</p>
+        </div>
+
       </article>
     </Layout>
   )

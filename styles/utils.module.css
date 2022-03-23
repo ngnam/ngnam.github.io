@@ -21,8 +21,24 @@
 }
 
 .headingMd {
-  font-size: 1.2rem;
+  font-size: 1.4rem;
   line-height: 1.5;
+}
+
+.headingMdDescription {
+  font-size: 1rem;
+  line-height: 1.25;
+}
+
+.headingMdContent {
+  font-size: 1.1rem;
+  line-height: 1.5;
+  letter-spacing: 1.5px;
+  white-space: pre-wrap;
+}
+
+.headingMdContent > * {
+  margin-bottom: .5rem;
 }
 
 .borderCircle {

@@ -10,8 +10,8 @@ export default function Home() {
       <Head>
         <title>ReWrite Blog Software Development</title>
       </Head>
-      <article className={utilStyles.headingMd}>
-        <h1 className="title">
+      <article>
+        <h1 className={utilStyles.headingMd}>
           Nguyen Van Nam <small>- Owner for <Link href="/blog">Blog</Link> </small>
         </h1>
         <p>[Sr. FullStack Software Development]</p>

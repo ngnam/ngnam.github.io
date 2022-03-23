@@ -9,13 +9,17 @@ export default function Hello() {
         <title>Hello world</title>
         <meta name="description" content="Hello world page" />
       </Head>
-      <article className={utilStyles.headingMd}>
-        <h1 className="title">
-            Hello world
+      <article>
+        <h1 className={utilStyles.headingMd}>
+          Blog title
         </h1>
-        <p>
-          (This is a sample Hello world.)
+        <p className={utilStyles.headingMdDescription}>
+          (This is a sample blog.)
         </p>
+
+        <div className="article-content">
+          <p>Hello world</p>
+        </div>
       </article>
     </Layout>
   )
