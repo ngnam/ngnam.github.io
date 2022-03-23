@@ -4,12 +4,12 @@ import styles from './layout.module.css'
 import utilStyles from '../styles/utils.module.css'
 import Link from "./navlink";
 
-const name = 'My Portfolio'
-export const siteTitle = 'A personal website for nguyen van nam using Next.js'
+const name = 'ngnam.github.io'
+export const siteTitle = 'A portfolio website for Full-stack Software development'
 
 export default function Layout({ children, home }) {
     
-    const profileImage = '/images/me2022.png';
+    const profileImage = '/images/girl-g06b208c73_1920.jpg';
     return (
         <>
             <div className={styles.container}>
@@ -18,7 +18,7 @@ export default function Layout({ children, home }) {
                     <meta name="viewport" content="width=device-width, initial-scale" />
                     <meta
                         name="description"
-                        content="a personal website using Next.js"
+                        content={siteTitle}
                     />
                     <meta
                         property="og:image"
@@ -64,9 +64,9 @@ export default function Layout({ children, home }) {
                         </>
                     )}
                     <ul className={styles.menu}>
-                        <li><Link href="/blog/hello" activeClassName={styles.menu_li_active}><a>Hello</a></Link></li>
+                        {/* <li><Link href="/blog/hello" activeClassName={styles.menu_li_active}><a>Hello</a></Link></li> */}
                         <li><Link href="/blog" activeClassName={styles.menu_li_active}><a>Blog</a></Link></li>
-                        <li><Link href="/authors/me" activeClassName={styles.menu_li_active}><a>Profile</a></Link></li>
+                        {/* <li><Link href="/authors/me" activeClassName={styles.menu_li_active}><a>Profile</a></Link></li> */}
                         <li><Link href="/generator/css" activeClassName={styles.menu_li_active}><a>CSS generator Tools</a></Link></li>
                         
                     </ul>
