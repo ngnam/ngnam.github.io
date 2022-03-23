@@ -18,12 +18,12 @@ export default function Me() {
             <li style={{backgroundImage: "url('/images/responsive-web-design-frontend-fcc.png')"}}>
               <a target="_blank" href="https://freecodecamp.org/certification/ngnam/responsive-web-design">Responsive Web Design - freecodecamp</a>
             </li>
-            <li style={{backgroundImage: "url('/images/responsive-web-design-frontend-fcc.png')"}}>
+            {/* <li style={{backgroundImage: "url('/images/responsive-web-design-frontend-fcc.png')"}}>
               <a target="_blank" href="https://freecodecamp.org/certification/ngnam/responsive-web-design">Responsive Web Design - freecodecamp</a>
             </li>
             <li style={{backgroundImage: "url('/images/responsive-web-design-frontend-fcc.png')"}}>
               <a target="_blank" href="https://freecodecamp.org/certification/ngnam/responsive-web-design">Responsive Web Design - freecodecamp</a>
-            </li>
+            </li> */}
           </ul>
         </article>
       </Layout>
