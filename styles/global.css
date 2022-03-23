@@ -76,3 +76,9 @@ button:hover {
   opacity: 1;
   border-color: #767676;
 }
+
+:root {
+  --primary-color: rgb(231, 182, 49);
+  --light-white: #fff;
+  --transion-delay: .5s;
+}

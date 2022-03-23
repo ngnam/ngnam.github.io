@@ -35,7 +35,7 @@ export default function Layout({ children, home }) {
                             <img
                                 priority="true"
                                 src={profileImage}
-                                className={utilStyles.borderCircle}
+                                className={styles.profileImage + ' ' + utilStyles.borderCircle}
                                 height={144}
                                 width={144}
                                 alt={name}
@@ -48,7 +48,7 @@ export default function Layout({ children, home }) {
                                     <img
                                         priority="true"
                                         src={profileImage}
-                                        className={utilStyles.borderCircle}
+                                        className={styles.profileImage + ' ' + utilStyles.borderCircle}
                                         height={144}
                                         width={144}
                                         alt={name}

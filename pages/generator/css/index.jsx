@@ -82,6 +82,7 @@ export default function Css() {
                     justify-content: center;
                     align-items: center;
                     flex-wrap: wrap;
+                    gap: 5px;
                 }
                 .category {
                     margin-top: .5rem;
@@ -90,7 +91,6 @@ export default function Css() {
                     width: calc(100%/5);
                     height: 100px;
                     background: blue;
-                    margin: 0.5rem;
                     display: flex;
                     justify-content: center;
                     align-items: center;

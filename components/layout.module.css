@@ -1,5 +1,5 @@
 .container {
-  max-width: 70rem;
+  max-width: 75rem;
   margin: 0 auto;
   min-height: 100vh;
   padding: 0 0.5rem;
@@ -8,6 +8,7 @@
   justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
+  gap: 5px;
 }
 
 .main {
@@ -40,19 +41,20 @@
 
 .menu {
   display: flex;
+  gap: 5px;
   list-style: none;
   margin: 0;
   padding: 0;
   justify-content: space-around;
   align-items: center;
-  box-shadow: 1px 7px 2px -6px #eaeaea;
-  background-color: #ffffff;
+  box-shadow: 1px 7px 2px -6px var(--primary-color);
+  background-color: var(--light-white);
   border-radius: 20px;
   flex: 1 1 auto;
+  font-weight: 600;
 }
 
 .menu > li {
-  /* border-bottom: 4px solid transparent; */
   width: 100%;
   text-align: center;
   border-radius: 20px;
@@ -60,11 +62,14 @@
 
 a.menu_li_active,
 .menu > li > a:hover {
-  border-bottom: 4px solid #9e9e9e !important;
+  background: var(--primary-color);
+  border-color: var(--primary-color);
+  color: var(--light-white);
 }
 
 .menu > li > a {
   border-bottom: 4px solid transparent;
+  transition: all var(--transion-delay);
   display: block;
   padding: 0.5rem 1rem;
   border-radius: 20px;
@@ -75,4 +80,13 @@ a.menu_li_active,
   .container {
     max-width: 100rem;
   }
+}
+
+.profileImage {
+  border: 5px solid transparent;
+  transition: all var(--transion-delay);
+}
+
+.profileImage:hover {
+  border-color: var(--primary-color);
 }
