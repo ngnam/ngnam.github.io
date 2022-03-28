@@ -8,24 +8,14 @@ export default function Home() {
   return (
     <Layout home={true}>
       <Head>
-        <title>ReWrite Blog Software Development</title>
+        <title>Web Development Tips</title>
       </Head>
       <article>
         <h1 className={utilStyles.headingMd}>
-          Nguyen Van Nam <small>- Owner for <Link href="/blog">Blog</Link> </small>
+          Web Development Tips: go from junior to web developer
         </h1>
-        <p>[Sr. FullStack Software Development]</p>
         <p>
-          I'm {new Date().getFullYear()-myBirthDay} years old and I'm working web developer, I living in Ha Noi, Viet Nam. <br />
-          I'm also a musician and my hobbies are cinema, technology, and magic. <br />
-          Who thinks he’s funny. he's loves my family and my friends. <br />
-        </p>
-        <p>
-          <a href="https://roadmap.sh/react" target="_blank">
-            React Developer 
-            <small> Everything that is there to learn about React and the ecosystem in 2022.
-            </small>
-          </a>
+          Hey there 👋 I'm Nguyen Van Nam, a Junior web developer with 6+ years of experience, and I'll write articles for web developer with bite-sized dev tips.
         </p>
       </article>
     </Layout>

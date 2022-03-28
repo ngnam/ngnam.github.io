@@ -34,11 +34,11 @@ export default function Layout({ children, home }) {
                         <>
                             <img
                                 priority="true"
-                                src={profileImage}
+                                src="https://api.daily.dev/devcards/0f93178ba5f1475d86b6618afbd2296e.png?r=s65"
                                 className={styles.profileImage + ' ' + utilStyles.borderCircle}
                                 height={144}
                                 width={144}
-                                alt={name}
+                                alt="NamNguyen's Dev Card"
                             />
                         </>
                     ) : (
@@ -47,11 +47,11 @@ export default function Layout({ children, home }) {
                                 <a>
                                     <img
                                         priority="true"
-                                        src={profileImage}
+                                        src="https://api.daily.dev/devcards/0f93178ba5f1475d86b6618afbd2296e.png?r=s65"
                                         className={styles.profileImage + ' ' + utilStyles.borderCircle}
                                         height={144}
                                         width={144}
-                                        alt={name}
+                                        alt="NamNguyen's Dev Card"
                                     />
                                 </a>
                             </Link>
@@ -74,6 +74,13 @@ export default function Layout({ children, home }) {
                     </div>
                 )}
                 <footer className={styles.footer}>
+                    <h3>Made with ❤️ Nam Nguyen Van</h3>
+                    <div className={styles.footer_about}>
+                        <a href="#">About</a>
+                        <a href="#">GitHub</a>
+                        <a href="#">CodePen</a>
+                        <a href="#">Twitter</a>
+                    </div>
                     <p>&copy; {new Date().getFullYear().toString()}</p>
                 </footer>
             </div>

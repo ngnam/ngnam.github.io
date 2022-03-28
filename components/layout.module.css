@@ -35,8 +35,15 @@
   height: 100px;
   border-top: 1px solid #eaeaea;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
+  line-height: 1.5em;
+}
+
+.footer_about {
+  display: flex;
+  gap: .5em;
 }
 
 .menu {

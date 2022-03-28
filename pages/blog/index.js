@@ -2,12 +2,12 @@ import Head from 'next/head'
 import utilStyles from '../../styles/utils.module.css'
 import Layout from '../../components/layout'
 
-export default function Blog() {
+export default function Blog({ posts }) {
   return (
     <Layout>
       <Head>
-        <title>Blog</title>
-        <meta name="description" content="Blog page" />
+        <title>Blog - ReWrite Software Development</title>
+        <meta name="description" content="Blog - ReWrite Software Development" />
       </Head>
       <article>
         <h1 className={utilStyles.headingMd}>
@@ -17,9 +17,9 @@ export default function Blog() {
           (This is a sample blog.)
         </p>
 
-        <div className={utilStyles.headingMdContent}>
+        {/* <div className={utilStyles.headingMdContent}>
           <p>Hello world</p>
-        </div>
+        </div> */}
 
       </article>
     </Layout>
