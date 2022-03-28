@@ -6,8 +6,8 @@ export default function Blog({ posts }) {
   return (
     <Layout>
       <Head>
-        <title>Blog - ReWrite Software Development</title>
-        <meta name="description" content="Blog - ReWrite Software Development" />
+        <title>Blog - Web Development Tips</title>
+        <meta name="description" content="Blog - Web Development Tips" />
       </Head>
       <article>
         <h1 className={utilStyles.headingMd}>
