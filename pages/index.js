@@ -3,11 +3,12 @@ import Link from "next/link";
 import { LOGO_CMS, HOME_OG_IMAGE_URL, CMS_NAME } from '../lib/constants'
 import styles from './index.module.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { library, config  } from '@fortawesome/fontawesome-svg-core'
-import { 
-  fab, 
-  faTwitter as fabTwitter, 
-  faGithub as fabGithub } from '@fortawesome/free-brands-svg-icons'
+import { library, config } from '@fortawesome/fontawesome-svg-core'
+import {
+  fab,
+  faTwitter as fabTwitter,
+  faGithub as fabGithub
+} from '@fortawesome/free-brands-svg-icons'
 
 config.autoAddCss = true;
 config.autoA11y = true;
@@ -101,21 +102,25 @@ export default function Home() {
         <div className={styles.devStackSchema}>
           <div className="md:container md:mx-auto w-full md:w-1/2 p-2 py-8 text-xl">
             <div className="flex flex-wrap justify-center items-center md:hidden">
-              <a href="/resource">
-                <img src="/images/devStackSchema-ver.png" className={styles.resourceImage} alt="Resource" />
-              </a>
+              <Link href="/resource">
+                <a>
+                  <img src="/images/devStackSchema-ver.png" className={styles.resourceImage} alt="Resource" />
+                </a>
+              </Link>
             </div>
             <div className="flex flex-wrap justify-center items-center xs:hidden">
-              <a href="/resource">
-                <img src="/images/devStackSchema-hz.png" className={styles.resourceImage} alt="Resource" />
-              </a>
+              <Link href="/resource">
+                <a>
+                  <img src="/images/devStackSchema-hz.png" className={styles.resourceImage} alt="Resource" />
+                </a>
+              </Link>
             </div>
           </div>
         </div>
         <div className={styles.WorkReverse}>
           <div className="md:container md:mx-auto w-full md:w-1/2 p-2 py-8" id="projects">
             <h3 className="text-center text-4xl font-medium">🚀 My open source projects</h3>
-            
+
             {/* PROJECT 1 */}
             <div className="flex flex-wrap flex-col justify-center items-center pt-4">
               <h3 className="text-2xl capitalize font-light border-b-2 py-2">
@@ -137,7 +142,7 @@ export default function Home() {
               </h3>
               <p className="text-xl text-center font-light py-2">
                 This is an example React Monday CRM Clone application using a DataStax Astra DB free tier database.
-              </p>              
+              </p>
             </div>
 
             {/* PROJECT 3 */}
@@ -151,7 +156,7 @@ export default function Home() {
                 </Link>
               </h3>
               <p className="text-xl text-center font-light py-2">
-              - The administration for the IdentityServer4 and Angular Application.
+                - The administration for the IdentityServer4 and Angular Application.
               </p>
               <p className="text-xl text-center font-light py-2">
                 <Link href="https://github.com/skoruba/IdentityServer4.Admin"><a target="_blank">IdentityServer4.Admin</a></Link> - The administration for the IdentityServer4 and Asp.Net Core Identity
@@ -166,12 +171,12 @@ export default function Home() {
               <h3 className="text-2xl capitalize font-light py-2">
                 <Link href="JavaScript:void(0)">
                   <a className="flex justify-center items-center gap-1 py-2">
-                  50 unique mini-projects to sharpen your HTML, CSS &amp; JavaScript skills 
+                    50 unique mini-projects to sharpen your HTML, CSS &amp; JavaScript skills
                   </a>
                 </Link>
               </h3>
               <p className="text-xl text-center font-light py-2">
-                This is mini projects for hands-on web development using HTML/CSS/JavaScript, Typescript, Angular, ReactJS, UI Framework, Redux, Figma. 
+                This is mini projects for hands-on web development using HTML/CSS/JavaScript, Typescript, Angular, ReactJS, UI Framework, Redux, Figma.
               </p>
             </div>
 
@@ -225,7 +230,7 @@ export default function Home() {
                 - Continuous integrations - Appveyor, Heroku, Azure DevOps
               </p>
             </div>
-            
+
             {/* PROJECT 2 */}
             <div className="flex flex-wrap flex-col justify-center items-center pt-4">
               <h3 className="text-2xl capitalize font-light border-b-2 py-2">
@@ -270,7 +275,7 @@ export default function Home() {
               <h3 className="text-2xl capitalize font-light border-b-2">
                 <Link href="https://www.freecodecamp.org/certification/ngnam/responsive-web-design">
                   <a className="flex justify-center items-center gap-1 py-2" target="_blank">
-                  Responsive web design – (2019) 
+                    Responsive web design – (2019)
                   </a>
                 </Link>
               </h3>
@@ -284,7 +289,7 @@ export default function Home() {
               <h3 className="text-2xl capitalize font-light border-b-2">
                 <Link href="https://www.freecodecamp.org/certification/ngnam/back-end-development-and-apis">
                   <a className="flex justify-center items-center gap-1 py-2" target="_blank">
-                  Back End Development and APIs Certification (2021) 
+                    Back End Development and APIs Certification (2021)
                   </a>
                 </Link>
               </h3>
@@ -296,7 +301,7 @@ export default function Home() {
             {/* PROJECT 4 */}
             <div className="flex flex-wrap flex-col justify-center items-center pt-2">
               <h3 className="text-2xl font-light text-center">
-              My favorite web sites for learning the programming skills are <a href="egghead.io" className="border-b-2">egghead.io</a> and <a className="border-b-2" href="https://frontendmasters.com">Frontendmasters.com</a>.
+                My favorite web sites for learning the programming skills are <a href="egghead.io" className="border-b-2">egghead.io</a> and <a className="border-b-2" href="https://frontendmasters.com">Frontendmasters.com</a>.
               </h3>
             </div>
 
@@ -317,7 +322,7 @@ export default function Home() {
                 Resources
               </h3>
               <p className="text-xs text-center font-light pt-2">
-                Icons mainly - <a href="https://fontawesome.com" class="border-b-2">https://fontawesome.com</a>              
+                Icons mainly - <a href="https://fontawesome.com" class="border-b-2">https://fontawesome.com</a>
               </p>
               <p className="text-xs text-center font-light pt-2">
                 Besides the schemas contain the icons from these projects:
@@ -333,20 +338,20 @@ export default function Home() {
             </div>
 
           </div>
-        </div>    
+        </div>
 
         <div className={styles.contact}>
           <div className="md:container md:mx-auto w-full md:w-1/2 p-2 py-8 text-xl select-none" id="contact">
             <h3 className="text-center text-2xl font-medium pb-4">📞 Contact</h3>
             <div className="flex flex-wrap flex-col justify-center items-center pt-2">
               <p className="text-xl text-center font-light pt-2">
-              Email me: <a href="mailto:nguyenvannam0411@gmail.com">nguyenvannam0411@gmail.com</a>
+                Email me: <a href="mailto:nguyenvannam0411@gmail.com">nguyenvannam0411@gmail.com</a>
               </p>
               <p className="text-xl text-center font-light pt-2">
                 <a href="/images/NguyenVanNam_Resume_doc.pdf" download>My resume</a>
               </p>
               <p className="text-right w-full text-xl text-center font-light pt-2">
-              <a href="/#top" className="text-sm border-b-2 font-light select-none cursor-pointer">to top</a>
+                <a href="/#top" className="text-sm border-b-2 font-light select-none cursor-pointer">to top</a>
               </p>
             </div>
           </div>
@@ -355,7 +360,7 @@ export default function Home() {
         <footer className={styles.footer}>
           <div className="md:container md:mx-auto w-full md:w-1/2 py-2 text-xl select-none" id="footer">
             <p className="text-sm text-center">
-              Nam Nguyen @ { new Date().getFullYear() } - <Link href="/privacy-policy">Privacy Policy</Link>
+              Nam Nguyen @ {new Date().getFullYear()} - <Link href="/privacy-policy">Privacy Policy</Link>
             </p>
           </div>
         </footer>

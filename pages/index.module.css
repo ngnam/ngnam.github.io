@@ -1,3 +1,8 @@
+.wrapper {
+    min-height: 100%;
+    margin-bottom: -50px;
+}
+
 .wrapper a {
     color: #01B0F1;
 }
@@ -26,15 +31,35 @@
     color: #fff;
 }
 
+.footer,
+.push {
+    height: 40px;
+}
+
+.push {
+    background-color: #fff; 
+}
+
 .oidcSchema,
 .oidcSchema a,
 .privacyPolicy, 
-.privacyPolicy a {
+.privacyPolicy a,
+.resources,
+.resources a {
     background-color: #fff;
     color: #333;
 }
 
-.privacyPolicy p {
+.resources {
+    min-height: 75vh;
+}
+
+.resources a {
+    opacity: 1;
+}
+
+.privacyPolicy p,
+.resources p {
     padding-bottom: 0.5rem;
 }
 
