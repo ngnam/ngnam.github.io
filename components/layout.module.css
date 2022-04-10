@@ -92,6 +92,7 @@ a.menu_li_active,
 .profileImage {
   border: 5px solid transparent;
   transition: all var(--transion-delay);
+  height: 144px;
 }
 
 .profileImage:hover {

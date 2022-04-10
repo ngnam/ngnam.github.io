@@ -3,18 +3,23 @@ import Head from 'next/head'
 import styles from './layout.module.css'
 import utilStyles from '../styles/utils.module.css'
 import Link from "./navlink";
+import { LOGO_CMS, HOME_OG_IMAGE_URL, CMS_NAME } from '../lib/constants'
 
-const name = 'ngnam.github.io'
-export const siteTitle = 'A portfolio website for Full-stack Software development'
+const siteTitle = CMS_NAME
+const profileImage = HOME_OG_IMAGE_URL;
 
 export default function Layout({ children, home }) {
-    
-    const profileImage = '/images/girl-g06b208c73_1920.jpg';
     return (
         <>
             <div className={styles.container}>
                 <Head>
-                    <link rel="icon" href="/favicon.ico" />
+                    <meta name="viewport" content="width=device-width" />
+                    <link rel="apple-touch-icon" sizes="512x512" href="/android-chrome-512x512.png" />
+                    <link rel="apple-touch-icon" sizes="192x192" href="/android-chrome-192x192.png" />
+                    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+                    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"/>
+                    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"/>
+                    <link rel="manifest" href="/site.webmanifest"/>
                     <meta name="viewport" content="width=device-width, initial-scale" />
                     <meta
                         name="description"
@@ -34,7 +39,7 @@ export default function Layout({ children, home }) {
                         <>
                             <img
                                 priority="true"
-                                src="https://api.daily.dev/devcards/0f93178ba5f1475d86b6618afbd2296e.png?r=s65"
+                                src={LOGO_CMS}
                                 className={styles.profileImage + ' ' + utilStyles.borderCircle}
                                 height={144}
                                 width={144}
@@ -47,7 +52,7 @@ export default function Layout({ children, home }) {
                                 <a>
                                     <img
                                         priority="true"
-                                        src="https://api.daily.dev/devcards/0f93178ba5f1475d86b6618afbd2296e.png?r=s65"
+                                        src={LOGO_CMS}
                                         className={styles.profileImage + ' ' + utilStyles.borderCircle}
                                         height={144}
                                         width={144}
@@ -58,11 +63,8 @@ export default function Layout({ children, home }) {
                         </>
                     )}
                     <ul className={styles.menu}>
-                        {/* <li><Link href="/blog/hello" activeClassName={styles.menu_li_active}><a>Hello</a></Link></li> */}
                         <li><Link href="/blog" activeClassName={styles.menu_li_active}><a>Blog</a></Link></li>
-                        {/* <li><Link href="/authors/me" activeClassName={styles.menu_li_active}><a>Profile</a></Link></li> */}
                         <li><Link href="/generator/css" activeClassName={styles.menu_li_active}><a>CSS generator Tools</a></Link></li>
-                        
                     </ul>
                 </header>
                 <main className={styles.main}>{children}</main>
@@ -76,9 +78,11 @@ export default function Layout({ children, home }) {
                 <footer className={styles.footer}>
                     <h3>Made with ❤️ Nam Nguyen Van</h3>
                     <div className={styles.footer_about}>
-                        <a href="#">About</a>
-                        <a href="#">GitHub</a>
-                        <a href="#">CodePen</a>
+                        <Link href="/about">
+                            <a>About</a>
+                        </Link>
+                        <a href="https://github.com/ngnam" target="_blank">GitHub</a>
+                        <a href="https://codepen.io/ngnam" target="_blank">CodePen</a>
                         <a href="#">Twitter</a>
                     </div>
                     <p>&copy; {new Date().getFullYear().toString()}</p>

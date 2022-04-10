@@ -1,4 +1,5 @@
 import Script from 'next/script'
+import '../styles/tailwind.css'
 import '../styles/global.css'
 import '../styles/input_styles_custom.css'
 
@@ -13,6 +14,7 @@ export default function App({ Component, pageProps }) {
         console.log('GA loaded')
       }
       } />
+      
       <Component {...pageProps} />
     </>
   )

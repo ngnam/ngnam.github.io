@@ -1,0 +1,68 @@
+.wrapper a {
+    color: #01B0F1;
+}
+
+.menu {
+    border-bottom: 3px solid #01B0F1;
+}
+
+.header,
+.about,
+.devStack,
+.devStackSchema,
+.skills {
+    background-color: #fff;
+    color: #01B0F1;
+}
+
+.devStackReverse,
+.WorkReverse,
+.programmingEducation,
+.programmingEducation a,
+.WorkReverse a,
+.footer, 
+.footer a {
+    background-color: #01B0F1;
+    color: #fff;
+}
+
+.oidcSchema,
+.oidcSchema a,
+.privacyPolicy, 
+.privacyPolicy a {
+    background-color: #fff;
+    color: #333;
+}
+
+.privacyPolicy p {
+    padding-bottom: 0.5rem;
+}
+
+.privacyPolicy ul {
+    list-style: disc;
+    padding-left: 1rem;
+    margin-left: 0.5rem;
+}
+
+.contact a {
+    color: #333;
+}
+
+.topbar {
+    background-color: #01B0F1;
+    min-height: 8px;
+}
+
+.logoImage {
+    filter: hue-rotate(149deg);
+}
+
+.about {
+    color: #01B0F1;
+}
+
+.avatar {
+    filter: hue-rotate(10deg);
+    height: 150px;
+    width: 130px;
+}

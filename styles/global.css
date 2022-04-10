@@ -2,7 +2,7 @@ html,
 body {
   padding: 0;
   margin: 0;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: cursive,sans-serif;
   font-size: 16px;
   line-height: 1.5;
   color: #333;
@@ -23,11 +23,6 @@ a {
 
 a:hover {
   opacity: 1;
-}
-
-img {
-  max-width: 100%;
-  display: block;
 }
 
 article {
@@ -82,4 +77,16 @@ button:hover {
   --primary-color: rgb(231, 182, 49);
   --light-white: #fff;
   --transion-delay: .5s;
+}
+
+.fa-xs {
+  font-size: 0.75em;
+}
+
+.gap-1 {
+  margin: 0 0.5rem;
+}
+
+.gap-2 {
+  margin: 0 1rem;
 }
