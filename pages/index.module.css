@@ -12,6 +12,11 @@
 }
 
 .header,
+.about {
+    font-family: cursive,sans-serif;
+}
+
+.header,
 .about,
 .devStack,
 .devStackSchema,
