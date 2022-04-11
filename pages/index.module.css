@@ -96,3 +96,30 @@
     height: 150px;
     width: 130px;
 }
+
+.WorkReverse {
+    position: relative;
+}
+
+.helperUse {
+    position: absolute;
+    top: 15px;
+    right: 100px;
+    padding: 15px;
+    height: 50px;
+    background-color: #03a9e7;
+    color: #fff;
+    opacity: .9;
+    border-radius: 50%;
+    user-select: none;
+    content: '';
+}
+
+.helperUse:before {
+    content: '--------------------------------';
+    font-size: 2rem;
+    transform: rotate(-12deg);
+    position: absolute;
+    left: -338px;
+    top: 37px;
+}

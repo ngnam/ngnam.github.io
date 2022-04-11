@@ -19,6 +19,28 @@ const siteTitle = 'Nguyen Van Nam - Web Developer';
 
 export default function Home() {
 
+  /**
+   * 
+   * @param {*} e the event 
+   * @returns void
+   * method https://developer.mozilla.org/en-US/docs/Web/API/Element/scrollIntoView
+   * tips https://stackoverflow.com/questions/7944460/detect-safari-browser
+   */
+  const scrollToBlock = (e) => {
+    e.preventDefault();
+    const target = e.target.getAttribute('href');
+    const selectors = target.replace(/^\//, '');
+    const targetBlock = document.querySelector(selectors);
+
+    if (!targetBlock) { return; }
+    // detect safari browser
+    const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+    if (!isSafari) {
+      targetBlock.scrollIntoView({ behavior: 'smooth', block: 'center' })
+    } else {
+      targetBlock.scrollIntoView()
+    }
+  }
   return (
     <>
       <Head>
@@ -44,7 +66,7 @@ export default function Home() {
 
       <div className={styles.wrapper}>
         <header className={styles.header}>
-          <div className={styles.topbar}>
+          <div className={styles.topbar} id="top">
           </div>
           <div className="md:container md:mx-auto w-full md:w-1/2 p-2">
             <div className="flex flex-wrap justify-center items-center">
@@ -61,9 +83,9 @@ export default function Home() {
                   <h3 className="ml-2 text-4xl">Nam Nguyen</h3>
                 </a>
               </Link>
-              <Link href="/#projects"><a className={styles.menu + ' mx-2'}>Project</a></Link>
-              <Link href="/#skills"><a className={styles.menu + ' mx-2'}>Skill</a></Link>
-              <Link href="/#contact"><a className={styles.menu + ' mx-2'}>Contact</a></Link>
+              <Link href="/#projects"><a onClick={scrollToBlock} className={styles.menu + ' mx-2'}>Project</a></Link>
+              <Link href="/#skills"><a onClick={scrollToBlock} className={styles.menu + ' mx-2'}>Skill</a></Link>
+              <Link href="/#contact"><a onClick={scrollToBlock} className={styles.menu + ' mx-2'}>Contact</a></Link>
               <Link href="/blog"><a className={styles.menu + ' mx-2'}>Blog</a></Link>
             </div>
           </div>
@@ -118,6 +140,10 @@ export default function Home() {
           </div>
         </div>
         <div className={styles.WorkReverse}>
+          
+          <div className={styles.helperUse + ' xs:hidden'}>
+            <span>let's hover mouse to a project</span>
+          </div>
           <div className="md:container md:mx-auto w-full md:w-1/2 p-2 py-8" id="projects">
             <h3 className="text-center text-4xl font-medium">🚀 My open source projects</h3>
 
@@ -148,8 +174,8 @@ export default function Home() {
             {/* PROJECT 3 */}
             <div className="flex flex-wrap flex-col justify-center items-center pt-4">
               <h3 className="text-2xl capitalize font-light border-b-2 py-2">
-                <Link href="JavaScript:void(0)">
-                  <a className="flex justify-center items-center gap-1 py-2">
+                <Link href="#!">
+                  <a onClick={e => e.preventDefault()} className="flex justify-center items-center gap-1 py-2">
                     <FontAwesomeIcon icon="fa-brands fa-github" size="xs" className="w-14 h-14" />
                     <span className="">IdentityServer4.Admin UI-Angular-13</span>
                   </a>
@@ -169,8 +195,8 @@ export default function Home() {
             {/* PROJECT 4 */}
             <div className="flex flex-wrap flex-col justify-center items-center pt-4">
               <h3 className="text-2xl capitalize font-light py-2">
-                <Link href="JavaScript:void(0)">
-                  <a className="flex justify-center items-center gap-1 py-2">
+                <Link href="#!">
+                  <a onClick={e => e.preventDefault()} className="flex justify-center items-center gap-1 py-2">
                     50 unique mini-projects to sharpen your HTML, CSS &amp; JavaScript skills
                   </a>
                 </Link>
@@ -180,7 +206,7 @@ export default function Home() {
               </p>
             </div>
 
-            <a href="/#top" className="text-xl border-b-2 font-light py-2 mx-2 select-none cursor-pointer">to top</a>
+            <a href="/#top" onClick={scrollToBlock} className="text-xl border-b-2 font-light py-2 mx-2 select-none cursor-pointer">to top</a>
 
           </div>
         </div>
@@ -247,7 +273,7 @@ export default function Home() {
               </p>
             </div>
 
-            <a href="/#top" className="text-xl border-b-2 font-light py-2 mx-2 select-none cursor-pointer">to top</a>
+            <a href="/#top" onClick={scrollToBlock} className="text-xl border-b-2 font-light py-2 mx-2 select-none cursor-pointer">to top</a>
 
           </div>
         </div>
@@ -322,18 +348,18 @@ export default function Home() {
                 Resources
               </h3>
               <p className="text-xs text-center font-light pt-2">
-                Icons mainly - <a href="https://fontawesome.com" class="border-b-2">https://fontawesome.com</a>
+                Icons mainly - <a href="https://fontawesome.com" className="border-b-2">https://fontawesome.com</a>
               </p>
               <p className="text-xs text-center font-light pt-2">
                 Besides the schemas contain the icons from these projects:
               </p>
               <p className="text-xs text-center font-light pt-2">
-                <a href="https://oauth.net/2/" class="border-b-2">OAuth2</a> - <span>&nbsp;</span>
-                <a href="https://openid.net/connect/" class="border-b-2">OpenID Connect</a> - <span>&nbsp;</span>
-                <a href="https://reactjs.org/" class="border-b-2">ReactJS</a> - <span>&nbsp;</span>
+                <a href="https://oauth.net/2/" className="border-b-2">OAuth2</a> - <span>&nbsp;</span>
+                <a href="https://openid.net/connect/" className="border-b-2">OpenID Connect</a> - <span>&nbsp;</span>
+                <a href="https://reactjs.org/" className="border-b-2">ReactJS</a> - <span>&nbsp;</span>
                 <a href="https://angular.io/" className="border-b-2">Angular</a> - <span>&nbsp;</span>
-                <a href="https://www.microsoft.com/net/download" class="border-b-2">.NET Core</a> - <span>&nbsp;</span>
-                <a href="https://skoruba.com/" class="border-b-2">skoruba.com</a>.
+                <a href="https://www.microsoft.com/net/download" className="border-b-2">.NET Core</a> - <span>&nbsp;</span>
+                <a href="https://skoruba.com/" className="border-b-2">skoruba.com</a>.
               </p>
             </div>
 
@@ -351,7 +377,7 @@ export default function Home() {
                 <a href="/images/NguyenVanNam_Resume_doc.pdf" download>My resume</a>
               </p>
               <p className="text-right w-full text-xl text-center font-light pt-2">
-                <a href="/#top" className="text-sm border-b-2 font-light select-none cursor-pointer">to top</a>
+                <a href="/#top" onClick={scrollToBlock} className="text-sm border-b-2 font-light select-none cursor-pointer">to top</a>
               </p>
             </div>
           </div>
