@@ -327,7 +327,7 @@ export default function Home() {
             {/* PROJECT 4 */}
             <div className="flex flex-wrap flex-col justify-center items-center pt-2">
               <h3 className="text-2xl font-light text-center">
-                My favorite web sites for learning the programming skills are <a href="egghead.io" className="border-b-2">egghead.io</a> and <a className="border-b-2" href="https://frontendmasters.com">Frontendmasters.com</a>.
+                My favorite web sites for learning the programming skills are <a href="https://egghead.io" className="border-b-2">egghead.io</a> and <a className="border-b-2" href="https://frontendmasters.com">Frontendmasters.com</a>.
               </h3>
             </div>
 
