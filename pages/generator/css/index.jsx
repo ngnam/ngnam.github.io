@@ -52,7 +52,9 @@ export default function Css() {
                         </Link>
                     </div>
                     <div className="item_category">
-                        <a>Transform</a> <small style={{backgroundColor: 'yellow'}}>I'm working</small>
+                        <Link href="/generator/css/transform-css-generator">
+                            <a>Transform</a>
+                        </Link>
                     </div>
                     <div className="item_category">
                         <a>RGBA & HEX</a> <small style={{backgroundColor: 'yellow'}}>I'm working</small>
