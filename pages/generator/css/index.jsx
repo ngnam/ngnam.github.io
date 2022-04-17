@@ -47,7 +47,9 @@ export default function Css() {
                         </Link>
                     </div>
                     <div className="item_category">
-                        <a>Gradient</a> <small style={{backgroundColor: 'yellow'}}>I'm working</small>
+                        <Link href="/generator/css/gradient-css-generator">
+                            <a>Gradient</a>
+                        </Link>
                     </div>
                     <div className="item_category">
                         <a>Transform</a> <small style={{backgroundColor: 'yellow'}}>I'm working</small>

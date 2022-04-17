@@ -1,6 +1,7 @@
 .formGroupInput {
   width: 100%;
   margin-bottom: 10px;
+  border-bottom: .5px solid #ddd;
 }
 
 .formGroupInputContainer {

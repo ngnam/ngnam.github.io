@@ -1,7 +1,7 @@
 import styles from './formGroupInput.module.css';
 import React, { Children } from "react";
 
-const FormGroupInput = ({ children, label, isShow, ...props }) => {
+const FormGroupInput = ({ children, label, isShow, callback, ...props }) => {
     const child = Children.only(children);
     const { inline } = props;
     return (

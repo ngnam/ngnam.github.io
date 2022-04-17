@@ -73,9 +73,9 @@ const FormInput = (props) => {
                             <div className={styles.formInputpn}>
                                 <input
                                     {...inputProps}
-                                    onChange={onChange}                                   
+                                    onChange={onChange}
                                     onBlur={handleFocus}
-                                    className={`input-range-custom${inputProps.className ? ' '+inputProps.className : ''}`}
+                                    className={`input-range-custom${inputProps.className ? ' ' + inputProps.className : ''}`}
                                 />
                                 <div className={styles.currentValue}>{`${inputProps.value}`}{inputProps.unit ? inputProps.unit : ''}</div>
                             </div>
@@ -120,5 +120,4 @@ const FormInput = (props) => {
 };
 
 export default FormInput;
-
 
