@@ -6,6 +6,7 @@ import { useEffect } from 'react';
 import { CopyToClipboard } from 'react-copy-to-clipboard/lib/Component';
 import { useRouter } from 'next/router'
 import { HTML_SYMBOL } from '../../../lib/constants';
+import { v4 as uuidv4 } from 'uuid';
 
 export default function GradientCssGenerator() {
     const router = useRouter()
@@ -195,7 +196,7 @@ export default function GradientCssGenerator() {
     };
 
     const addStopper = () => {
-        let index = stopperColors.length + 1;
+        let index = uuidv4();
         let stopperColor_index = `stopperColor_1_${index}`
         let stopperColorOpacity_index = `stopperColorOpacity_2_${index}`
         const stopper = {
