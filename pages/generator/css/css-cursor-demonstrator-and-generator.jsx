@@ -84,7 +84,7 @@ export default function CssCursorCssGenerator() {
                         </textarea>
                         <div className="item-action">
                             <CopyToClipboard text={copyValue} onCopy={handleCopy}>
-                                <button>Copy</button>
+                                <button className="p-2">Copy</button>
                             </CopyToClipboard>
                         </div>
                     </div>

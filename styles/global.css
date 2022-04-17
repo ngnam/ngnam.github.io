@@ -64,7 +64,6 @@ article > * {
 }
 
 button {
-  padding: 10px;
   outline: none;
   border: 0.1px solid transparent;
   opacity: .8;
