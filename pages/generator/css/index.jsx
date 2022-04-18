@@ -14,9 +14,9 @@ export default function Css() {
             { id: 5, title: 'Border Radius', url: '/generator/css/border-radius-css-generator' },
             { id: 6, title: 'Gradient', url: '/generator/css/gradient-css-generator' },
             { id: 7, title: 'Transform', url: '/generator/css/transform-css-generator' },
-            { id: 8, title: 'RGBA &amp; HEX', url: '#' },
-            { id: 9, title: 'Filter', url: '#' },
-            { id: 10, title: 'Multiple column', url: '#' }
+            { id: 8, title: 'RGBA & HEX', url: '/generator/css/rgba-and-hex-color-generator' },
+            { id: 9, title: 'Filter', url: '/generator/css/filter-css-generator' },
+            { id: 10, title: 'Multiple column', url: '/generator/css/multiple-column-generator' }
         ]
     })
     return (
