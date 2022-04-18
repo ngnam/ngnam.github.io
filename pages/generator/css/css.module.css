@@ -119,12 +119,22 @@
     margin: 1rem;
 }
 
+.header {
+    background-color: #fff;
+    min-height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 1px 3px 1px -3px rgb(0 0 0 / 75%);
+    -webkit-box-shadow: 1px 3px 1px -3px rgb(0 0 0 / 75%);
+    -moz-box-shadow: 1px 3px 1px -3px rgb(0 0 0 / 75%);
+}
+
 .header>.container,
 .footer>.container {
     height: auto;
     min-height: auto;
     align-items: center;
-    margin-bottom: 0;
     padding: 0 1rem;
 }
 

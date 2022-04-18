@@ -1,101 +1,64 @@
 import Head from 'next/head'
 import Link from 'next/link'
 import { useRouter } from 'next/router';
+import React from 'react';
 
 export default function Css() {
     const router = useRouter()
+    const itemCategories = React.useMemo(() => {
+        return [
+            { id: 1, title: 'Box Shadow', url: '/generator/css/box-shadow-css-generator' },
+            { id: 2, title: 'Text Shadow', url: '/generator/css/text-shadow-css-generator' },
+            { id: 3, title: 'CSS Cursor', url: '/generator/css/css-cursor-demonstrator-and-generator' },
+            { id: 4, title: 'Border CSS Generator', url: '/generator/css/border-css-generator' },
+            { id: 5, title: 'Border Radius', url: '/generator/css/border-radius-css-generator' },
+            { id: 6, title: 'Gradient', url: '/generator/css/gradient-css-generator' },
+            { id: 7, title: 'Transform', url: '/generator/css/transform-css-generator' },
+            { id: 8, title: 'RGBA &amp; HEX', url: '#' },
+            { id: 9, title: 'Filter', url: '#' },
+            { id: 10, title: 'Multiple column', url: '#' }
+        ]
+    })
     return (
         <>
             <Head>
                 <title>CSS Generator tool</title>
                 <meta name="description" content="CSS Generator tool" />
             </Head>
-            <header className="header">
-                <div className="container">
-                    <h1 className="title">CSS Generator Tool</h1>
-                    <span className="link-back" onClick={() => router.back()}>
-                        <a><span>&#8592;</span> Back</a>
-                    </span>
+            <header className="header bg-white">
+                <div className="md:container md:mx-auto w-full md:w-1/2 p-2">
+                    <div className="flex justify-between items-center">
+                        <h1 className="md:text-2xl font-medium">CSS Generator Tool</h1>
+                        <span className="link-back" onClick={() => router.back()}>
+                            <a><span>&#8592;</span> Back</a>
+                        </span>
+                    </div>
                 </div>
             </header>
 
-            <section className="category">
-                <div className="container">
-                    <div className="item_category">
-                        <Link href="/generator/css/box-shadow-css-generator">
-                            <a>Box Shadow</a>
-                        </Link>
-                    </div>
-                    <div className="item_category">
-                        <Link href="/generator/css/text-shadow-css-generator">
-                            <a>Text Shadow</a>
-                        </Link>
-                    </div>
-                    <div className="item_category">
-                        <Link href="/generator/css/css-cursor-demonstrator-and-generator">
-                            <a>CSS Cursor</a>
-                        </Link>
-                    </div>
-                    <div className="item_category">
-                        <Link href="/generator/css/border-css-generator">
-                            <a>Border CSS Generator</a>
-                        </Link>
-                    </div>
-                    <div className="item_category">
-                        <Link href="/generator/css/border-radius-css-generator">
-                            <a>Border Radius</a>
-                        </Link>
-                    </div>
-                    <div className="item_category">
-                        <Link href="/generator/css/gradient-css-generator">
-                            <a>Gradient</a>
-                        </Link>
-                    </div>
-                    <div className="item_category">
-                        <Link href="/generator/css/transform-css-generator">
-                            <a>Transform</a>
-                        </Link>
-                    </div>
-                    <div className="item_category">
-                        <a>RGBA &amp; HEX</a> <small style={{backgroundColor: 'yellow'}}>I'm working</small>
-                    </div>
-                    <div className="item_category">
-                        <a>Filter</a> <small style={{backgroundColor: 'yellow'}}>I'm working</small>
-                    </div>
-                    <div className="item_category">
-                        <a>Multiple column</a> <small style={{backgroundColor: 'yellow'}}>I'm working</small>
+            <section className="category md:mt-2">
+                <div className="md:container md:mx-auto w-full md:w-1/2 p-2">
+                    <div className="flex flex-wrap justify-between items-center" style={{gap: '.5em'}}>
+                        {
+                            itemCategories && itemCategories.map((category) => (
+                                <div className="item_category" key={category.id}>
+                                    <Link href={category.url}>
+                                        <a>
+                                            {category.title}
+                                            {category.url.indexOf('#') > -1 ? <small style={{ backgroundColor: 'yellow', color: '#333' }}>I'm working</small> : ''}
+                                        </a>
+                                    </Link>
+                                </div>
+                            ))
+                        }
                     </div>
                 </div>
             </section>
 
             <style jsx>{`
-                .header {
-                    background-color: #fff;
-                    height: 60px;     
-                    box-shadow: 1px 3px 1px -3px rgb(0 0 0 / 75%);               
-                    -webkit-box-shadow: 1px 3px 1px -3px rgb(0 0 0 / 75%);               
-                    -moz-box-shadow: 1px 3px 1px -3px rgb(0 0 0 / 75%);               
-                }
-                .container {
-                    max-width: 100rem;
-                    height: 100%;
-                    margin: 0 auto;
-                    padding: 0 0.5rem;
-                    display: flex;
-                    flex-direction: row;
-                    justify-content: center;
-                    align-items: center;
-                    flex-wrap: wrap;
-                    gap: .5rem;
-                    flex-wrap: wrap;
-                }
-                .category {
-                    margin-top: .5rem;
-                }
-                
                 .item_category {
                     flex: 1 0 auto;
-                    width: calc(100%/4);
+                    width: calc(100%/4 - 1.5em);
                     height: 100px;
                     background: #01B0F1;
                     display: flex;
