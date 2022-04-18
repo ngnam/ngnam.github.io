@@ -156,7 +156,7 @@ export default function MultipleColumnGenerator() {
                         columnRule: `${cssGeneerate.columnRule}`,
                         minHeight: '300px',
                         maxHeight: '300px',
-                        overflow: auto
+                        overflow: 'auto'
                     }}>
                         Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae voluptate tenetur quia eos exercitationem omnis sunt non laborum provident! Magni dolore accusantium quibusdam voluptatibus sint commodi quaerat? Error, repudiandae atque?
                         Soluta id quaerat nisi illo sapiente. Porro possimus animi est tempora suscipit ad ducimus. Sint, optio rerum fuga eligendi ex illo animi? Commodi aperiam voluptatem, quae quibusdam rem veritatis ipsam.
