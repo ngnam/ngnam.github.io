@@ -331,6 +331,22 @@ export default function Home() {
               </h3>
             </div>
 
+            <div className="flex flex-wrap flex-col justify-center items-center pt-2">
+              
+              <h3 className="text-2xl font-light text-center">Libraries Popular Daily.dev</h3>
+
+              <ul className="text-xl font-light text-center">
+                <li>
+                  <p>
+                    <a href="https://lexical.dev/docs/intro" target="_blank">
+                      Lexical - An extensible text editor framework that does things differently.
+                    </a>
+                  </p>
+                </li>
+              </ul>
+
+            </div>
+
           </div>
         </div>
 
