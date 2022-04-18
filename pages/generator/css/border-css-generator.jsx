@@ -462,6 +462,10 @@ export default function BorderCssGenerator() {
                 }
 
                 .box .item-preview {
+                    z-index: 99;
+                }
+
+                .box .item-preview {
                     flex: 1;
                     background: rgb(21, 140, 186);
                     width: 500px;

@@ -117,6 +117,10 @@ export default function CssCursorCssGenerator() {
                 }
 
                 .box .item-preview {
+                    z-index: 99;
+                }
+
+                .box .item-preview {
                     flex: 1;
                     font-family: Helvetica, Arial, sans-serif;
                     font-size: 1.5em;

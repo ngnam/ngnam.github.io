@@ -115,9 +115,9 @@ export default function Home() {
         </div>
         <div className={styles.devStackReverse}>
           <div className="md:container md:mx-auto w-full md:w-1/2 p-2 py-8">
-            <p className="text-xl text-center font-light">I focus on programming web applications and web APIs using .NET Core/NodeJS.</p>
+            <p className="text-xl text-center font-light">I focus on programming web applications and web APIs using NET Core &amp; NodeJS.</p>
             <p className="text-xl text-center font-light">For JavaScript web applications, I am usually using React, Redux and TypeScript for Angular.</p>
-            <p className="text-xl text-center font-light">For server-side web applications, I am using especially ASP.NET Core MVC with the MSSQL Server.</p>
+            <p className="text-xl text-center font-light">For server-side web applications, I am using especially ASP-NET Core MVC with the MSSQL Server.</p>
             <p className="text-xl text-center font-light">I am very interested in identity and access management (OpenID Connect &amp; OAuth 2 protocols).</p>
           </div>
         </div>
@@ -332,7 +332,7 @@ export default function Home() {
             </div>
 
             <div className="flex flex-wrap flex-col justify-center items-center pt-2">
-              
+
               <h3 className="text-2xl font-light text-center">Libraries Popular Daily.dev</h3>
 
               <ul className="text-xl font-light text-center">
