@@ -7,6 +7,8 @@ import { CopyToClipboard } from 'react-copy-to-clipboard/lib/Component';
 import { useRouter } from 'next/router'
 import { HTML_SYMBOL } from '../../../lib/constants';
 import { v4 as uuidv4 } from 'uuid';
+import styles from './css.module.css';
+import cn from 'classnames'
 
 export default function GradientCssGenerator() {
     const router = useRouter()
@@ -24,11 +26,9 @@ export default function GradientCssGenerator() {
     });
 
     const [cssGeneerate, setCssGeneerate] = useState(null);
-
     const [copyValue, setCopyValue] = useState(null);
 
     const [formStopper, setFormStopper] = useState({})
-
     const [stopperColors, setStopperColors] = useState([]);
 
     const isEmpty = (obj) => {
@@ -262,17 +262,17 @@ export default function GradientCssGenerator() {
                 <title>Gradient CSS Generator</title>
                 <meta name="description" content="Gradient CSS Generator CSS Generator tool - a product by nguyen van nam 0928351036" />
             </Head>
-            <header>
-                <div className="container">
+            <header className={styles.header}>
+                <div className={cn([styles.container, 'container'])}>
                     <h1>A Product of Nguyen Van Nam</h1>
                     <h3>Gradient CSS Generator</h3>
-                    <span className="link-back" onClick={() => router.back()}>
+                    <span className={styles["link-back"]} onClick={() => router.back()}>
                         <a><span>&#8592;</span> Back</a>
                     </span>
                 </div>
             </header>
-            <section className="container">
-                <div className="item-container">
+            <section className={cn([styles.container, 'container'])}>
+                <div className={styles["item-container"]}>
                     <form>
                         <h1>Gradient Options</h1>
                         
@@ -347,17 +347,21 @@ export default function GradientCssGenerator() {
                     <button className="py-2 px-3 bg-indigo-500 text-white text-sm font-semibold rounded-md shadow focus:outline-none" onClick={addStopper}>Add Stopper</button>
                 </div>
 
-                <div className="item-container box">
-                    <div className="item-preview" style={{
-                        background: cssGeneerate
+                <div className={cn([styles["item-container"], styles.box])}>
+                    <div className={styles["item-preview"]} style={{
+                        background: cssGeneerate,
+                        width: '100%',
+                        minHeight: '300px',
+                        maxHeight: '300px',
+                        marginTop: '100px'
                     }}>
                         Gradient CSS generator
                     </div>
 
-                    <div className="item-code">
+                    <div className={styles["item-code"]}>
                         <textarea placeholder="css generator" rows="5" cols="20" ref={textArea}>
                         </textarea>
-                        <div className="item-action">
+                        <div className={styles["item-action"]}>
                             <CopyToClipboard text={copyValue} onCopy={handleCopy}>
                                 <button className="p-2">Copy</button>
                             </CopyToClipboard>
@@ -368,133 +372,11 @@ export default function GradientCssGenerator() {
                 </div>
             </section>
             
-            <footer>
-                <div className="container">
+            <footer className={styles.footer}>
+                <div className={cn([styles.container, 'container'])}>
                     <p>A gradient CSS generator that helps you quickly generate gradient CSS declarations for your website. It comes with many options and it demonstrates instantly. </p>
                 </div>
             </footer>
-
-            <style jsx>{`
-                .container {
-                    max-width: 100rem;
-                    min-height: 60vh;
-                    margin: 1rem auto;
-                    padding: 0 0.5rem;
-                    display: flex;
-                    flex-direction: row;
-                    justify-content: space-between;
-                }
-                .item-container {
-                    margin: .5rem;
-                    padding: 1rem;
-                    flex: 1;
-                    border: .5px dotted #ccc;
-                    background: #fff;
-                }                
-
-                .box {
-                    display: flex;
-                    flex-direction: column;
-                    justify-content: space-between;
-                    align-items: center;
-                }
-
-                .box .item-preview {
-                    z-index: 99;
-                }
-
-                .box .item-preview {
-                    flex: 1;
-                    background: rgb(21, 140, 186);
-                    width: 100%;
-                    height: 300px;
-                    max-height: 300px;
-                    margin-top: 50px;
-                    padding: 2.75em 1em;
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                    color: #333;
-                }
-
-                .box .item-code {
-                    flex: 1;
-                    background: #ccc;
-                    color: #333;
-                    padding: .5rem;
-                    font-size: 1em;
-                    font-family: monospace;
-                    height: 200px;
-                    width: 100%;
-                    margin: 50px 0;      
-                    position: relative;            
-                }
-
-                .item-code .item-action {
-                    position: absolute;
-                    top: 8px;
-                    right: 8px;
-                    justify-content: center;
-                    align-items: center;
-                    transition: all .3s ease-in-out;
-                    display: none;
-                }
-
-                .item-code:hover .item-action {
-                    display: flex;
-                }
-
-                .item-code textarea {
-                    width: 100%;
-                    height: 100%;
-                    padding: 10px;
-                    font-size: 1em;
-                    font-family: monospace;
-                    resize: none;
-                }
-
-                header > .container,
-                footer > .container {
-                    height: auto;
-                    min-height: auto;
-                    align-items: center;
-                    margin-bottom: 0;
-                    padding: 0 1rem;
-                }
-
-                header > .container h1, header > .container .link-back {
-                    font-size: 1rem;
-                    min-width: 20%;
-                }
-
-                .link-back {
-                    cursor: pointer;
-                    text-align: right;
-                }
-
-                @media (max-width: 763px) {
-                    .container {
-                        flex-direction: column;
-                    }
-                    .box .item-preview {
-                        height: 250px!important;
-                        max-height: 250px!important;
-                        margin-top: 25px!important;
-                    }
-                }
-
-                @media only screen and (min-device-width: 320px) and (max-device-width: 480px) and (-webkit-min-device-pixel-ratio: 2) {
-                    .container {
-                        flex-direction: column;
-                    }
-                    .box .item-preview {
-                        height: 150px!important;
-                        max-height: 150px!important;
-                        margin-top: 25px!important;
-                    }
-                }
-               
-            `}</style>
 
         </>
     )

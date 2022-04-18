@@ -86,15 +86,18 @@ export default function Css() {
                     justify-content: center;
                     align-items: center;
                     flex-wrap: wrap;
-                    gap: 5px;
+                    gap: .5rem;
+                    flex-wrap: wrap;
                 }
                 .category {
                     margin-top: .5rem;
                 }
+                
                 .item_category {
-                    width: calc(100%/5);
+                    flex: 1 0 auto;
+                    width: calc(100%/4);
                     height: 100px;
-                    background: blue;
+                    background: #01B0F1;
                     display: flex;
                     justify-content: center;
                     align-items: center;
@@ -112,6 +115,11 @@ export default function Css() {
                 .link-back {
                     margin-left: 20vw;
                     cursor: pointer;
+                }
+                @media (max-width: 763px) {
+                    .item_category {
+                        width: calc(100%/3);
+                    }
                 }
             `}</style>
         </>
