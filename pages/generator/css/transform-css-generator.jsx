@@ -26,10 +26,10 @@ export default function TransformCssGenerator() {
     useEffect(() => {
         // rotate(24deg) scale(0.8) skew(-173deg) translate(-149px,-84px);
         let cssGenerate = 
-            `${parseInt(formValues.rotate) === 0 ? '' : `rotate(${formValues.rotate}deg) `}` + 
-            `${parseFloat(formValues.scale) === 1 ? '' : `scale(${formValues.scale}) `}` + 
-            `${parseInt(formValues.skew) === 0 ? '' : `skew(${formValues.skew}deg) `}` + 
-            `${parseInt(formValues.translateX) === 0 && parseInt(formValues.translateY) === 0 ? '' : `translate(${formValues.translateX}px, ${formValues.translateY}px)`}`;
+        `${parseInt(formValues.rotate) === 0 ? '' : `rotate(${formValues.rotate}deg) `}` + 
+        `${parseFloat(formValues.scale) === 1 ? '' : `scale(${formValues.scale}) `}` + 
+        `${parseInt(formValues.skew) === 0 ? '' : `skew(${formValues.skew}deg) `}` + 
+        `${parseInt(formValues.translateX) === 0 && parseInt(formValues.translateY) === 0 ? '' : `translate(${formValues.translateX}px, ${formValues.translateY}px)`}`;
 
         const checkDefault = cssGenerate !== null && cssGenerate !== '';
         if (checkDefault) {
@@ -56,7 +56,9 @@ export default function TransformCssGenerator() {
             max: 360,
             step: 1,
             label: "Rotate",
-            unit: HTML_SYMBOL.degreeSign
+            unit: HTML_SYMBOL.degreeSign,
+            required: false,
+            editable: 'true',
         },
         {
             id: 2,
@@ -66,6 +68,7 @@ export default function TransformCssGenerator() {
             max: 2,
             step: 0.1,
             label: "Scale",
+            editable: 'true',
         },
         {
             id: 3,
@@ -75,7 +78,8 @@ export default function TransformCssGenerator() {
             max: 180,
             step: 1,
             label: "Skew",
-            unit: HTML_SYMBOL.degreeSign
+            unit: HTML_SYMBOL.degreeSign,
+            editable: 'true',
         },
         {
             id: 4,
@@ -85,7 +89,8 @@ export default function TransformCssGenerator() {
             max: 200,
             step: 1,
             label: "Translate X",
-            unit: 'px'
+            unit: 'px',
+            editable: 'true'
         },
         {
             id: 5,
@@ -95,7 +100,8 @@ export default function TransformCssGenerator() {
             max: 200,
             step: 1,
             label: "Translate Y",
-            unit: 'px'
+            unit: 'px',
+            editable: 'true'
         },
     ];
 
@@ -103,7 +109,28 @@ export default function TransformCssGenerator() {
     };
 
     const onChange = (e) => {
-        setValues({ ...formValues, [e.target.name]: e.target.value });
+        const el = e.target || e;
+        const name = el.name;
+        console.log(el.value == '', typeof el.value)
+        if (isNaN(parseFloat(el.value)) && el.value === '') {
+            
+            setValues({ ...formValues, [name]: name == 'scale' ? 1 : 0 });
+            return;
+        }
+
+
+        let value = parseFloat(el.value);
+        
+        const field = inputs.filter(item => item.name === name)[0];
+
+        if (field) {
+            let max = field.max
+            let min = field.min
+            if (value > max) value = max;
+            if (value < min) value = min;
+        }
+
+        setValues({ ...formValues, [name]: value });
     };
     return (
         <>

@@ -41,7 +41,6 @@ export default function TextShadowCssGenerator() {
             max: 200,
             step: 1,
             label: "Horizontal Shadow Length",
-            required: false,
             unit: 'px'
         },
         {

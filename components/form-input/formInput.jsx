@@ -1,9 +1,10 @@
 import { useState, useRef } from "react";
 import styles from './formInput.module.css'; // Import css modules stylesheet as styles
+import React from 'react';
 
 const FormInput = (props) => {
     const [focused, setFocused] = useState(false);
-    const { label, errorMessage, onChange, id, ...inputProps } = props;
+    const { label, errorMessage, onChange, id, editable, ...inputProps } = props;
     const inputRef = useRef();
 
     const handleFocus = (e) => {
@@ -23,6 +24,36 @@ const FormInput = (props) => {
         inputRef.current.value = parseInt(inputRef.current.value) - 1
         inputRef.current.focus()
     }
+
+    // React.useEffect(() => {
+    //     let remove = false;
+    //     const validateMinmax = e => {
+    //         remove = true;
+    //         const el = e.target || e
+
+    //         if (el.type == "number" && el.max && el.min) {
+    //             let value = parseFloat(el.value)
+    //             el.value = value // for 000 like input cleanup to 0
+    //             let max = parseFloat(el.max)
+    //             let min = parseFloat(el.min)
+    //             if (value > max) el.value = el.max
+    //             if (value < min) el.value = el.min
+    //         }
+    //     };
+
+    //     const inputs = document.querySelectorAll('input[type="number"]');
+    //     inputs.forEach(input => {
+    //         input.addEventListener('input', validateMinmax);
+    //     })
+        
+    //     return () => {
+    //         // Cleanup
+    //         if (remove) {
+    //             inputs.forEach(input => input.removeEventListener("input", validateMinmax));
+    //             remove = false;
+    //         }
+    //     }
+    // , []})
 
     return (
         !inputProps.hidden && <div className={styles.formInput}>
@@ -72,12 +103,22 @@ const FormInput = (props) => {
                         return (
                             <div className={styles.formInputpn}>
                                 <input
-                                    {...inputProps}
+                                    {...inputProps} 
                                     onChange={onChange}
                                     onBlur={handleFocus}
                                     className={`input-range-custom${inputProps.className ? ' ' + inputProps.className : ''}`}
                                 />
-                                <div className={styles.currentValue}>{`${inputProps.value}`}{inputProps.unit ? inputProps.unit : ''}</div>
+                                {editable ?
+                                    <>
+                                        <input style={{ width: '70px', flex: '0 1 auto' }} 
+                                            onChange={onChange}
+                                            type="number" min={inputProps.min} max={inputProps.max} 
+                                            name={inputProps.name} value={inputProps.value} />
+                                        <div className={styles.currentValue}>{`${inputProps.value}`}{inputProps.unit ? inputProps.unit : ''}</div>
+                                    </>
+                                    :
+                                    <div className={styles.currentValue}>{`${inputProps.value}`}{inputProps.unit ? inputProps.unit : ''}</div>
+                                }
                             </div>
                         )
                     case 'number':

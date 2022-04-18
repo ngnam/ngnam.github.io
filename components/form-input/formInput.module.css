@@ -57,7 +57,7 @@
 }
 
 .currentValue {
-  min-width: 60px;
+  min-width: 40px;
   color: blue;
   font-size: 1em;
   white-space: nowrap;
