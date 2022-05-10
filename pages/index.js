@@ -206,6 +206,21 @@ export default function Home() {
               </p>
             </div>
 
+            {/* PROJECT 5 */}
+            <div className="flex flex-wrap flex-col justify-center items-center pt-4">
+              <h3 className="text-2xl capitalize font-light border-b-2 py-2">
+                <Link href="https://ngnam.github.io/htmlcssjs-templateengine">
+                  <a onClick={e => e.preventDefault()} className="flex justify-center items-center gap-1 py-2">
+                    <FontAwesomeIcon icon="fa-brands fa-github" size="xs" className="w-14 h-14" />
+                    <span className="">5 Mini web apps</span>
+                  </a>
+                </Link>
+              </h3>
+              <p className="text-xl text-center font-light py-2">
+                - 5 Mini web applications build using ReactJS + NextJS + TypeScript.
+              </p>
+            </div>
+
             <a href="/#top" onClick={scrollToBlock} className="text-xl border-b-2 font-light py-2 mx-2 select-none cursor-pointer">to top</a>
 
           </div>
