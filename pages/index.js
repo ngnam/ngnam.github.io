@@ -169,6 +169,12 @@ export default function Home() {
               <p className="text-xl text-center font-light py-2">
                 This is an example React Monday CRM Clone application using a DataStax Astra DB free tier database.
               </p>
+              <p className="text-xl text-center font-light py-2">
+                <Link href=" https://monday-crm-clone.herokuapp.com"><a target="_blank">React App</a></Link> 
+              </p>
+              <p className="text-xl text-center font-light py-2">
+                <Link href="https://monday-crm-clone-api.herokuapp.com"><a target="_blank">API DEMO</a></Link> 
+              </p>
             </div>
 
             {/* PROJECT 3 */}
