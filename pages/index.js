@@ -201,9 +201,9 @@ export default function Home() {
             {/* PROJECT 4 */}
             <div className="flex flex-wrap flex-col justify-center items-center pt-4">
               <h3 className="text-2xl capitalize font-light py-2">
-                <Link href="#!">
-                  <a onClick={e => e.preventDefault()} className="flex justify-center items-center gap-1 py-2">
-                    50 unique mini-projects to sharpen your HTML, CSS &amp; JavaScript skills
+                <Link href="https://ngnam.github.io/100plusminiapps">
+                  <a className="flex justify-center items-center gap-1 py-2">
+                    100+ unique mini-projects to sharpen your HTML, CSS &amp; JavaScript skills
                   </a>
                 </Link>
               </h3>
