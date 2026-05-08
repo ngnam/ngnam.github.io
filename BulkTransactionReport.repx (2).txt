@@ -1,0 +1,445 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  DevExpress XtraReport - Bulk Transaction Details Report
+  DataSource: SQL Server - sp_GetBulkTransactionReport
+  Layout: A4 Landscape
+    TopMargin
+    ReportHeader  : Left = XX Bank / HCM Branch | Right = XXX Global E-Banking
+    PageHeader    : Fixed title "BULK TRANSACTION DETAILS"
+    GroupHeader   : Info block (all header fields, 2-col) + table label + column headers
+    Detail        : BulkTransactionDetail rows
+    BottomMargin
+-->
+<XtraReport>
+  <Version>23.2</Version>
+  <Bands>
+
+    <!-- ===================================================== -->
+    <!-- TOP MARGIN                                            -->
+    <!-- ===================================================== -->
+    <Band Name="TopMarginBand1" Kind="TopMargin" HeightF="30">
+    </Band>
+
+    <!-- ===================================================== -->
+    <!-- REPORT HEADER                                         -->
+    <!-- Left: XX Bank - HCM Branch | Right: XXX Global E-Banking -->
+    <!-- ===================================================== -->
+    <Band Name="ReportHeaderBand1" Kind="ReportHeader" HeightF="60">
+
+      <!-- LEFT: Bank name + Branch (fixed text) -->
+      <XRLabel Name="lblBankName"
+               Text="XX BANK"
+               LocationF="0, 6"
+               SizeF="560, 26"
+               Font="Arial, 12pt, style=Bold"
+               TextAlignment="MiddleLeft"
+               ForeColor="31,73,125"
+               Padding="5,0,0,0" />
+
+      <XRLabel Name="lblBranchName"
+               Text="HCM BRANCH"
+               LocationF="0, 34"
+               SizeF="560, 20"
+               Font="Arial, 9pt"
+               TextAlignment="MiddleLeft"
+               ForeColor="80,80,80"
+               Padding="5,0,0,0" />
+
+      <!-- RIGHT: System name (fixed text) -->
+      <XRLabel Name="lblSystemName"
+               Text="XXX GLOBAL E-BANKING"
+               LocationF="580, 6"
+               SizeF="549, 48"
+               Font="Arial, 13pt, style=Bold"
+               TextAlignment="MiddleRight"
+               ForeColor="31,73,125" />
+
+      <!-- Bottom separator line -->
+      <XRLine Name="lineReportHeader"
+              LocationF="0, 58" SizeF="1129, 2"
+              ForeColor="31,73,125" LineWidth="2" />
+
+    </Band>
+
+    <!-- ===================================================== -->
+    <!-- PAGE HEADER                                           -->
+    <!-- Fixed title: BULK TRANSACTION DETAILS                -->
+    <!-- ===================================================== -->
+    <Band Name="PageHeaderBand1" Kind="PageHeader" HeightF="44"
+          BackColor="31,73,125">
+
+      <XRLabel Name="lblReportTitle"
+               Text="BULK TRANSACTION DETAILS"
+               LocationF="0, 6"
+               SizeF="1129, 32"
+               Font="Arial, 14pt, style=Bold"
+               TextAlignment="MiddleCenter"
+               ForeColor="255,255,255"
+               BackColor="Transparent" />
+
+    </Band>
+
+    <!-- ===================================================== -->
+    <!-- GROUP HEADER                                          -->
+    <!-- Info block: all header fields in 2-column grid       -->
+    <!-- Table label + column headers                         -->
+    <!-- ===================================================== -->
+    <Band Name="GroupHeaderBand1" Kind="GroupHeader" HeightF="238"
+          RepeatEveryPage="true">
+
+      <!-- ---- Info block background box ---- -->
+      <XRPanel Name="pnlInfoBox"
+               LocationF="0, 0" SizeF="1129, 172"
+               BackColor="247,250,255"
+               Borders="All" BorderColor="200,210,220" BorderWidth="1" />
+
+      <!-- Column LEFT  (X=8):  label col=8..168, value col=170..554  -->
+      <!-- Column RIGHT (X=570): label col=570..730, value col=732..1121 -->
+
+      <!-- Row 1: GCMS Ref No | RH2H Ref No -->
+      <XRLabel Name="lbl_T_GcmsRefTitle"   Text="GCMS Ref No"
+               LocationF="8,6"    SizeF="160,22" Font="Arial, 8.5pt, style=Bold" TextAlignment="MiddleLeft" />
+      <XRLabel Name="lbl_T_GcmsRefColon"   Text=":"
+               LocationF="168,6"  SizeF="10,22"  Font="Arial, 8.5pt" TextAlignment="MiddleCenter" />
+      <XRLabel Name="lbl_V_GcmsRef"        Text="[GCMS_REF_NO]"
+               LocationF="180,6"  SizeF="374,22" Font="Arial, 8.5pt" TextAlignment="MiddleLeft" />
+
+      <XRLabel Name="lbl_T_Rh2hTitle"      Text="RH2H Ref No"
+               LocationF="570,6"  SizeF="160,22" Font="Arial, 8.5pt, style=Bold" TextAlignment="MiddleLeft" />
+      <XRLabel Name="lbl_T_Rh2hColon"      Text=":"
+               LocationF="730,6"  SizeF="10,22"  Font="Arial, 8.5pt" TextAlignment="MiddleCenter" />
+      <XRLabel Name="lbl_V_Rh2h"           Text="[RH2H_REF_NO]"
+               LocationF="742,6"  SizeF="379,22" Font="Arial, 8.5pt" TextAlignment="MiddleLeft" />
+
+      <!-- Row 2: Unit Code | Customer Name -->
+      <XRLabel Name="lbl_T_UnitTitle"      Text="Unit Code"
+               LocationF="8,30"   SizeF="160,22" Font="Arial, 8.5pt, style=Bold" TextAlignment="MiddleLeft" />
+      <XRLabel Name="lbl_T_UnitColon"      Text=":"
+               LocationF="168,30" SizeF="10,22"  Font="Arial, 8.5pt" TextAlignment="MiddleCenter" />
+      <XRLabel Name="lbl_V_Unit"           Text="[UNIT_CODE]"
+               LocationF="180,30" SizeF="374,22" Font="Arial, 8.5pt" TextAlignment="MiddleLeft" />
+
+      <XRLabel Name="lbl_T_CustNameTitle"  Text="Customer Name"
+               LocationF="570,30" SizeF="160,22" Font="Arial, 8.5pt, style=Bold" TextAlignment="MiddleLeft" />
+      <XRLabel Name="lbl_T_CustNameColon"  Text=":"
+               LocationF="730,30" SizeF="10,22"  Font="Arial, 8.5pt" TextAlignment="MiddleCenter" />
+      <XRLabel Name="lbl_V_CustName"       Text="[CUSTOMER_NAME]"
+               LocationF="742,30" SizeF="379,22" Font="Arial, 8.5pt" TextAlignment="MiddleLeft" />
+
+      <!-- Row 3: Applicant Name | Payment Method -->
+      <XRLabel Name="lbl_T_ApplTitle"      Text="Applicant Name"
+               LocationF="8,54"   SizeF="160,22" Font="Arial, 8.5pt, style=Bold" TextAlignment="MiddleLeft" />
+      <XRLabel Name="lbl_T_ApplColon"      Text=":"
+               LocationF="168,54" SizeF="10,22"  Font="Arial, 8.5pt" TextAlignment="MiddleCenter" />
+      <XRLabel Name="lbl_V_Appl"           Text="[APPLICANT_NAME]"
+               LocationF="180,54" SizeF="374,22" Font="Arial, 8.5pt" TextAlignment="MiddleLeft" />
+
+      <XRLabel Name="lbl_T_PayMethodTitle" Text="Payment Method"
+               LocationF="570,54" SizeF="160,22" Font="Arial, 8.5pt, style=Bold" TextAlignment="MiddleLeft" />
+      <XRLabel Name="lbl_T_PayMethodColon" Text=":"
+               LocationF="730,54" SizeF="10,22"  Font="Arial, 8.5pt" TextAlignment="MiddleCenter" />
+      <XRLabel Name="lbl_V_PayMethod"      Text="[PAYMENT_METHOD]"
+               LocationF="742,54" SizeF="379,22" Font="Arial, 8.5pt" TextAlignment="MiddleLeft" />
+
+      <!-- Row 4: Value Date | Debit Account No -->
+      <XRLabel Name="lbl_T_ValDateTitle"   Text="Value Date"
+               LocationF="8,78"   SizeF="160,22" Font="Arial, 8.5pt, style=Bold" TextAlignment="MiddleLeft" />
+      <XRLabel Name="lbl_T_ValDateColon"   Text=":"
+               LocationF="168,78" SizeF="10,22"  Font="Arial, 8.5pt" TextAlignment="MiddleCenter" />
+      <XRLabel Name="lbl_V_ValDate"        Text="[VALUE_DATE]"
+               LocationF="180,78" SizeF="374,22" Font="Arial, 8.5pt" TextAlignment="MiddleLeft" />
+
+      <XRLabel Name="lbl_T_DebitAccTitle"  Text="Debit Account No"
+               LocationF="570,78" SizeF="160,22" Font="Arial, 8.5pt, style=Bold" TextAlignment="MiddleLeft" />
+      <XRLabel Name="lbl_T_DebitAccColon"  Text=":"
+               LocationF="730,78" SizeF="10,22"  Font="Arial, 8.5pt" TextAlignment="MiddleCenter" />
+      <XRLabel Name="lbl_V_DebitAcc"       Text="[DEBIT_ACCOUNT_NO]"
+               LocationF="742,78" SizeF="379,22" Font="Arial, 8.5pt" TextAlignment="MiddleLeft" />
+
+      <!-- Row 5: Number of Transactions | CCY -->
+      <XRLabel Name="lbl_T_NumTransTitle"  Text="Number of Transactions"
+               LocationF="8,102"  SizeF="160,22" Font="Arial, 8.5pt, style=Bold" TextAlignment="MiddleLeft" />
+      <XRLabel Name="lbl_T_NumTransColon"  Text=":"
+               LocationF="168,102" SizeF="10,22" Font="Arial, 8.5pt" TextAlignment="MiddleCenter" />
+      <XRLabel Name="lbl_V_NumTrans"       Text="[NUMBER_OF_TRANS]"
+               LocationF="180,102" SizeF="374,22" Font="Arial, 8.5pt" TextAlignment="MiddleLeft" />
+
+      <XRLabel Name="lbl_T_CcyTitle"       Text="CCY"
+               LocationF="570,102" SizeF="160,22" Font="Arial, 8.5pt, style=Bold" TextAlignment="MiddleLeft" />
+      <XRLabel Name="lbl_T_CcyColon"       Text=":"
+               LocationF="730,102" SizeF="10,22"  Font="Arial, 8.5pt" TextAlignment="MiddleCenter" />
+      <XRLabel Name="lbl_V_Ccy"            Text="[CCY]"
+               LocationF="742,102" SizeF="379,22" Font="Arial, 8.5pt" TextAlignment="MiddleLeft" />
+
+      <!-- Row 6: Amount | Batch Amount -->
+      <XRLabel Name="lbl_T_AmtTitle"       Text="Amount"
+               LocationF="8,126"  SizeF="160,22" Font="Arial, 8.5pt, style=Bold" TextAlignment="MiddleLeft" />
+      <XRLabel Name="lbl_T_AmtColon"       Text=":"
+               LocationF="168,126" SizeF="10,22" Font="Arial, 8.5pt" TextAlignment="MiddleCenter" />
+      <XRLabel Name="lbl_V_Amt"            Text="[AMOUNT]"
+               LocationF="180,126" SizeF="374,22" Font="Arial, 8.5pt" TextAlignment="MiddleLeft" />
+
+      <XRLabel Name="lbl_T_BatchAmtTitle"  Text="Batch Amount"
+               LocationF="570,126" SizeF="160,22" Font="Arial, 8.5pt, style=Bold" TextAlignment="MiddleLeft" />
+      <XRLabel Name="lbl_T_BatchAmtColon"  Text=":"
+               LocationF="730,126" SizeF="10,22"  Font="Arial, 8.5pt" TextAlignment="MiddleCenter" />
+      <XRLabel Name="lbl_V_BatchAmt"       Text="[BATCH_AMOUNT]"
+               LocationF="742,126" SizeF="379,22" Font="Arial, 8.5pt" TextAlignment="MiddleLeft" />
+
+      <!-- Row 7: Remark | Printing Time -->
+      <XRLabel Name="lbl_T_RemarkTitle"    Text="Remark"
+               LocationF="8,150"  SizeF="160,22" Font="Arial, 8.5pt, style=Bold" TextAlignment="MiddleLeft" />
+      <XRLabel Name="lbl_T_RemarkColon"    Text=":"
+               LocationF="168,150" SizeF="10,22" Font="Arial, 8.5pt" TextAlignment="MiddleCenter" />
+      <XRLabel Name="lbl_V_Remark"         Text="[REMARKS]"
+               LocationF="180,150" SizeF="374,22" Font="Arial, 8.5pt" TextAlignment="MiddleLeft" />
+
+      <XRLabel Name="lbl_T_PrintTimeTitle" Text="Printing Time"
+               LocationF="570,150" SizeF="160,22" Font="Arial, 8.5pt, style=Bold" TextAlignment="MiddleLeft" />
+      <XRLabel Name="lbl_T_PrintTimeColon" Text=":"
+               LocationF="730,150" SizeF="10,22"  Font="Arial, 8.5pt" TextAlignment="MiddleCenter" />
+      <XRLabel Name="lbl_V_PrintTime"      Text=""
+               LocationF="742,150" SizeF="379,22" Font="Arial, 8.5pt" TextAlignment="MiddleLeft">
+        <ExpressionBindings>
+          <ExpressionBinding EventName="BeforePrint" PropertyName="Text"
+            Expression="Now().ToString('dd/MM/yyyy HH:mm:ss')" />
+        </ExpressionBindings>
+      </XRLabel>
+
+      <!-- ---- Table label ---- -->
+      <XRLabel Name="lblTableTitle"
+               Text="DETAILS TRANSACTIONS"
+               LocationF="0, 178"
+               SizeF="1129, 24"
+               Font="Arial, 10pt, style=Bold"
+               TextAlignment="MiddleLeft"
+               ForeColor="31,73,125"
+               Padding="4,0,0,0" />
+
+      <!-- ---- Column headers ----
+           Total usable width = 1129
+           No=40 | BenAcc=130 | BenName=200 | BenBank=170 | CCY=50 | Amount=130 | ChargeAcc=140 | BankCharge=60 | RemInfo=149 | TransRef=60
+      -->
+      <XRLabel Name="col_No"          Text="No."
+               LocationF="0,204"   SizeF="40,28"  Font="Arial, 8.5pt, style=Bold"
+               BackColor="31,73,125" ForeColor="White" TextAlignment="MiddleCenter"
+               Borders="All" BorderColor="White" />
+      <XRLabel Name="col_BenAcc"      Text="Beneficiary Account No"
+               LocationF="40,204"  SizeF="130,28" Font="Arial, 8.5pt, style=Bold"
+               BackColor="31,73,125" ForeColor="White" TextAlignment="MiddleCenter"
+               Borders="All" BorderColor="White" />
+      <XRLabel Name="col_BenName"     Text="Beneficiary Name"
+               LocationF="170,204" SizeF="200,28" Font="Arial, 8.5pt, style=Bold"
+               BackColor="31,73,125" ForeColor="White" TextAlignment="MiddleCenter"
+               Borders="All" BorderColor="White" />
+      <XRLabel Name="col_BenBank"     Text="Beneficiary Bank"
+               LocationF="370,204" SizeF="170,28" Font="Arial, 8.5pt, style=Bold"
+               BackColor="31,73,125" ForeColor="White" TextAlignment="MiddleCenter"
+               Borders="All" BorderColor="White" />
+      <XRLabel Name="col_Ccy"         Text="CCY"
+               LocationF="540,204" SizeF="50,28"  Font="Arial, 8.5pt, style=Bold"
+               BackColor="31,73,125" ForeColor="White" TextAlignment="MiddleCenter"
+               Borders="All" BorderColor="White" />
+      <XRLabel Name="col_Amount"      Text="Amount"
+               LocationF="590,204" SizeF="130,28" Font="Arial, 8.5pt, style=Bold"
+               BackColor="31,73,125" ForeColor="White" TextAlignment="MiddleCenter"
+               Borders="All" BorderColor="White" />
+      <XRLabel Name="col_ChargeAcc"   Text="Charge Account"
+               LocationF="720,204" SizeF="140,28" Font="Arial, 8.5pt, style=Bold"
+               BackColor="31,73,125" ForeColor="White" TextAlignment="MiddleCenter"
+               Borders="All" BorderColor="White" />
+      <XRLabel Name="col_BankCharge"  Text="Bank Charge"
+               LocationF="860,204" SizeF="60,28"  Font="Arial, 8.5pt, style=Bold"
+               BackColor="31,73,125" ForeColor="White" TextAlignment="MiddleCenter"
+               Borders="All" BorderColor="White" />
+      <XRLabel Name="col_RemInfo"     Text="Remittance Info"
+               LocationF="920,204" SizeF="149,28" Font="Arial, 8.5pt, style=Bold"
+               BackColor="31,73,125" ForeColor="White" TextAlignment="MiddleCenter"
+               Borders="All" BorderColor="White" />
+      <XRLabel Name="col_TransRef"    Text="Trans Ref"
+               LocationF="1069,204" SizeF="60,28"  Font="Arial, 8.5pt, style=Bold"
+               BackColor="31,73,125" ForeColor="White" TextAlignment="MiddleCenter"
+               Borders="All" BorderColor="White" />
+
+    </Band>
+
+    <!-- ===================================================== -->
+    <!-- DETAIL BAND  (BulkTransactionDetail rows)            -->
+    <!-- DataMember = "BulkTransactionDetail"                 -->
+    <!-- ===================================================== -->
+    <Band Name="DetailBand1" Kind="Detail" HeightF="24"
+          DataMember="BulkTransactionDetail">
+
+      <XRLabel Name="det_No"          Text="[No]"
+               LocationF="0,1"   SizeF="40,22"  Font="Arial, 8pt"
+               TextAlignment="MiddleCenter"
+               Borders="Left,Right,Bottom" BorderColor="210,210,210" />
+      <XRLabel Name="det_BenAcc"      Text="[BEN_ACCOUNT_NO]"
+               LocationF="40,1"  SizeF="130,22" Font="Arial, 8pt"
+               TextAlignment="MiddleLeft"  Padding="3,0,0,0"
+               Borders="Right,Bottom"      BorderColor="210,210,210" />
+      <XRLabel Name="det_BenName"     Text="[BEN_NAME]"
+               LocationF="170,1" SizeF="200,22" Font="Arial, 8pt"
+               TextAlignment="MiddleLeft"  Padding="3,0,0,0"
+               Borders="Right,Bottom"      BorderColor="210,210,210"
+               CanGrow="true" />
+      <XRLabel Name="det_BenBank"     Text="[BEN_BANK_NAME]"
+               LocationF="370,1" SizeF="170,22" Font="Arial, 8pt"
+               TextAlignment="MiddleLeft"  Padding="3,0,0,0"
+               Borders="Right,Bottom"      BorderColor="210,210,210" />
+      <XRLabel Name="det_Ccy"         Text="[CCY]"
+               LocationF="540,1" SizeF="50,22"  Font="Arial, 8pt"
+               TextAlignment="MiddleCenter"
+               Borders="Right,Bottom"      BorderColor="210,210,210" />
+      <XRLabel Name="det_Amount"      Text="[AMOUNT]"
+               LocationF="590,1" SizeF="130,22" Font="Arial, 8pt"
+               TextAlignment="MiddleRight" Padding="0,0,3,0"
+               Borders="Right,Bottom"      BorderColor="210,210,210"
+               TextFormatString="{0:N2}" />
+      <XRLabel Name="det_ChargeAcc"   Text="[CHARGE_ACCOUNT]"
+               LocationF="720,1" SizeF="140,22" Font="Arial, 8pt"
+               TextAlignment="MiddleLeft"  Padding="3,0,0,0"
+               Borders="Right,Bottom"      BorderColor="210,210,210" />
+      <XRLabel Name="det_BankCharge"  Text="[BANK_CHARGE]"
+               LocationF="860,1" SizeF="60,22"  Font="Arial, 8pt"
+               TextAlignment="MiddleCenter"
+               Borders="Right,Bottom"      BorderColor="210,210,210" />
+      <XRLabel Name="det_RemInfo"     Text="[REMITTANCE_INFO]"
+               LocationF="920,1" SizeF="149,22"  Font="Arial, 8pt"
+               TextAlignment="MiddleLeft"  Padding="3,0,0,0"
+               Borders="Right,Bottom"      BorderColor="210,210,210"
+               CanGrow="true" />
+      <XRLabel Name="det_TransRef"    Text="[RH2H_TRANS_REF]"
+               LocationF="1069,1" SizeF="60,22" Font="Arial, 8pt"
+               TextAlignment="MiddleLeft"  Padding="3,0,0,0"
+               Borders="Right,Bottom"      BorderColor="210,210,210" />
+
+      <!-- Alternating row color (EvenStyle) -->
+      <StyleName>DetailStyle</StyleName>
+
+    </Band>
+
+    <!-- GroupFooter removed -->
+
+    <!-- PageFooter removed -->
+
+    <!-- ===================================================== -->
+    <!-- BOTTOM MARGIN                                         -->
+    <!-- ===================================================== -->
+    <Band Name="BottomMarginBand1" Kind="BottomMargin" HeightF="30">
+    </Band>
+
+  </Bands>
+
+  <!-- ===================================================== -->
+  <!-- STYLES                                                -->
+  <!-- ===================================================== -->
+  <StyleSheet>
+    <XRControlStyle Name="DetailStyle"
+                    BackColor="255,255,255" />
+    <XRControlStyle Name="DetailStyleEven"
+                    BackColor="242,247,252" />
+  </StyleSheet>
+
+  <!-- ===================================================== -->
+  <!-- DATASOURCE (SQL Server)                              -->
+  <!-- Update ConnectionString to your environment          -->
+  <!-- ===================================================== -->
+  <ComponentStorage>
+    <TypedDataSource Name="sqlDataSource1"
+                     DataSourceType="DevExpress.DataAccess.Sql.SqlDataSource">
+      <Connection Name="BulkTxnConnection"
+                  ProviderKey="MsSqlServer"
+                  ConnectionString="Server=YOUR_SERVER;Database=YOUR_DB;User Id=YOUR_USER;Password=YOUR_PASS;TrustServerCertificate=True" />
+
+      <!-- Query 1: Header (root fields) -->
+      <Queries>
+        <StoredProcQuery Name="HeaderQuery"
+                         StoredProcName="sp_GetBulkTransactionReport">
+          <Parameters>
+            <QueryParameter Name="@GCMS_REF_NO"
+                            Type="System.String"
+                            ValueBinding="Parameters.GCMS_REF_NO" />
+          </Parameters>
+          <ResultSchema>
+            <DataSet Name="BulkTransactionHeaderDS">
+              <View Name="BulkTransactionHeader">
+                <Field Name="HeaderId"          Type="System.Int32"   />
+                <Field Name="GCMS_REF_NO"        Type="System.String"  />
+                <Field Name="RH2H_REF_NO"        Type="System.String"  />
+                <Field Name="UNIT_CODE"           Type="System.String"  />
+                <Field Name="CUSTOMER_NAME"       Type="System.String"  />
+                <Field Name="APPLICANT_NAME"      Type="System.String"  />
+                <Field Name="PAYMENT_METHOD"      Type="System.String"  />
+                <Field Name="VALUE_DATE"          Type="System.String"  />
+                <Field Name="DEBIT_ACCOUNT_NO"    Type="System.String"  />
+                <Field Name="NUMBER_OF_TRANS"     Type="System.String"  />
+                <Field Name="CCY"                 Type="System.String"  />
+                <Field Name="AMOUNT"              Type="System.String"  />
+                <Field Name="BATCH_AMOUNT"        Type="System.String"  />
+                <Field Name="REMARKS"             Type="System.String"  />
+              </View>
+            </DataSet>
+          </ResultSchema>
+        </StoredProcQuery>
+
+        <!-- Query 2: Details -->
+        <StoredProcQuery Name="DetailQuery"
+                         StoredProcName="sp_GetBulkTransactionReport">
+          <Parameters>
+            <QueryParameter Name="@GCMS_REF_NO"
+                            Type="System.String"
+                            ValueBinding="Parameters.GCMS_REF_NO" />
+          </Parameters>
+          <ResultSchema>
+            <DataSet Name="BulkTransactionDetailDS">
+              <View Name="BulkTransactionDetail">
+                <Field Name="DetailId"          Type="System.Int32"    />
+                <Field Name="HeaderId"          Type="System.Int32"    />
+                <Field Name="No"                Type="System.Int32"    />
+                <Field Name="BEN_ACCOUNT_NO"    Type="System.String"   />
+                <Field Name="BEN_NAME"          Type="System.String"   />
+                <Field Name="BEN_BANK_NAME"     Type="System.String"   />
+                <Field Name="CCY"               Type="System.String"   />
+                <Field Name="AMOUNT"            Type="System.Decimal"  />
+                <Field Name="CHARGE_ACCOUNT"    Type="System.String"   />
+                <Field Name="BANK_CHARGE"       Type="System.String"   />
+                <Field Name="REMITTANCE_INFO"   Type="System.String"   />
+                <Field Name="RH2H_TRANS_REF"    Type="System.String"   />
+              </View>
+            </DataSet>
+          </ResultSchema>
+        </StoredProcQuery>
+      </Queries>
+
+      <!-- Master-Detail Relationship -->
+      <Relations>
+        <MasterDetailRelation Name="HeaderToDetail"
+                              MasterQueryName="HeaderQuery"
+                              DetailQueryName="DetailQuery"
+                              KeyFields="HeaderId"
+                              DetailFields="HeaderId" />
+      </Relations>
+
+    </TypedDataSource>
+  </ComponentStorage>
+
+  <!-- ===================================================== -->
+  <!-- REPORT PARAMETERS                                    -->
+  <!-- ===================================================== -->
+  <Parameters>
+    <Parameter Name="GCMS_REF_NO"
+               Description="GCMS Reference No (leave empty for all)"
+               Type="System.String"
+               Visible="true" />
+  </Parameters>
+
+  <!-- ===================================================== -->
+  <!-- REPORT PROPERTIES                                    -->
+  <!-- ===================================================== -->
+  <Margins Left="20" Right="20" Top="30" Bottom="30" />
+  <PaperKind>A4</PaperKind>
+  <Landscape>true</Landscape>
+  <ReportUnit>HundredthsOfAnInch</ReportUnit>
+
+</XtraReport>
