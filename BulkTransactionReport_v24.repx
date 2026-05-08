@@ -1,0 +1,449 @@
+<?xml version="1.0" encoding="utf-8"?>
+<XtraReportsLayoutSerializer>
+
+  <Version>24.2</Version>
+  <Bands>
+
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <!-- TOP MARGIN                                             -->
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <Item1 ControlType="TopMarginBand" Name="TopMarginBand1" HeightF="30" />
+
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <!-- REPORT HEADER                                          -->
+    <!-- Left : XX BANK / HCM BRANCH  (fixed)                  -->
+    <!-- Right: XXX GLOBAL E-BANKING  (fixed)                  -->
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <Item2 ControlType="ReportHeaderBand" Name="ReportHeaderBand1" HeightF="62">
+      <Controls>
+
+        <Item1 ControlType="XRLabel" Name="lblBankName"
+               Text="XX BANK"
+               BoundsF="0, 6, 560, 26"
+               Font="Arial, 12pt, style=Bold"
+               ForeColor="31, 73, 125"
+               TextAlignment="MiddleLeft"
+               Padding="5, 0, 0, 0" />
+
+        <Item2 ControlType="XRLabel" Name="lblBranchName"
+               Text="HCM BRANCH"
+               BoundsF="0, 34, 560, 20"
+               Font="Arial, 9pt"
+               ForeColor="80, 80, 80"
+               TextAlignment="MiddleLeft"
+               Padding="5, 0, 0, 0" />
+
+        <Item3 ControlType="XRLabel" Name="lblSystemName"
+               Text="XXX GLOBAL E-BANKING"
+               BoundsF="580, 6, 549, 48"
+               Font="Arial, 13pt, style=Bold"
+               ForeColor="31, 73, 125"
+               TextAlignment="MiddleRight" />
+
+        <Item4 ControlType="XRLine" Name="lineReportHeader"
+               BoundsF="0, 58, 1129, 2"
+               ForeColor="31, 73, 125"
+               LineWidth="2" />
+
+      </Controls>
+    </Item2>
+
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <!-- PAGE HEADER                                            -->
+    <!-- Fixed title: BULK TRANSACTION DETAILS                 -->
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <Item3 ControlType="PageHeaderBand" Name="PageHeaderBand1"
+           HeightF="44" BackColor="31, 73, 125">
+      <Controls>
+
+        <Item1 ControlType="XRLabel" Name="lblReportTitle"
+               Text="BULK TRANSACTION DETAILS"
+               BoundsF="0, 6, 1129, 32"
+               Font="Arial, 14pt, style=Bold"
+               ForeColor="255, 255, 255"
+               BackColor="Transparent"
+               TextAlignment="MiddleCenter" />
+
+      </Controls>
+    </Item3>
+
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <!-- GROUP HEADER                                           -->
+    <!-- Info block (14 fields, 2-col) + table label + col hdr -->
+    <!-- DataMember = root JSON object (jsonDataSource1)        -->
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <Item4 ControlType="GroupHeaderBand" Name="GroupHeaderBand1"
+           HeightF="240" RepeatEveryPage="true">
+      <Controls>
+
+        <!-- Info panel background -->
+        <Item1 ControlType="XRPanel" Name="pnlInfoBox"
+               BoundsF="0, 0, 1129, 174"
+               BackColor="247, 250, 255"
+               Borders="All" BorderColor="200, 210, 220" BorderWidth="1" />
+
+        <!-- ── Row 1: GCMS Ref No  |  RH2H Ref No ── -->
+        <Item2  ControlType="XRLabel" Name="lbl_T_GcmsRef"   Text="GCMS Ref No"        BoundsF="8,6,160,22"   Font="Arial, 8.5pt, style=Bold" TextAlignment="MiddleLeft" />
+        <Item3  ControlType="XRLabel" Name="lbl_C_GcmsRef"   Text=":"                  BoundsF="168,6,10,22"  Font="Arial, 8.5pt"             TextAlignment="MiddleCenter" />
+        <Item4  ControlType="XRLabel" Name="lbl_V_GcmsRef"
+                BoundsF="180,6,374,22" Font="Arial, 8.5pt" TextAlignment="MiddleLeft">
+          <ExpressionBindings>
+            <Item1 EventName="BeforePrint" PropertyName="Text" Expression="[jsonDataSource1.GCMS_REF_NO]" />
+          </ExpressionBindings>
+        </Item4>
+
+        <Item5  ControlType="XRLabel" Name="lbl_T_Rh2h"      Text="RH2H Ref No"        BoundsF="570,6,160,22"  Font="Arial, 8.5pt, style=Bold" TextAlignment="MiddleLeft" />
+        <Item6  ControlType="XRLabel" Name="lbl_C_Rh2h"      Text=":"                  BoundsF="730,6,10,22"   Font="Arial, 8.5pt"             TextAlignment="MiddleCenter" />
+        <Item7  ControlType="XRLabel" Name="lbl_V_Rh2h"
+                BoundsF="742,6,379,22" Font="Arial, 8.5pt" TextAlignment="MiddleLeft">
+          <ExpressionBindings>
+            <Item1 EventName="BeforePrint" PropertyName="Text" Expression="[jsonDataSource1.RH2H_REF_NO]" />
+          </ExpressionBindings>
+        </Item7>
+
+        <!-- ── Row 2: Unit Code  |  Customer Name ── -->
+        <Item8  ControlType="XRLabel" Name="lbl_T_Unit"       Text="Unit Code"          BoundsF="8,30,160,22"  Font="Arial, 8.5pt, style=Bold" TextAlignment="MiddleLeft" />
+        <Item9  ControlType="XRLabel" Name="lbl_C_Unit"       Text=":"                  BoundsF="168,30,10,22" Font="Arial, 8.5pt"             TextAlignment="MiddleCenter" />
+        <Item10 ControlType="XRLabel" Name="lbl_V_Unit"
+                BoundsF="180,30,374,22" Font="Arial, 8.5pt" TextAlignment="MiddleLeft">
+          <ExpressionBindings>
+            <Item1 EventName="BeforePrint" PropertyName="Text" Expression="[jsonDataSource1.UNIT_CODE]" />
+          </ExpressionBindings>
+        </Item10>
+
+        <Item11 ControlType="XRLabel" Name="lbl_T_CustName"   Text="Customer Name"      BoundsF="570,30,160,22" Font="Arial, 8.5pt, style=Bold" TextAlignment="MiddleLeft" />
+        <Item12 ControlType="XRLabel" Name="lbl_C_CustName"   Text=":"                  BoundsF="730,30,10,22"  Font="Arial, 8.5pt"             TextAlignment="MiddleCenter" />
+        <Item13 ControlType="XRLabel" Name="lbl_V_CustName"
+                BoundsF="742,30,379,22" Font="Arial, 8.5pt" TextAlignment="MiddleLeft">
+          <ExpressionBindings>
+            <Item1 EventName="BeforePrint" PropertyName="Text" Expression="[jsonDataSource1.CUSTOMER_NAME]" />
+          </ExpressionBindings>
+        </Item13>
+
+        <!-- ── Row 3: Applicant Name  |  Payment Method ── -->
+        <Item14 ControlType="XRLabel" Name="lbl_T_Appl"       Text="Applicant Name"     BoundsF="8,54,160,22"  Font="Arial, 8.5pt, style=Bold" TextAlignment="MiddleLeft" />
+        <Item15 ControlType="XRLabel" Name="lbl_C_Appl"       Text=":"                  BoundsF="168,54,10,22" Font="Arial, 8.5pt"             TextAlignment="MiddleCenter" />
+        <Item16 ControlType="XRLabel" Name="lbl_V_Appl"
+                BoundsF="180,54,374,22" Font="Arial, 8.5pt" TextAlignment="MiddleLeft">
+          <ExpressionBindings>
+            <Item1 EventName="BeforePrint" PropertyName="Text" Expression="[jsonDataSource1.APPLICANT_NAME]" />
+          </ExpressionBindings>
+        </Item16>
+
+        <Item17 ControlType="XRLabel" Name="lbl_T_PayMethod"  Text="Payment Method"     BoundsF="570,54,160,22" Font="Arial, 8.5pt, style=Bold" TextAlignment="MiddleLeft" />
+        <Item18 ControlType="XRLabel" Name="lbl_C_PayMethod"  Text=":"                  BoundsF="730,54,10,22"  Font="Arial, 8.5pt"             TextAlignment="MiddleCenter" />
+        <Item19 ControlType="XRLabel" Name="lbl_V_PayMethod"
+                BoundsF="742,54,379,22" Font="Arial, 8.5pt" TextAlignment="MiddleLeft">
+          <ExpressionBindings>
+            <Item1 EventName="BeforePrint" PropertyName="Text" Expression="[jsonDataSource1.PAYMENT_METHOD]" />
+          </ExpressionBindings>
+        </Item19>
+
+        <!-- ── Row 4: Value Date  |  Debit Account No ── -->
+        <Item20 ControlType="XRLabel" Name="lbl_T_ValDate"    Text="Value Date"         BoundsF="8,78,160,22"  Font="Arial, 8.5pt, style=Bold" TextAlignment="MiddleLeft" />
+        <Item21 ControlType="XRLabel" Name="lbl_C_ValDate"    Text=":"                  BoundsF="168,78,10,22" Font="Arial, 8.5pt"             TextAlignment="MiddleCenter" />
+        <Item22 ControlType="XRLabel" Name="lbl_V_ValDate"
+                BoundsF="180,78,374,22" Font="Arial, 8.5pt" TextAlignment="MiddleLeft">
+          <ExpressionBindings>
+            <Item1 EventName="BeforePrint" PropertyName="Text" Expression="[jsonDataSource1.VALUE_DATE]" />
+          </ExpressionBindings>
+        </Item22>
+
+        <Item23 ControlType="XRLabel" Name="lbl_T_DebitAcc"   Text="Debit Account No"   BoundsF="570,78,160,22" Font="Arial, 8.5pt, style=Bold" TextAlignment="MiddleLeft" />
+        <Item24 ControlType="XRLabel" Name="lbl_C_DebitAcc"   Text=":"                  BoundsF="730,78,10,22"  Font="Arial, 8.5pt"             TextAlignment="MiddleCenter" />
+        <Item25 ControlType="XRLabel" Name="lbl_V_DebitAcc"
+                BoundsF="742,78,379,22" Font="Arial, 8.5pt" TextAlignment="MiddleLeft">
+          <ExpressionBindings>
+            <Item1 EventName="BeforePrint" PropertyName="Text" Expression="[jsonDataSource1.DEBIT_ACCOUNT_NO]" />
+          </ExpressionBindings>
+        </Item25>
+
+        <!-- ── Row 5: Number of Transactions  |  CCY ── -->
+        <Item26 ControlType="XRLabel" Name="lbl_T_NumTrans"   Text="Number of Transactions" BoundsF="8,102,160,22"  Font="Arial, 8.5pt, style=Bold" TextAlignment="MiddleLeft" />
+        <Item27 ControlType="XRLabel" Name="lbl_C_NumTrans"   Text=":"                       BoundsF="168,102,10,22" Font="Arial, 8.5pt"             TextAlignment="MiddleCenter" />
+        <Item28 ControlType="XRLabel" Name="lbl_V_NumTrans"
+                BoundsF="180,102,374,22" Font="Arial, 8.5pt" TextAlignment="MiddleLeft">
+          <ExpressionBindings>
+            <Item1 EventName="BeforePrint" PropertyName="Text" Expression="[jsonDataSource1.NUMBER_OF_TRANS]" />
+          </ExpressionBindings>
+        </Item28>
+
+        <Item29 ControlType="XRLabel" Name="lbl_T_Ccy"        Text="CCY"                BoundsF="570,102,160,22" Font="Arial, 8.5pt, style=Bold" TextAlignment="MiddleLeft" />
+        <Item30 ControlType="XRLabel" Name="lbl_C_Ccy"        Text=":"                  BoundsF="730,102,10,22"  Font="Arial, 8.5pt"             TextAlignment="MiddleCenter" />
+        <Item31 ControlType="XRLabel" Name="lbl_V_Ccy"
+                BoundsF="742,102,379,22" Font="Arial, 8.5pt" TextAlignment="MiddleLeft">
+          <ExpressionBindings>
+            <Item1 EventName="BeforePrint" PropertyName="Text" Expression="[jsonDataSource1.CCY]" />
+          </ExpressionBindings>
+        </Item31>
+
+        <!-- ── Row 6: Amount  |  Batch Amount ── -->
+        <Item32 ControlType="XRLabel" Name="lbl_T_Amt"        Text="Amount"             BoundsF="8,126,160,22"  Font="Arial, 8.5pt, style=Bold" TextAlignment="MiddleLeft" />
+        <Item33 ControlType="XRLabel" Name="lbl_C_Amt"        Text=":"                  BoundsF="168,126,10,22" Font="Arial, 8.5pt"             TextAlignment="MiddleCenter" />
+        <Item34 ControlType="XRLabel" Name="lbl_V_Amt"
+                BoundsF="180,126,374,22" Font="Arial, 8.5pt" TextAlignment="MiddleLeft">
+          <ExpressionBindings>
+            <Item1 EventName="BeforePrint" PropertyName="Text" Expression="[jsonDataSource1.AMOUNT]" />
+          </ExpressionBindings>
+        </Item34>
+
+        <Item35 ControlType="XRLabel" Name="lbl_T_BatchAmt"   Text="Batch Amount"       BoundsF="570,126,160,22" Font="Arial, 8.5pt, style=Bold" TextAlignment="MiddleLeft" />
+        <Item36 ControlType="XRLabel" Name="lbl_C_BatchAmt"   Text=":"                  BoundsF="730,126,10,22"  Font="Arial, 8.5pt"             TextAlignment="MiddleCenter" />
+        <Item37 ControlType="XRLabel" Name="lbl_V_BatchAmt"
+                BoundsF="742,126,379,22" Font="Arial, 8.5pt" TextAlignment="MiddleLeft">
+          <ExpressionBindings>
+            <Item1 EventName="BeforePrint" PropertyName="Text" Expression="[jsonDataSource1.BATCH_AMOUNT]" />
+          </ExpressionBindings>
+        </Item37>
+
+        <!-- ── Row 7: Remark  |  Printing Time ── -->
+        <Item38 ControlType="XRLabel" Name="lbl_T_Remark"     Text="Remark"             BoundsF="8,150,160,22"  Font="Arial, 8.5pt, style=Bold" TextAlignment="MiddleLeft" />
+        <Item39 ControlType="XRLabel" Name="lbl_C_Remark"     Text=":"                  BoundsF="168,150,10,22" Font="Arial, 8.5pt"             TextAlignment="MiddleCenter" />
+        <Item40 ControlType="XRLabel" Name="lbl_V_Remark"
+                BoundsF="180,150,374,22" Font="Arial, 8.5pt" TextAlignment="MiddleLeft">
+          <ExpressionBindings>
+            <Item1 EventName="BeforePrint" PropertyName="Text" Expression="[jsonDataSource1.REMARKS]" />
+          </ExpressionBindings>
+        </Item40>
+
+        <Item41 ControlType="XRLabel" Name="lbl_T_PrintTime"  Text="Printing Time"      BoundsF="570,150,160,22" Font="Arial, 8.5pt, style=Bold" TextAlignment="MiddleLeft" />
+        <Item42 ControlType="XRLabel" Name="lbl_C_PrintTime"  Text=":"                  BoundsF="730,150,10,22"  Font="Arial, 8.5pt"             TextAlignment="MiddleCenter" />
+        <Item43 ControlType="XRLabel" Name="lbl_V_PrintTime"
+                BoundsF="742,150,379,22" Font="Arial, 8.5pt" TextAlignment="MiddleLeft">
+          <ExpressionBindings>
+            <Item1 EventName="BeforePrint" PropertyName="Text"
+                   Expression="Now().ToString('dd/MM/yyyy HH:mm:ss')" />
+          </ExpressionBindings>
+        </Item43>
+
+        <!-- ── Table label ── -->
+        <Item44 ControlType="XRLabel" Name="lblTableTitle"
+                Text="DETAILS TRANSACTIONS"
+                BoundsF="0, 178, 1129, 24"
+                Font="Arial, 10pt, style=Bold"
+                ForeColor="31, 73, 125"
+                TextAlignment="MiddleLeft"
+                Padding="4, 0, 0, 0" />
+
+        <!-- ── Column headers ──
+             Total = 1129 : No=40 | BenAcc=130 | BenName=200 | BenBank=170 |
+                            CCY=50 | Amount=130 | ChargeAcc=140 | BankCharge=60 |
+                            RemInfo=149 | TransRef=60
+        -->
+        <Item45 ControlType="XRLabel" Name="col_No"
+                Text="No."         BoundsF="0,204,40,28"
+                Font="Arial, 8.5pt, style=Bold" BackColor="31,73,125" ForeColor="255,255,255"
+                TextAlignment="MiddleCenter" Borders="All" BorderColor="255,255,255" />
+        <Item46 ControlType="XRLabel" Name="col_BenAcc"
+                Text="Beneficiary Account No" BoundsF="40,204,130,28"
+                Font="Arial, 8.5pt, style=Bold" BackColor="31,73,125" ForeColor="255,255,255"
+                TextAlignment="MiddleCenter" Borders="All" BorderColor="255,255,255" />
+        <Item47 ControlType="XRLabel" Name="col_BenName"
+                Text="Beneficiary Name"       BoundsF="170,204,200,28"
+                Font="Arial, 8.5pt, style=Bold" BackColor="31,73,125" ForeColor="255,255,255"
+                TextAlignment="MiddleCenter" Borders="All" BorderColor="255,255,255" />
+        <Item48 ControlType="XRLabel" Name="col_BenBank"
+                Text="Beneficiary Bank"       BoundsF="370,204,170,28"
+                Font="Arial, 8.5pt, style=Bold" BackColor="31,73,125" ForeColor="255,255,255"
+                TextAlignment="MiddleCenter" Borders="All" BorderColor="255,255,255" />
+        <Item49 ControlType="XRLabel" Name="col_Ccy"
+                Text="CCY"                    BoundsF="540,204,50,28"
+                Font="Arial, 8.5pt, style=Bold" BackColor="31,73,125" ForeColor="255,255,255"
+                TextAlignment="MiddleCenter" Borders="All" BorderColor="255,255,255" />
+        <Item50 ControlType="XRLabel" Name="col_Amount"
+                Text="Amount"                 BoundsF="590,204,130,28"
+                Font="Arial, 8.5pt, style=Bold" BackColor="31,73,125" ForeColor="255,255,255"
+                TextAlignment="MiddleCenter" Borders="All" BorderColor="255,255,255" />
+        <Item51 ControlType="XRLabel" Name="col_ChargeAcc"
+                Text="Charge Account"         BoundsF="720,204,140,28"
+                Font="Arial, 8.5pt, style=Bold" BackColor="31,73,125" ForeColor="255,255,255"
+                TextAlignment="MiddleCenter" Borders="All" BorderColor="255,255,255" />
+        <Item52 ControlType="XRLabel" Name="col_BankCharge"
+                Text="Bank Charge"            BoundsF="860,204,60,28"
+                Font="Arial, 8.5pt, style=Bold" BackColor="31,73,125" ForeColor="255,255,255"
+                TextAlignment="MiddleCenter" Borders="All" BorderColor="255,255,255" />
+        <Item53 ControlType="XRLabel" Name="col_RemInfo"
+                Text="Remittance Info"        BoundsF="920,204,149,28"
+                Font="Arial, 8.5pt, style=Bold" BackColor="31,73,125" ForeColor="255,255,255"
+                TextAlignment="MiddleCenter" Borders="All" BorderColor="255,255,255" />
+        <Item54 ControlType="XRLabel" Name="col_TransRef"
+                Text="Trans Ref"              BoundsF="1069,204,60,28"
+                Font="Arial, 8.5pt, style=Bold" BackColor="31,73,125" ForeColor="255,255,255"
+                TextAlignment="MiddleCenter" Borders="All" BorderColor="255,255,255" />
+
+      </Controls>
+    </Item4>
+
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <!-- DETAIL BAND                                            -->
+    <!-- DataMember = jsonDataSource1.details                  -->
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <Item5 ControlType="DetailBand" Name="DetailBand1"
+           HeightF="24" DataMember="jsonDataSource1.details">
+      <Controls>
+
+        <Item1 ControlType="XRLabel" Name="det_No"
+               BoundsF="0,1,40,22"   Font="Arial, 8pt" TextAlignment="MiddleCenter"
+               Borders="Left,Right,Bottom" BorderColor="210,210,210">
+          <ExpressionBindings>
+            <Item1 EventName="BeforePrint" PropertyName="Text" Expression="[jsonDataSource1.details.No]" />
+          </ExpressionBindings>
+        </Item1>
+
+        <Item2 ControlType="XRLabel" Name="det_BenAcc"
+               BoundsF="40,1,130,22"  Font="Arial, 8pt" TextAlignment="MiddleLeft" Padding="3,0,0,0"
+               Borders="Right,Bottom" BorderColor="210,210,210">
+          <ExpressionBindings>
+            <Item1 EventName="BeforePrint" PropertyName="Text" Expression="[jsonDataSource1.details.BEN_ACCOUNT_NO]" />
+          </ExpressionBindings>
+        </Item2>
+
+        <Item3 ControlType="XRLabel" Name="det_BenName"
+               BoundsF="170,1,200,22" Font="Arial, 8pt" TextAlignment="MiddleLeft" Padding="3,0,0,0"
+               Borders="Right,Bottom" BorderColor="210,210,210" CanGrow="true">
+          <ExpressionBindings>
+            <Item1 EventName="BeforePrint" PropertyName="Text" Expression="[jsonDataSource1.details.BEN_NAME]" />
+          </ExpressionBindings>
+        </Item3>
+
+        <Item4 ControlType="XRLabel" Name="det_BenBank"
+               BoundsF="370,1,170,22" Font="Arial, 8pt" TextAlignment="MiddleLeft" Padding="3,0,0,0"
+               Borders="Right,Bottom" BorderColor="210,210,210">
+          <ExpressionBindings>
+            <Item1 EventName="BeforePrint" PropertyName="Text" Expression="[jsonDataSource1.details.BEN_BANK_NAME]" />
+          </ExpressionBindings>
+        </Item4>
+
+        <Item5 ControlType="XRLabel" Name="det_Ccy"
+               BoundsF="540,1,50,22"  Font="Arial, 8pt" TextAlignment="MiddleCenter"
+               Borders="Right,Bottom" BorderColor="210,210,210">
+          <ExpressionBindings>
+            <Item1 EventName="BeforePrint" PropertyName="Text" Expression="[jsonDataSource1.details.CCY]" />
+          </ExpressionBindings>
+        </Item5>
+
+        <Item6 ControlType="XRLabel" Name="det_Amount"
+               BoundsF="590,1,130,22" Font="Arial, 8pt" TextAlignment="MiddleRight" Padding="0,0,3,0"
+               Borders="Right,Bottom" BorderColor="210,210,210" TextFormatString="{0:N2}">
+          <ExpressionBindings>
+            <Item1 EventName="BeforePrint" PropertyName="Text" Expression="[jsonDataSource1.details.AMOUNT]" />
+          </ExpressionBindings>
+        </Item6>
+
+        <Item7 ControlType="XRLabel" Name="det_ChargeAcc"
+               BoundsF="720,1,140,22" Font="Arial, 8pt" TextAlignment="MiddleLeft" Padding="3,0,0,0"
+               Borders="Right,Bottom" BorderColor="210,210,210">
+          <ExpressionBindings>
+            <Item1 EventName="BeforePrint" PropertyName="Text" Expression="[jsonDataSource1.details.CHARGE_ACCOUNT]" />
+          </ExpressionBindings>
+        </Item7>
+
+        <Item8 ControlType="XRLabel" Name="det_BankCharge"
+               BoundsF="860,1,60,22"  Font="Arial, 8pt" TextAlignment="MiddleCenter"
+               Borders="Right,Bottom" BorderColor="210,210,210">
+          <ExpressionBindings>
+            <Item1 EventName="BeforePrint" PropertyName="Text" Expression="[jsonDataSource1.details.BANK_CHARGE]" />
+          </ExpressionBindings>
+        </Item8>
+
+        <Item9 ControlType="XRLabel" Name="det_RemInfo"
+               BoundsF="920,1,149,22" Font="Arial, 8pt" TextAlignment="MiddleLeft" Padding="3,0,0,0"
+               Borders="Right,Bottom" BorderColor="210,210,210" CanGrow="true">
+          <ExpressionBindings>
+            <Item1 EventName="BeforePrint" PropertyName="Text" Expression="[jsonDataSource1.details.REMITTANCE_INFO]" />
+          </ExpressionBindings>
+        </Item9>
+
+        <Item10 ControlType="XRLabel" Name="det_TransRef"
+                BoundsF="1069,1,60,22" Font="Arial, 8pt" TextAlignment="MiddleLeft" Padding="3,0,0,0"
+                Borders="Right,Bottom" BorderColor="210,210,210">
+          <ExpressionBindings>
+            <Item1 EventName="BeforePrint" PropertyName="Text" Expression="[jsonDataSource1.details.RH2H_TRANS_REF]" />
+          </ExpressionBindings>
+        </Item10>
+
+      </Controls>
+    </Item5>
+
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <!-- BOTTOM MARGIN                                          -->
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <Item6 ControlType="BottomMarginBand" Name="BottomMarginBand1" HeightF="30" />
+
+  </Bands>
+
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <!-- DATASOURCE — JsonDataSource                               -->
+  <!-- Assign jsonDataSource1 tại runtime hoặc qua Report Wizard -->
+  <!-- Schema phản ánh đúng cấu trúc JSON:                       -->
+  <!--   root object  → header fields                            -->
+  <!--   root.details → array of detail items                    -->
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <ComponentStorage>
+    <Item1 ObjectType="DevExpress.DataAccess.Json.JsonDataSource"
+           Name="jsonDataSource1">
+      <ConnectionName>jsonDataSource1</ConnectionName>
+      <RootElement Name="jsonDataSource1">
+
+        <!-- Root-level header fields -->
+        <Fields>
+          <Item1  Name="GCMS_REF_NO"      Type="System.String"   />
+          <Item2  Name="RH2H_REF_NO"      Type="System.String"   />
+          <Item3  Name="UNIT_CODE"         Type="System.String"   />
+          <Item4  Name="CUSTOMER_NAME"     Type="System.String"   />
+          <Item5  Name="APPLICANT_NAME"    Type="System.String"   />
+          <Item6  Name="PAYMENT_METHOD"    Type="System.String"   />
+          <Item7  Name="VALUE_DATE"        Type="System.String"   />
+          <Item8  Name="DEBIT_ACCOUNT_NO"  Type="System.String"   />
+          <Item9  Name="NUMBER_OF_TRANS"   Type="System.String"   />
+          <Item10 Name="CCY"               Type="System.String"   />
+          <Item11 Name="AMOUNT"            Type="System.String"   />
+          <Item12 Name="BATCH_AMOUNT"      Type="System.String"   />
+          <Item13 Name="REMARKS"           Type="System.String"   />
+        </Fields>
+
+        <!-- Nested array: details -->
+        <Nodes>
+          <Item1 Name="details" Type="Array">
+            <Fields>
+              <Item1  Name="No"               Type="System.Int32"    />
+              <Item2  Name="BEN_ACCOUNT_NO"   Type="System.String"   />
+              <Item3  Name="BEN_NAME"         Type="System.String"   />
+              <Item4  Name="BEN_BANK_NAME"    Type="System.String"   />
+              <Item5  Name="CCY"              Type="System.String"   />
+              <Item6  Name="AMOUNT"           Type="System.Decimal"  />
+              <Item7  Name="CHARGE_ACCOUNT"   Type="System.String"   />
+              <Item8  Name="BANK_CHARGE"      Type="System.String"   />
+              <Item9  Name="REMITTANCE_INFO"  Type="System.String"   />
+              <Item10 Name="RH2H_TRANS_REF"   Type="System.String"   />
+            </Fields>
+          </Item1>
+        </Nodes>
+
+      </RootElement>
+    </Item1>
+  </ComponentStorage>
+
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <!-- DATASOURCE BINDINGS                                        -->
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <DataSource Ref="jsonDataSource1" />
+  <DataMember></DataMember>
+
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <!-- STYLES                                                     -->
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <StyleSheet>
+    <Item1 Name="DetailStyle"     BackColor="255, 255, 255" />
+    <Item2 Name="DetailStyleEven" BackColor="242, 247, 252" />
+  </StyleSheet>
+
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <!-- REPORT PROPERTIES                                          -->
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <Margins Left="20" Right="20" Top="30" Bottom="30" />
+  <PaperKind>A4</PaperKind>
+  <Landscape>true</Landscape>
+  <ReportUnit>HundredthsOfAnInch</ReportUnit>
+
+</XtraReportsLayoutSerializer>
